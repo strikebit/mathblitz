@@ -26,6 +26,9 @@ public class ResultActivity extends AppCompatActivity {
         }.start();
     }
 
+    @Override
+    public void onBackPressed() { }
+
     protected void playAgain() {
         Intent intent = new Intent(this, GameActivity.class);
         startActivity(intent);
