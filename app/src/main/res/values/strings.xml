@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">MathBlitz</string>
     <string name="button_start_game">Start Game!</string>
+    <string name="high_score_key">high_score</string>
 </resources>

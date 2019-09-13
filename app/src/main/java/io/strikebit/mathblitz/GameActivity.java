@@ -2,7 +2,9 @@ package io.strikebit.mathblitz;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -34,9 +36,12 @@ public class GameActivity extends AppCompatActivity {
     private int gameMode;
     private int questionTime = 5000; // 5 seconds
     private int livesRemaining;
-    private int totalCorrect;
+    private int score;
+    private int highScore;
     private int difficulty;
+    private boolean highScoreBreached = false;
 
+    private SharedPreferences sharedPref;
     private CountDownTimer countDownTimer;
     private CountDownTimer questionTimer;
     private MediaPlayer mediaPlayer;
@@ -49,12 +54,15 @@ public class GameActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
 
+        sharedPref = getPreferences(Context.MODE_PRIVATE);
+        highScore = sharedPref.getInt(getString(R.string.high_score_key), 0);
+
         progressBar = findViewById(R.id.progress_bar);
         mediaPlayer = MediaPlayer.create(GameActivity.this, R.raw.correct);
         livesRemaining = startingLives;
 
         gameMode = getIntent().getIntExtra("gameMode", GameConfig.GAME_MODE_TIME_TRIAL);
-        totalCorrect = getIntent().getIntExtra("score", 0);
+        score = getIntent().getIntExtra("score", 0);
         difficulty = getIntent().getIntExtra("difficulty", MathQuestionStrategy.DIFFICULTY_EASY);
 
         if (GameConfig.GAME_MODE_PRACTICE != gameMode) {
@@ -135,7 +143,7 @@ public class GameActivity extends AppCompatActivity {
         killTimers();
         Intent intent = new Intent(this, ResultActivity.class);
         intent.putExtra("gameMode", gameMode);
-        intent.putExtra("score", totalCorrect);
+        intent.putExtra("score", score);
         intent.putExtra("difficulty", difficulty);
         intent.putExtra("alive", livesRemaining > 0);
         startActivity(intent);
@@ -229,23 +237,40 @@ public class GameActivity extends AppCompatActivity {
         iv.setVisibility(View.VISIBLE);
     }
 
+    protected void checkHighScore() {
+        System.out.println("Score: " + score + " High Score: " + highScore);
+        if (score > highScore) {
+            highScore = score;
+            if (!highScoreBreached && highScore > 10) {
+                Toast toast = Toast.makeText(getApplicationContext(), "New high score!", Toast.LENGTH_SHORT);
+                toast.show();
+            }
+            highScoreBreached = true;
+            updateHighScore();
+        }
+    }
+
+    protected void updateHighScore() {
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putInt(getString(R.string.high_score_key), highScore);
+        System.out.println("update high score to " + highScore);
+        editor.apply();
+    }
+
     protected void provideAnswer(boolean isCorrect) {
         if (isCorrect) {
-            ++totalCorrect;
+            ++score;
+            checkHighScore();
             updateTotalCorrect();
             handleAchievements();
             mediaPlayer.seekTo(0);
             mediaPlayer.start();
         } else {
-            System.out.println("WRONG");
-            System.out.println(livesRemaining);
             loseLife();
         }
         if (livesRemaining > 0 || GameConfig.GAME_MODE_PRACTICE == gameMode) {
             createQuestion();
         }
-        System.out.println("total correct: ");
-        System.out.println(totalCorrect);
     }
 
     protected void handleAchievements() {
@@ -253,7 +278,7 @@ public class GameActivity extends AppCompatActivity {
             return;
         }
         // TODO refactor
-        if (totalCorrect == 10) {
+        if (score == 10) {
             questionTime += 1000;
             createQuestionTimer();
             gainLife();
@@ -261,7 +286,7 @@ public class GameActivity extends AppCompatActivity {
             Toast toast = Toast.makeText(getApplicationContext(), "You got 10 correct!", Toast.LENGTH_SHORT);
             toast.show();
         }
-        if (totalCorrect == 20) {
+        if (score == 20) {
             questionTime += 1000;
             createQuestionTimer();
             gainLife();
@@ -269,7 +294,7 @@ public class GameActivity extends AppCompatActivity {
             Toast toast = Toast.makeText(getApplicationContext(), "You got 20 correct!", Toast.LENGTH_SHORT);
             toast.show();
         }
-        if (totalCorrect == 30) {
+        if (score == 30) {
             questionTime += 1000;
             createQuestionTimer();
             gainLife();
@@ -277,7 +302,7 @@ public class GameActivity extends AppCompatActivity {
             Toast toast = Toast.makeText(getApplicationContext(), "You got 30 correct!", Toast.LENGTH_SHORT);
             toast.show();
         }
-        if (totalCorrect == 40) {
+        if (score == 40) {
             questionTime += 1000;
             createQuestionTimer();
             gainLife();
@@ -289,7 +314,7 @@ public class GameActivity extends AppCompatActivity {
 
     protected void updateTotalCorrect() {
         TextView textView = findViewById(R.id.text_score);
-        textView.setText(String.format(Locale.US,"Score: %d", totalCorrect));
+        textView.setText(String.format(Locale.US,"Score: %d", score));
     }
 
     @Override
