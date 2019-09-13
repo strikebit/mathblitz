@@ -1,5 +1,11 @@
 <resources>
     <string name="app_name">MathBlitz</string>
-    <string name="button_start_game">Start Game!</string>
     <string name="high_score_key">high_score</string>
+    <string name="quit">Quit</string>
+    <string name="start_timer_default">60s</string>
+    <string name="score_default">Score: 0</string>
+    <string name="life_1">Life 1</string>
+    <string name="life_2">Life 2</string>
+    <string name="life_3">Life 3</string>
+    <string name="back_to_menu">Back to menu</string>
 </resources>

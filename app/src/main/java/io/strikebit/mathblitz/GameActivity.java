@@ -23,8 +23,8 @@ import java.util.Locale;
 
 import io.strikebit.mathblitz.factory.QuestionFactory;
 import io.strikebit.mathblitz.config.GameConfig;
+import io.strikebit.mathblitz.level.LevelManager;
 import io.strikebit.mathblitz.model.MathQuestion;
-import io.strikebit.mathblitz.strategy.MathQuestionStrategy;
 import io.strikebit.mathblitz.util.NumberUtil;
 
 public class GameActivity extends AppCompatActivity {
@@ -35,7 +35,7 @@ public class GameActivity extends AppCompatActivity {
 
     private int gameMode;
     private int questionTime = 5000; // 5 seconds
-    private int livesRemaining;
+    private int livesRemaining = startingLives;
     private int score;
     private int highScore;
     private int difficulty;
@@ -54,16 +54,18 @@ public class GameActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
 
-        sharedPref = getPreferences(Context.MODE_PRIVATE);
-        highScore = sharedPref.getInt(getString(R.string.high_score_key), 0);
+        new Thread(new Runnable() {
+            public void run() {
+                sharedPref = getPreferences(Context.MODE_PRIVATE);
+                highScore = sharedPref.getInt(getString(R.string.high_score_key), 0);
+                mediaPlayer = MediaPlayer.create(GameActivity.this, R.raw.correct);
+            }
+        }).start();
 
         progressBar = findViewById(R.id.progress_bar);
-        mediaPlayer = MediaPlayer.create(GameActivity.this, R.raw.correct);
-        livesRemaining = startingLives;
-
         gameMode = getIntent().getIntExtra("gameMode", GameConfig.GAME_MODE_TIME_TRIAL);
         score = getIntent().getIntExtra("score", 0);
-        difficulty = getIntent().getIntExtra("difficulty", MathQuestionStrategy.DIFFICULTY_EASY);
+        difficulty = getIntent().getIntExtra("difficulty", GameConfig.DIFFICULTY_EASY);
 
         if (GameConfig.GAME_MODE_PRACTICE != gameMode) {
             createQuestionTimer();
@@ -95,17 +97,12 @@ public class GameActivity extends AppCompatActivity {
             };
         }
 
-        getWindow().getDecorView().post(new Runnable() {
-            @Override
-            public void run() {
-                if (null != countDownTimer) {
-                    countDownTimer.start();
-                }
-                if (null != questionTimer) {
-                    questionTimer.start();
-                }
-            }
-        });
+        if (null != countDownTimer) {
+            countDownTimer.start();
+        }
+        if (null != questionTimer) {
+            questionTimer.start();
+        }
     }
 
     public void onBackToMenuClick(View view) {
@@ -139,7 +136,7 @@ public class GameActivity extends AppCompatActivity {
     }
 
     protected void showResult() {
-        cleanup();
+        clearPreviousAnswers();
         killTimers();
         Intent intent = new Intent(this, ResultActivity.class);
         intent.putExtra("gameMode", gameMode);
@@ -157,7 +154,7 @@ public class GameActivity extends AppCompatActivity {
         questionTimer = null;
     }
 
-    protected void cleanup() {
+    protected void clearPreviousAnswers() {
         LinearLayout ll = findViewById(R.id.linear_layout);
         if (ll.getChildCount() > 0) {
             ll.removeAllViews();
@@ -170,7 +167,7 @@ public class GameActivity extends AppCompatActivity {
         TextView questionText = findViewById(R.id.math_question);
         questionText.setText(mathQuestion.getQuestion());
 
-        cleanup();
+        clearPreviousAnswers();
 
         int count = 0;
         for (Number answer : mathQuestion.getAnswers()) {
@@ -226,7 +223,7 @@ public class GameActivity extends AppCompatActivity {
     }
 
     protected void gainLife() {
-        if (livesRemaining == startingLives) {
+        if (livesRemaining >= startingLives) {
             return;
         }
         ++livesRemaining;
@@ -253,18 +250,13 @@ public class GameActivity extends AppCompatActivity {
     protected void updateHighScore() {
         SharedPreferences.Editor editor = sharedPref.edit();
         editor.putInt(getString(R.string.high_score_key), highScore);
-        System.out.println("update high score to " + highScore);
         editor.apply();
+        System.out.println("update high score to " + highScore);
     }
 
     protected void provideAnswer(boolean isCorrect) {
         if (isCorrect) {
-            ++score;
-            checkHighScore();
-            updateTotalCorrect();
-            handleAchievements();
-            mediaPlayer.seekTo(0);
-            mediaPlayer.start();
+            increaseScore();
         } else {
             loseLife();
         }
@@ -273,48 +265,33 @@ public class GameActivity extends AppCompatActivity {
         }
     }
 
-    protected void handleAchievements() {
+    protected void advanceDifficulty() {
         if (GameConfig.GAME_MODE_PRACTICE == gameMode) {
             return;
         }
-        // TODO refactor
-        if (score == 10) {
-            questionTime += 1000;
-            createQuestionTimer();
+
+        int newDifficulty = LevelManager.getNextLevel(difficulty, score);
+
+        if (newDifficulty > difficulty) {
+            difficulty = newDifficulty;
             gainLife();
-            difficulty = MathQuestionStrategy.DIFFICULTY_ADEPT;
-            Toast toast = Toast.makeText(getApplicationContext(), "You got 10 correct!", Toast.LENGTH_SHORT);
-            toast.show();
-        }
-        if (score == 20) {
-            questionTime += 1000;
-            createQuestionTimer();
-            gainLife();
-            difficulty = MathQuestionStrategy.DIFFICULTY_HARD;
-            Toast toast = Toast.makeText(getApplicationContext(), "You got 20 correct!", Toast.LENGTH_SHORT);
-            toast.show();
-        }
-        if (score == 30) {
-            questionTime += 1000;
-            createQuestionTimer();
-            gainLife();
-            difficulty = MathQuestionStrategy.DIFFICULTY_VERY_HARD;
-            Toast toast = Toast.makeText(getApplicationContext(), "You got 30 correct!", Toast.LENGTH_SHORT);
-            toast.show();
-        }
-        if (score == 40) {
-            questionTime += 1000;
-            createQuestionTimer();
-            gainLife();
-            difficulty = MathQuestionStrategy.DIFFICULTY_LEGENDARY;
-            Toast toast = Toast.makeText(getApplicationContext(), "You got 40 correct!", Toast.LENGTH_SHORT);
-            toast.show();
         }
     }
 
-    protected void updateTotalCorrect() {
+    protected void handleAchievements() {
+        // TODO Implement achievements
+    }
+
+    protected void increaseScore() {
+        ++score;
+        advanceDifficulty();
+        checkHighScore();
+        // Update score in UI
         TextView textView = findViewById(R.id.text_score);
         textView.setText(String.format(Locale.US,"Score: %d", score));
+        // Play success sound
+        mediaPlayer.seekTo(0);
+        mediaPlayer.start();
     }
 
     @Override

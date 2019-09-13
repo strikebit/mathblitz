@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Random;
 
+import io.strikebit.mathblitz.config.GameConfig;
 import io.strikebit.mathblitz.model.MathQuestion;
 import io.strikebit.mathblitz.util.NumberUtil;
 
@@ -20,34 +21,28 @@ public class MathQuestionStrategy implements MathQuestionStrategyInterface {
     private final static List<String> operators = Collections.unmodifiableList(Arrays.asList(
             OPERATOR_PLUS, OPERATOR_MINUS, OPERATOR_MULTIPLY, OPERATOR_DIVIDE));
 
-    public final static int DIFFICULTY_VERY_EASY = -1;
-    public final static int DIFFICULTY_EASY = 0;
-    public final static int DIFFICULTY_ADEPT = 1;
-    public final static int DIFFICULTY_HARD = 2;
-    public final static int DIFFICULTY_VERY_HARD = 3;
-    public final static int DIFFICULTY_LEGENDARY = 4;
-
+    private Expression expression = new Expression();
     private Random random = new Random();
 
     public MathQuestion generate(int difficulty) {
         MathQuestion mathQuestion;
         switch (difficulty) {
-            case DIFFICULTY_VERY_EASY:
+            case GameConfig.DIFFICULTY_VERY_EASY:
                 mathQuestion = generateVeryEasyQuestion();
                 break;
-            case DIFFICULTY_ADEPT:
+            case GameConfig.DIFFICULTY_ADEPT:
                 mathQuestion = generateAdeptQuestion();
                 break;
-            case DIFFICULTY_HARD:
+            case GameConfig.DIFFICULTY_HARD:
                 mathQuestion = generateHardQuestion();
                 break;
-            case DIFFICULTY_VERY_HARD:
+            case GameConfig.DIFFICULTY_VERY_HARD:
                 mathQuestion = generateVeryHardQuestion();
                 break;
-            case DIFFICULTY_LEGENDARY:
+            case GameConfig.DIFFICULTY_LEGENDARY:
                 mathQuestion = generateLegendaryQuestion();
                 break;
-            case DIFFICULTY_EASY:
+            case GameConfig.DIFFICULTY_EASY:
             default:
                 mathQuestion = generateEasyQuestion();
                 break;
@@ -77,6 +72,10 @@ public class MathQuestionStrategy implements MathQuestionStrategyInterface {
         String operator = operators.get(random.nextInt(operators.size()));
         int operand1 = random.nextInt(11);
         int operand2 = random.nextInt(11);
+        // Make division easy initially
+        if (OPERATOR_DIVIDE.equals(operator)) {
+            operand2 = random.nextInt(operand1);
+        }
         if (0 == operand2 && OPERATOR_DIVIDE.equals(operator)) {
             ++operand2;
         }
@@ -124,8 +123,8 @@ public class MathQuestionStrategy implements MathQuestionStrategyInterface {
 
     private MathQuestion generateHardQuestion() {
         String operator = operators.get(random.nextInt(operators.size()));
-        int operand1 = random.nextInt(13);
-        int operand2 = random.nextInt(13);
+        int operand1 = random.nextInt(15);
+        int operand2 = random.nextInt(15);
         if (0 == operand2 && OPERATOR_DIVIDE.equals(operator)) {
             ++operand2;
         }
@@ -141,8 +140,8 @@ public class MathQuestionStrategy implements MathQuestionStrategyInterface {
 
     private MathQuestion generateVeryHardQuestion() {
         String operator = operators.get(random.nextInt(operators.size()));
-        int operand1 = random.nextInt(51);
-        int operand2 = random.nextInt(51);
+        int operand1 = random.nextInt(30);
+        int operand2 = random.nextInt(30);
         if (0 == operand2 && OPERATOR_DIVIDE.equals(operator)) {
             ++operand2;
         }
@@ -213,7 +212,8 @@ public class MathQuestionStrategy implements MathQuestionStrategyInterface {
     }
 
     private Number calculateCorrectAnswer(String expressionStr) {
-        Expression expression = new Expression(expressionStr);
+        expression.setExpressionString(expressionStr);
+
         double answer = expression.calculate();
         int intVal = (int) answer;
         double diff = intVal - answer;
