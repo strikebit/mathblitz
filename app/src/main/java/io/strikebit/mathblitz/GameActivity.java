@@ -80,6 +80,7 @@ public class GameActivity extends AppCompatActivity {
             @Override
             public void run() {
                 countDownTimer.start();
+                questionTimer.cancel();
                 questionTimer.start();
             }
         });

@@ -32,11 +32,14 @@ public class MathQuestionStrategy implements MathQuestionStrategyInterface {
     public MathQuestion generate(int difficulty) {
         MathQuestion mathQuestion;
         switch (difficulty) {
+            case DIFFICULTY_VERY_EASY:
+                mathQuestion = generateVeryEasyQuestion();
+                break;
             case DIFFICULTY_ADEPT:
-                mathQuestion = generateHardQuestion();
+                mathQuestion = generateAdeptQuestion();
                 break;
             case DIFFICULTY_HARD:
-                mathQuestion = generateAdeptQuestion();
+                mathQuestion = generateHardQuestion();
                 break;
             case DIFFICULTY_VERY_HARD:
                 mathQuestion = generateVeryHardQuestion();
@@ -49,6 +52,23 @@ public class MathQuestionStrategy implements MathQuestionStrategyInterface {
                 mathQuestion = generateEasyQuestion();
                 break;
         }
+
+        return mathQuestion;
+    }
+
+    private MathQuestion generateVeryEasyQuestion() {
+        String operator = operators.get(random.nextInt(2));
+        int operand1 = random.nextInt(6);
+        int operand2 = random.nextInt(6);
+        if (0 == operand2 && OPERATOR_DIVIDE.equals(operator)) {
+            ++operand2;
+        }
+
+        String question = String.format(Locale.US, "%d %s %d", operand1, operator, operand2);
+
+        MathQuestion mathQuestion = buildMathQuestion(question);
+        List<Number> answers = generateAnswers(mathQuestion, 3);
+        mathQuestion.setAnswers(answers);
 
         return mathQuestion;
     }
@@ -82,8 +102,18 @@ public class MathQuestionStrategy implements MathQuestionStrategyInterface {
         if (0 == operand3 && OPERATOR_DIVIDE.equals(operator2)) {
             ++operand3;
         }
+        boolean useParenthesis = random.nextBoolean();
+        String question;
+        if (useParenthesis) {
+            if (random.nextBoolean()) {
+                question = String.format(Locale.US, "(%d %s %d) %s %d", operand1, operator1, operand2, operator2, operand3);
+            } else {
+                question = String.format(Locale.US, "%d %s (%d %s %d)", operand1, operator1, operand2, operator2, operand3);
+            }
+        } else {
+            question = String.format(Locale.US, "%d %s %d %s %d", operand1, operator1, operand2, operator2, operand3);
+        }
 
-        String question = String.format(Locale.US, "%d %s %d %s %d", operand1, operator1, operand2, operator2, operand3);
 
         MathQuestion mathQuestion = buildMathQuestion(question);
         List<Number> answers = generateAnswers(mathQuestion, 3);
@@ -140,7 +170,17 @@ public class MathQuestionStrategy implements MathQuestionStrategyInterface {
             ++operand3;
         }
 
-        String question = String.format(Locale.US, "%d %s %d %s %d", operand1, operator1, operand2, operator2, operand3);
+        boolean useParenthesis = random.nextBoolean();
+        String question;
+        if (useParenthesis) {
+            if (random.nextBoolean()) {
+                question = String.format(Locale.US, "(%d %s %d) %s %d", operand1, operator1, operand2, operator2, operand3);
+            } else {
+                question = String.format(Locale.US, "%d %s (%d %s %d)", operand1, operator1, operand2, operator2, operand3);
+            }
+        } else {
+            question = String.format(Locale.US, "%d %s %d %s %d", operand1, operator1, operand2, operator2, operand3);
+        }
 
         MathQuestion mathQuestion = buildMathQuestion(question);
         List<Number> answers = generateAnswers(mathQuestion, 4);
