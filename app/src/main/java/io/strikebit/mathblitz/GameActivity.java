@@ -8,12 +8,15 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
 import io.strikebit.mathblitz.factory.QuestionFactory;
@@ -36,6 +39,8 @@ public class GameActivity extends AppCompatActivity {
     private CountDownTimer questionTimer;
     private MediaPlayer mediaPlayer;
     private ProgressBar progressBar;
+    // TODO Make # of lifes dynamic
+    private List<ImageView> lifeCollection = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +57,12 @@ public class GameActivity extends AppCompatActivity {
         createQuestion();
 
         final TextView timerText = findViewById(R.id.text_time_remaining);
+        ImageView life1 = findViewById(R.id.image_life1);
+        ImageView life2 = findViewById(R.id.image_life2);
+        ImageView life3 = findViewById(R.id.image_life3);
+        lifeCollection.add(life1);
+        lifeCollection.add(life2);
+        lifeCollection.add(life3);
 
         countDownTimer = new CountDownTimer(gameTime, gameCountdownInterval) {
             public void onTick(long mUntilFinished) {
@@ -148,9 +159,6 @@ public class GameActivity extends AppCompatActivity {
             public void onClick(View view) {
                 boolean isCorrect = possibleAnswer.equals(correctAnswer);
                 // TODO Show a neat effect
-                // if (!isCorrect) {
-                    // answerButton.setBackgroundColor(Color.RED);
-                // }
                 questionTimer.cancel();
                 provideAnswer(isCorrect);
             }
@@ -167,6 +175,28 @@ public class GameActivity extends AppCompatActivity {
         }
     }
 
+    protected void loseLife() {
+        --livesRemaining;
+
+        System.out.println("lose life " + livesRemaining);
+
+        ImageView iv = lifeCollection.get(livesRemaining);
+        iv.setVisibility(View.INVISIBLE);
+        checkForDeath();
+    }
+
+    protected void gainLife() {
+        if (livesRemaining == startingLives) {
+            return;
+        }
+        ++livesRemaining;
+
+        System.out.println("gain life " + livesRemaining);
+
+        ImageView iv = lifeCollection.get(livesRemaining - 1);
+        iv.setVisibility(View.VISIBLE);
+    }
+
     protected void provideAnswer(boolean isCorrect) {
         if (isCorrect) {
             ++totalCorrect;
@@ -177,8 +207,7 @@ public class GameActivity extends AppCompatActivity {
         } else {
             System.out.println("WRONG");
             System.out.println(livesRemaining);
-            --livesRemaining;
-            checkForDeath();
+            loseLife();
         }
         if (livesRemaining > 0){
             createQuestion();
@@ -192,6 +221,7 @@ public class GameActivity extends AppCompatActivity {
         if (totalCorrect == 10) {
             questionTime += 1000;
             createQuestionTimer();
+            gainLife();
             difficulty = MathQuestionStrategy.DIFFICULTY_ADEPT;
             Toast toast = Toast.makeText(getApplicationContext(), "You got 10 correct!", Toast.LENGTH_SHORT);
             toast.show();
@@ -199,6 +229,7 @@ public class GameActivity extends AppCompatActivity {
         if (totalCorrect == 20) {
             questionTime += 1000;
             createQuestionTimer();
+            gainLife();
             difficulty = MathQuestionStrategy.DIFFICULTY_HARD;
             Toast toast = Toast.makeText(getApplicationContext(), "You got 20 correct!", Toast.LENGTH_SHORT);
             toast.show();
@@ -206,6 +237,7 @@ public class GameActivity extends AppCompatActivity {
         if (totalCorrect == 30) {
             questionTime += 1000;
             createQuestionTimer();
+            gainLife();
             difficulty = MathQuestionStrategy.DIFFICULTY_LEGENDARY;
             Toast toast = Toast.makeText(getApplicationContext(), "You got 30 correct!", Toast.LENGTH_SHORT);
             toast.show();
