@@ -6,6 +6,6 @@ public class NumberUtil {
         int i = number.intValue();
         double diff = i - d;
 
-        return diff < 0;
+        return diff < 0 || diff > 0;
     }
 }

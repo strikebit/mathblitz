@@ -39,7 +39,7 @@ public class GameActivity extends AppCompatActivity {
     private CountDownTimer questionTimer;
     private MediaPlayer mediaPlayer;
     private ProgressBar progressBar;
-    // TODO Make # of lifes dynamic
+    // TODO Make # of lives dynamic
     private List<ImageView> lifeCollection = new ArrayList<>();
 
     @Override
@@ -238,15 +238,23 @@ public class GameActivity extends AppCompatActivity {
             questionTime += 1000;
             createQuestionTimer();
             gainLife();
-            difficulty = MathQuestionStrategy.DIFFICULTY_LEGENDARY;
+            difficulty = MathQuestionStrategy.DIFFICULTY_VERY_HARD;
             Toast toast = Toast.makeText(getApplicationContext(), "You got 30 correct!", Toast.LENGTH_SHORT);
+            toast.show();
+        }
+        if (totalCorrect == 40) {
+            questionTime += 1000;
+            createQuestionTimer();
+            gainLife();
+            difficulty = MathQuestionStrategy.DIFFICULTY_LEGENDARY;
+            Toast toast = Toast.makeText(getApplicationContext(), "You got 40 correct!", Toast.LENGTH_SHORT);
             toast.show();
         }
     }
 
     protected void updateTotalCorrect() {
         TextView textView = findViewById(R.id.text_score);
-        textView.setText(String.format(Locale.US,"Correct: %d", totalCorrect));
+        textView.setText(String.format(Locale.US,"Score: %d", totalCorrect));
     }
 
     @Override
