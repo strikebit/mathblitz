@@ -20,16 +20,18 @@ import java.util.List;
 import java.util.Locale;
 
 import io.strikebit.mathblitz.factory.QuestionFactory;
+import io.strikebit.mathblitz.config.GameConfig;
 import io.strikebit.mathblitz.model.MathQuestion;
 import io.strikebit.mathblitz.strategy.MathQuestionStrategy;
 import io.strikebit.mathblitz.util.NumberUtil;
 
 public class GameActivity extends AppCompatActivity {
     private final static int gameCountdownInterval = 1000;
-    private final static int gameTime = 61000; // 61 seconds
+    private final static int gameTime = GameConfig.TIME_TRIAL_DURATION_SECONDS * 1000;
     private final static DecimalFormat df2 = new DecimalFormat("#.##");
     private final static int startingLives = 3;
 
+    private int gameMode;
     private int questionTime = 5000; // 5 seconds
     private int livesRemaining;
     private int totalCorrect;
@@ -49,14 +51,20 @@ public class GameActivity extends AppCompatActivity {
 
         progressBar = findViewById(R.id.progress_bar);
         mediaPlayer = MediaPlayer.create(GameActivity.this, R.raw.correct);
-        totalCorrect = getIntent().getIntExtra("score", 0);
-        difficulty = getIntent().getIntExtra("difficulty", MathQuestionStrategy.DIFFICULTY_EASY);
         livesRemaining = startingLives;
 
-        createQuestionTimer();
+        gameMode = getIntent().getIntExtra("gameMode", GameConfig.GAME_MODE_TIME_TRIAL);
+        totalCorrect = getIntent().getIntExtra("score", 0);
+        difficulty = getIntent().getIntExtra("difficulty", MathQuestionStrategy.DIFFICULTY_EASY);
+
+        if (GameConfig.GAME_MODE_PRACTICE != gameMode) {
+            createQuestionTimer();
+        }
         createQuestion();
 
         final TextView timerText = findViewById(R.id.text_time_remaining);
+        timerText.setVisibility(View.INVISIBLE);
+
         ImageView life1 = findViewById(R.id.image_life1);
         ImageView life2 = findViewById(R.id.image_life2);
         ImageView life3 = findViewById(R.id.image_life3);
@@ -64,29 +72,43 @@ public class GameActivity extends AppCompatActivity {
         lifeCollection.add(life2);
         lifeCollection.add(life3);
 
-        countDownTimer = new CountDownTimer(gameTime, gameCountdownInterval) {
-            public void onTick(long mUntilFinished) {
-                timerText.setText(String.format(Locale.US, "%ds", mUntilFinished / 1000));
-            }
+        if (GameConfig.GAME_MODE_TIME_TRIAL == gameMode) {
+            timerText.setVisibility(View.VISIBLE);
+            countDownTimer = new CountDownTimer(gameTime, gameCountdownInterval) {
+                public void onTick(long mUntilFinished) {
+                    timerText.setText(String.format(Locale.US, "%ds", mUntilFinished / 1000));
+                }
 
-            public void onFinish() {
-                TextView questionText = findViewById(R.id.math_question);
-                questionText.setVisibility(View.INVISIBLE);
-                showResult();
-            }
-        };
+                public void onFinish() {
+                    TextView questionText = findViewById(R.id.math_question);
+                    questionText.setVisibility(View.INVISIBLE);
+                    showResult();
+                }
+            };
+        }
 
         getWindow().getDecorView().post(new Runnable() {
             @Override
             public void run() {
-                countDownTimer.start();
-                questionTimer.cancel();
-                questionTimer.start();
+                if (null != countDownTimer) {
+                    countDownTimer.start();
+                }
+                if (null != questionTimer) {
+                    questionTimer.start();
+                }
             }
         });
     }
 
+    public void onBackToMenuClick(View view) {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
+
     protected void createQuestionTimer() {
+        if (GameConfig.GAME_MODE_PRACTICE == gameMode) {
+            return;
+        }
         questionTimer = new CountDownTimer(questionTime, 10) {
             public void onTick(long mUntilFinished) {
                 double i = (double) mUntilFinished;
@@ -100,14 +122,19 @@ public class GameActivity extends AppCompatActivity {
     }
 
     protected void killTimers() {
-        countDownTimer.cancel();
-        questionTimer.cancel();
+        if (null != countDownTimer) {
+            countDownTimer.cancel();
+        }
+        if (null != questionTimer) {
+            questionTimer.cancel();
+        }
     }
 
     protected void showResult() {
         cleanup();
         killTimers();
         Intent intent = new Intent(this, ResultActivity.class);
+        intent.putExtra("gameMode", gameMode);
         intent.putExtra("score", totalCorrect);
         intent.putExtra("difficulty", difficulty);
         intent.putExtra("alive", livesRemaining > 0);
@@ -143,7 +170,9 @@ public class GameActivity extends AppCompatActivity {
             ++count;
         }
 
-        questionTimer.start();
+        if (null != questionTimer) {
+            questionTimer.start();
+        }
     }
 
     protected void addAnswerButton(int index, final Number possibleAnswer, final Number correctAnswer) {
@@ -160,7 +189,9 @@ public class GameActivity extends AppCompatActivity {
             public void onClick(View view) {
                 boolean isCorrect = possibleAnswer.equals(correctAnswer);
                 // TODO Show a neat effect
-                questionTimer.cancel();
+                if (null != questionTimer) {
+                    questionTimer.cancel();
+                }
                 provideAnswer(isCorrect);
             }
         });
@@ -170,14 +201,14 @@ public class GameActivity extends AppCompatActivity {
     }
 
     protected void checkForDeath() {
-        if (0 == livesRemaining) {
+        if (0 == livesRemaining && GameConfig.GAME_MODE_PRACTICE != gameMode) {
             System.out.println("I AM DEAD");
             showResult();
         }
     }
 
     protected void loseLife() {
-        --livesRemaining;
+        livesRemaining = livesRemaining > 0 ? livesRemaining - 1 : 0;
 
         System.out.println("lose life " + livesRemaining);
 
@@ -210,7 +241,7 @@ public class GameActivity extends AppCompatActivity {
             System.out.println(livesRemaining);
             loseLife();
         }
-        if (livesRemaining > 0){
+        if (livesRemaining > 0 || GameConfig.GAME_MODE_PRACTICE == gameMode) {
             createQuestion();
         }
         System.out.println("total correct: ");
@@ -218,6 +249,9 @@ public class GameActivity extends AppCompatActivity {
     }
 
     protected void handleAchievements() {
+        if (GameConfig.GAME_MODE_PRACTICE == gameMode) {
+            return;
+        }
         // TODO refactor
         if (totalCorrect == 10) {
             questionTime += 1000;

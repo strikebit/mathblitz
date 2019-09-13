@@ -6,25 +6,123 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <TextView
+        android:id="@+id/text_game_modes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Game Modes"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <Button
-        android:id="@+id/button_game_start"
+        android:id="@+id/button_game_time_trial_start"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="16dp"
-        android:onClick="onStartGameClick"
-        android:text="@string/button_start_game"
+        android:onClick="onStartTimeTrialGameClick"
+        android:text="Time Trial"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/text_game_modes" />
 
-    <TextView
+    <Button
+        android:id="@+id/button_survival_game_start"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:onClick="onStartSurvivalGameClick"
+        android:text="Survival"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/button_game_time_trial_start" />
+
+    <TextView
+        android:id="@+id/text_practice_modes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Practice Modes"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/button_survival_game_start" />
+
+    <Button
+        android:id="@+id/button_practice_very_easy"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:onClick="onStartPracticeGameVeryEasyClick"
+        android:text="Very Easy (kid-friendly)"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/text_practice_modes" />
+
+    <Button
+        android:id="@+id/button_practice_easy"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:onClick="onStartPracticeGameEasyClick"
+        android:text="Easy (kid-friendly)"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/button_practice_very_easy" />
+
+    <Button
+        android:id="@+id/button_practice_adept"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:onClick="onStartPracticeGameAdeptClick"
+        android:text="Adept"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/button_practice_easy" />
+
+    <Button
+        android:id="@+id/button_practice_hard"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:onClick="onStartPracticeGameHardClick"
+        android:text="Hard"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/button_practice_adept" />
+
+    <Button
+        android:id="@+id/button_practice_very_hard"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:onClick="onStartPracticeGameVeryHardClick"
+        android:text="Very Hard"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/button_practice_hard" />
+
+    <Button
+        android:id="@+id/button_practice_genius"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:onClick="onStartPracticeGameLegendaryClick"
+        android:text="Genius"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/button_practice_very_hard" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

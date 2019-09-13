@@ -2,11 +2,12 @@ package io.strikebit.mathblitz;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.ActivityOptions;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
+
+import io.strikebit.mathblitz.config.GameConfig;
+import io.strikebit.mathblitz.strategy.MathQuestionStrategy;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -16,12 +17,57 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
-    public void onStartGameClick(View view) {
+    public void onStartTimeTrialGameClick(View view) {
         Intent intent = new Intent(this, GameActivity.class);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
-        } else {
-            startActivity(intent);
-        }
+        intent.putExtra("gameMode", GameConfig.GAME_MODE_TIME_TRIAL);
+        startActivity(intent);
+    }
+
+    public void onStartSurvivalGameClick(View view) {
+        Intent intent = new Intent(this, GameActivity.class);
+        intent.putExtra("gameMode", GameConfig.GAME_MODE_SURVIVAL);
+        startActivity(intent);
+    }
+
+    public void onStartPracticeGameVeryEasyClick(View view) {
+        Intent intent = new Intent(this, GameActivity.class);
+        intent.putExtra("gameMode", GameConfig.GAME_MODE_PRACTICE);
+        intent.putExtra("difficulty", MathQuestionStrategy.DIFFICULTY_VERY_EASY);
+        startActivity(intent);
+    }
+
+    public void onStartPracticeGameEasyClick(View view) {
+        Intent intent = new Intent(this, GameActivity.class);
+        intent.putExtra("gameMode", GameConfig.GAME_MODE_PRACTICE);
+        intent.putExtra("difficulty", MathQuestionStrategy.DIFFICULTY_EASY);
+        startActivity(intent);
+    }
+
+    public void onStartPracticeGameAdeptClick(View view) {
+        Intent intent = new Intent(this, GameActivity.class);
+        intent.putExtra("gameMode", GameConfig.GAME_MODE_PRACTICE);
+        intent.putExtra("difficulty", MathQuestionStrategy.DIFFICULTY_ADEPT);
+        startActivity(intent);
+    }
+
+    public void onStartPracticeGameHardClick(View view) {
+        Intent intent = new Intent(this, GameActivity.class);
+        intent.putExtra("gameMode", GameConfig.GAME_MODE_PRACTICE);
+        intent.putExtra("difficulty", MathQuestionStrategy.DIFFICULTY_HARD);
+        startActivity(intent);
+    }
+
+    public void onStartPracticeGameVeryHardClick(View view) {
+        Intent intent = new Intent(this, GameActivity.class);
+        intent.putExtra("gameMode", GameConfig.GAME_MODE_PRACTICE);
+        intent.putExtra("difficulty", MathQuestionStrategy.DIFFICULTY_VERY_HARD);
+        startActivity(intent);
+    }
+
+    public void onStartPracticeGameLegendaryClick(View view) {
+        Intent intent = new Intent(this, GameActivity.class);
+        intent.putExtra("gameMode", GameConfig.GAME_MODE_PRACTICE);
+        intent.putExtra("difficulty", MathQuestionStrategy.DIFFICULTY_LEGENDARY);
+        startActivity(intent);
     }
 }
