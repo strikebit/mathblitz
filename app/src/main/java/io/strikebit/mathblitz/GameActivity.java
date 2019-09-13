@@ -9,6 +9,7 @@ import android.os.CountDownTimer;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,30 +22,38 @@ import io.strikebit.mathblitz.strategy.MathQuestionStrategy;
 import io.strikebit.mathblitz.util.NumberUtil;
 
 public class GameActivity extends AppCompatActivity {
-    private final static int interval = 1000;
-    private final static int maxTime = 31000;
-    private static DecimalFormat df2 = new DecimalFormat("#.##");
+    private final static int gameCountdownInterval = 1000;
+    private final static int gameTime = 61000; // 61 seconds
+    private final static DecimalFormat df2 = new DecimalFormat("#.##");
+    private final static int startingLives = 3;
 
+    private int questionTime = 5000; // 5 seconds
     private int livesRemaining;
     private int totalCorrect;
-    private CountDownTimer countDownTimer;
-    private MediaPlayer mediaPlayer;
     private int difficulty;
+
+    private CountDownTimer countDownTimer;
+    private CountDownTimer questionTimer;
+    private MediaPlayer mediaPlayer;
+    private ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
 
+        progressBar = findViewById(R.id.progress_bar);
+        mediaPlayer = MediaPlayer.create(GameActivity.this, R.raw.correct);
         totalCorrect = getIntent().getIntExtra("score", 0);
         difficulty = getIntent().getIntExtra("difficulty", MathQuestionStrategy.DIFFICULTY_EASY);
-        livesRemaining = 3;
+        livesRemaining = startingLives;
 
+        createQuestionTimer();
         createQuestion();
 
         final TextView timerText = findViewById(R.id.text_time_remaining);
 
-        countDownTimer = new CountDownTimer(maxTime, interval) {
+        countDownTimer = new CountDownTimer(gameTime, gameCountdownInterval) {
             public void onTick(long mUntilFinished) {
                 timerText.setText(String.format(Locale.US, "%ds", mUntilFinished / 1000));
             }
@@ -56,12 +65,36 @@ public class GameActivity extends AppCompatActivity {
             }
         };
 
-        // countDownTimer.start();
-        mediaPlayer = MediaPlayer.create(GameActivity.this, R.raw.correct);
+        getWindow().getDecorView().post(new Runnable() {
+            @Override
+            public void run() {
+                countDownTimer.start();
+                questionTimer.start();
+            }
+        });
+    }
+
+    protected void createQuestionTimer() {
+        questionTimer = new CountDownTimer(questionTime, 10) {
+            public void onTick(long mUntilFinished) {
+                double i = (double) mUntilFinished;
+                progressBar.setProgress((int) Math.round(((i / questionTime) * 100)));
+            }
+            public void onFinish() {
+                progressBar.setProgress(0);
+                provideAnswer(false);
+            }
+        };
+    }
+
+    protected void killTimers() {
+        countDownTimer.cancel();
+        questionTimer.cancel();
     }
 
     protected void showResult() {
         cleanup();
+        killTimers();
         Intent intent = new Intent(this, ResultActivity.class);
         intent.putExtra("score", totalCorrect);
         intent.putExtra("difficulty", difficulty);
@@ -72,7 +105,9 @@ public class GameActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        countDownTimer.cancel();
+        killTimers();
+        countDownTimer = null;
+        questionTimer = null;
     }
 
     protected void cleanup() {
@@ -95,6 +130,8 @@ public class GameActivity extends AppCompatActivity {
             addAnswerButton(count, answer, mathQuestion.getCorrectAnswer());
             ++count;
         }
+
+        questionTimer.start();
     }
 
     protected void addAnswerButton(int index, final Number possibleAnswer, final Number correctAnswer) {
@@ -110,9 +147,11 @@ public class GameActivity extends AppCompatActivity {
         answerButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 boolean isCorrect = possibleAnswer.equals(correctAnswer);
+                // TODO Show a neat effect
                 // if (!isCorrect) {
                     // answerButton.setBackgroundColor(Color.RED);
                 // }
+                questionTimer.cancel();
                 provideAnswer(isCorrect);
             }
         });
@@ -124,8 +163,6 @@ public class GameActivity extends AppCompatActivity {
     protected void checkForDeath() {
         if (0 == livesRemaining) {
             System.out.println("I AM DEAD");
-            System.out.println(livesRemaining);
-            countDownTimer.cancel();
             showResult();
         }
     }
@@ -153,16 +190,22 @@ public class GameActivity extends AppCompatActivity {
     protected void handleAchievements() {
         // TODO refactor
         if (totalCorrect == 10) {
+            questionTime += 1000;
+            createQuestionTimer();
             difficulty = MathQuestionStrategy.DIFFICULTY_ADEPT;
             Toast toast = Toast.makeText(getApplicationContext(), "You got 10 correct!", Toast.LENGTH_SHORT);
             toast.show();
         }
         if (totalCorrect == 20) {
+            questionTime += 1000;
+            createQuestionTimer();
             difficulty = MathQuestionStrategy.DIFFICULTY_HARD;
             Toast toast = Toast.makeText(getApplicationContext(), "You got 20 correct!", Toast.LENGTH_SHORT);
             toast.show();
         }
-        if (totalCorrect == 20) {
+        if (totalCorrect == 30) {
+            questionTime += 1000;
+            createQuestionTimer();
             difficulty = MathQuestionStrategy.DIFFICULTY_LEGENDARY;
             Toast toast = Toast.makeText(getApplicationContext(), "You got 30 correct!", Toast.LENGTH_SHORT);
             toast.show();
