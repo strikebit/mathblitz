@@ -29,10 +29,10 @@ public class MathQuestionStrategy implements MathQuestionStrategyInterface {
         MathQuestion mathQuestion;
         switch (difficulty) {
             case DIFFICULTY_ADEPT:
-                mathQuestion = generateAdeptQuestion();
+                mathQuestion = generateHardQuestion();
                 break;
             case DIFFICULTY_HARD:
-                mathQuestion = generateHardQuestion();
+                mathQuestion = generateAdeptQuestion();
                 break;
             case DIFFICULTY_LEGENDARY:
                 mathQuestion = generateLegendaryQuestion();
