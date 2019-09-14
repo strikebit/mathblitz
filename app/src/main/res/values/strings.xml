@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">MathBlitz</string>
-    <string name="high_score_key">high_score</string>
+    <string name="high_score_time_trial_key">high_score_time_trial</string>
+    <string name="high_score_survival_key">high_score_survival</string>
     <string name="quit">Quit</string>
     <string name="start_timer_default">60s</string>
     <string name="score_default">Score: 0</string>

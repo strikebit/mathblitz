@@ -70,14 +70,16 @@ public class MathQuestionStrategy implements MathQuestionStrategyInterface {
 
     private MathQuestion generateEasyQuestion() {
         String operator = operators.get(random.nextInt(operators.size()));
-        int operand1 = random.nextInt(11);
-        int operand2 = random.nextInt(11);
+        int operand1 = random.nextInt(13);
+        int operand2 = random.nextInt(13);
         // Make division easy initially
         if (OPERATOR_DIVIDE.equals(operator)) {
-            operand2 = random.nextInt(operand1);
-        }
-        if (0 == operand2 && OPERATOR_DIVIDE.equals(operator)) {
-            ++operand2;
+            operand1 = 0 == operand1 ? ++operand1 : operand1;
+            List<Integer> divisors = NumberUtil.getDivisors(operand1);
+            System.out.println(divisors);
+            System.out.println(divisors.size());
+            System.out.println(random.nextInt(divisors.size()));
+            operand2 = divisors.get(random.nextInt(divisors.size()));
         }
 
         String question = String.format(Locale.US, "%d %s %d", operand1, operator, operand2);
@@ -90,6 +92,23 @@ public class MathQuestionStrategy implements MathQuestionStrategyInterface {
     }
 
     private MathQuestion generateAdeptQuestion() {
+        String operator = operators.get(random.nextInt(operators.size()));
+        int operand1 = random.nextInt(16);
+        int operand2 = random.nextInt(16);
+        if (0 == operand2 && OPERATOR_DIVIDE.equals(operator)) {
+            ++operand2;
+        }
+
+        String question = String.format(Locale.US, "%d %s %d", operand1, operator, operand2);
+
+        MathQuestion mathQuestion = buildMathQuestion(question);
+        List<Number> answers = generateAnswers(mathQuestion, 4);
+        mathQuestion.setAnswers(answers);
+
+        return mathQuestion;
+    }
+
+    private MathQuestion generateHardQuestion() {
         String operator1 = operators.get(random.nextInt(operators.size()));
         String operator2 = operators.get(random.nextInt(operators.size()));
         int operand1 = random.nextInt(11);
@@ -116,23 +135,6 @@ public class MathQuestionStrategy implements MathQuestionStrategyInterface {
 
         MathQuestion mathQuestion = buildMathQuestion(question);
         List<Number> answers = generateAnswers(mathQuestion, 3);
-        mathQuestion.setAnswers(answers);
-
-        return mathQuestion;
-    }
-
-    private MathQuestion generateHardQuestion() {
-        String operator = operators.get(random.nextInt(operators.size()));
-        int operand1 = random.nextInt(15);
-        int operand2 = random.nextInt(15);
-        if (0 == operand2 && OPERATOR_DIVIDE.equals(operator)) {
-            ++operand2;
-        }
-
-        String question = String.format(Locale.US, "%d %s %d", operand1, operator, operand2);
-
-        MathQuestion mathQuestion = buildMathQuestion(question);
-        List<Number> answers = generateAnswers(mathQuestion, 4);
         mathQuestion.setAnswers(answers);
 
         return mathQuestion;

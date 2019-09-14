@@ -56,17 +56,23 @@ public class GameActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
 
-        new Thread(new Runnable() {
-            public void run() {
-                sharedPref = getPreferences(Context.MODE_PRIVATE);
-                highScore = sharedPref.getInt(getString(R.string.high_score_key), 0);
-            }
-        }).start();
-
         progressBar = findViewById(R.id.progress_bar);
         gameMode = getIntent().getIntExtra("gameMode", GameConfig.GAME_MODE_TIME_TRIAL);
         score = getIntent().getIntExtra("score", 0);
         difficulty = getIntent().getIntExtra("difficulty", GameConfig.DIFFICULTY_EASY);
+
+        new Thread(new Runnable() {
+            public void run() {
+                sharedPref = getPreferences(Context.MODE_PRIVATE);
+                String highScoreKey;
+                if (GameConfig.GAME_MODE_TIME_TRIAL == gameMode) {
+                    highScoreKey = getString(R.string.high_score_time_trial_key);
+                } else {
+                    highScoreKey = getString(R.string.high_score_survival_key);
+                }
+                highScore = sharedPref.getInt(highScoreKey, 0);
+            }
+        }).start();
 
         if (GameConfig.GAME_MODE_PRACTICE != gameMode) {
             createQuestionTimer();
@@ -216,7 +222,11 @@ public class GameActivity extends AppCompatActivity {
     }
 
     protected void checkForDeath() {
-        if (0 == livesRemaining && GameConfig.GAME_MODE_PRACTICE != gameMode) {
+        if (GameConfig.GAME_MODE_PRACTICE == gameMode) {
+            return;
+        }
+
+        if (0 == livesRemaining) {
             System.out.println("I AM DEAD");
             showResult();
         }
@@ -245,6 +255,10 @@ public class GameActivity extends AppCompatActivity {
     }
 
     protected void checkHighScore() {
+        if (GameConfig.GAME_MODE_PRACTICE == gameMode) {
+            return;
+        }
+
         System.out.println("Score: " + score + " High Score: " + highScore);
         if (score > highScore) {
             highScore = score;
@@ -259,7 +273,13 @@ public class GameActivity extends AppCompatActivity {
 
     protected void updateHighScore() {
         SharedPreferences.Editor editor = sharedPref.edit();
-        editor.putInt(getString(R.string.high_score_key), highScore);
+        String highScoreKey;
+        if (GameConfig.GAME_MODE_TIME_TRIAL == gameMode) {
+            highScoreKey = getString(R.string.high_score_time_trial_key);
+        } else {
+            highScoreKey = getString(R.string.high_score_survival_key);
+        }
+        editor.putInt(highScoreKey, highScore);
         editor.apply();
         System.out.println("update high score to " + highScore);
     }
@@ -276,17 +296,22 @@ public class GameActivity extends AppCompatActivity {
     }
 
     protected void advanceDifficulty() {
-        if (GameConfig.GAME_MODE_PRACTICE == gameMode) {
-            return;
-        }
+        System.out.println("advance difficulty");
+        int newDifficulty;
 
-        int newDifficulty = LevelManager.getNextLevel(difficulty, score);
+        if (GameConfig.GAME_MODE_PRACTICE == gameMode) {
+            System.out.println("practice mode");
+            newDifficulty = difficulty;
+        } else {
+            newDifficulty = LevelManager.getNextLevel(difficulty, score);
+        }
 
         if (newDifficulty > difficulty) {
             difficulty = newDifficulty;
             gainLife();
             soundManager.playLevelUpSound(GameActivity.this);
         } else {
+            System.out.println("play sound");
             soundManager.playCorrectAnswerSound(GameActivity.this);
         }
     }
