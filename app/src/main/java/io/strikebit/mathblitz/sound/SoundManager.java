@@ -12,7 +12,12 @@ public class SoundManager {
         try {
             mediaPlayer = MediaPlayer.create(context, R.raw.correct);
             mediaPlayer.start();
-            mediaPlayer.setOnCompletionListener(onCompletionListener);
+            mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                @Override
+                public void onCompletion(MediaPlayer mp) {
+                    mp.release();
+                }
+            });
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -22,17 +27,14 @@ public class SoundManager {
         try {
             mediaPlayer = MediaPlayer.create(context, R.raw.level_up);
             mediaPlayer.start();
-            mediaPlayer.setOnCompletionListener(onCompletionListener);
+            mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                @Override
+                public void onCompletion(MediaPlayer mp) {
+                    mp.release();
+                }
+            });
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-
-    private MediaPlayer.OnCompletionListener onCompletionListener = new MediaPlayer.OnCompletionListener() {
-        @Override
-        public void onCompletion(MediaPlayer mp) {
-            mediaPlayer.release();
-            mediaPlayer = null;
-        }
-    };
 }
