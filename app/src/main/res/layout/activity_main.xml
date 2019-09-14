@@ -4,6 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/main_layout"
+    android:background="@drawable/ic_launcher_background"
     tools:context=".MainActivity">
 
     <TextView
@@ -45,12 +47,11 @@
         android:id="@+id/text_practice_modes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Practice Modes"
-        android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="16dp"
+        android:text="Stats"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/button_survival_game_start" />
+        app:layout_constraintTop_toBottomOf="@+id/button_practice_very_easy" />
 
     <Button
         android:id="@+id/button_practice_very_easy"
@@ -60,69 +61,31 @@
         android:layout_marginLeft="16dp"
         android:layout_marginTop="16dp"
         android:onClick="onStartPracticeGameVeryEasyClick"
-        android:text="Very Easy (kid-friendly)"
+        android:text="Practice"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/text_practice_modes" />
+        app:layout_constraintTop_toBottomOf="@+id/button_survival_game_start" />
 
     <Button
-        android:id="@+id/button_practice_easy"
+        android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="16dp"
-        android:onClick="onStartPracticeGameEasyClick"
-        android:text="Easy (kid-friendly)"
+        android:text="Leaderboard"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/button_practice_very_easy" />
+        app:layout_constraintTop_toBottomOf="@+id/text_practice_modes" />
 
     <Button
-        android:id="@+id/button_practice_adept"
+        android:id="@+id/button2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="16dp"
-        android:onClick="onStartPracticeGameAdeptClick"
-        android:text="Adept"
+        android:text="My Stats"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/button_practice_easy" />
-
-    <Button
-        android:id="@+id/button_practice_hard"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="16dp"
-        android:onClick="onStartPracticeGameHardClick"
-        android:text="Hard"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/button_practice_adept" />
-
-    <Button
-        android:id="@+id/button_practice_very_hard"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="16dp"
-        android:onClick="onStartPracticeGameVeryHardClick"
-        android:text="Very Hard"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/button_practice_hard" />
-
-    <Button
-        android:id="@+id/button_practice_genius"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="16dp"
-        android:onClick="onStartPracticeGameLegendaryClick"
-        android:text="Genius"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/button_practice_very_hard" />
+        app:layout_constraintTop_toBottomOf="@+id/button" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
