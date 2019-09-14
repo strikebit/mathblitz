@@ -5,9 +5,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -25,6 +25,7 @@ import io.strikebit.mathblitz.factory.QuestionFactory;
 import io.strikebit.mathblitz.config.GameConfig;
 import io.strikebit.mathblitz.level.LevelManager;
 import io.strikebit.mathblitz.model.MathQuestion;
+import io.strikebit.mathblitz.sound.SoundManager;
 import io.strikebit.mathblitz.util.NumberUtil;
 
 public class GameActivity extends AppCompatActivity {
@@ -40,12 +41,13 @@ public class GameActivity extends AppCompatActivity {
     private int highScore;
     private int difficulty;
     private boolean highScoreBreached = false;
+    private boolean gameStarted = false;
 
     private SharedPreferences sharedPref;
     private CountDownTimer countDownTimer;
     private CountDownTimer questionTimer;
-    private MediaPlayer mediaPlayer;
     private ProgressBar progressBar;
+    private SoundManager soundManager = new SoundManager();
     // TODO Make # of lives dynamic
     private List<ImageView> lifeCollection = new ArrayList<>();
 
@@ -58,7 +60,6 @@ public class GameActivity extends AppCompatActivity {
             public void run() {
                 sharedPref = getPreferences(Context.MODE_PRIVATE);
                 highScore = sharedPref.getInt(getString(R.string.high_score_key), 0);
-                mediaPlayer = MediaPlayer.create(GameActivity.this, R.raw.correct);
             }
         }).start();
 
@@ -97,12 +98,20 @@ public class GameActivity extends AppCompatActivity {
             };
         }
 
-        if (null != countDownTimer) {
-            countDownTimer.start();
-        }
-        if (null != questionTimer) {
-            questionTimer.start();
-        }
+        final Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                gameStarted = true;
+                if (null != countDownTimer) {
+                    countDownTimer.start();
+                }
+                if (null != questionTimer) {
+                    questionTimer.start();
+                }
+            }
+        }, 3000);
+
     }
 
     public void onBackToMenuClick(View view) {
@@ -143,6 +152,7 @@ public class GameActivity extends AppCompatActivity {
         intent.putExtra("score", score);
         intent.putExtra("difficulty", difficulty);
         intent.putExtra("alive", livesRemaining > 0);
+        intent.putExtra("highScore", highScore);
         startActivity(intent);
     }
 
@@ -175,7 +185,7 @@ public class GameActivity extends AppCompatActivity {
             ++count;
         }
 
-        if (null != questionTimer) {
+        if (null != questionTimer && gameStarted) {
             questionTimer.start();
         }
     }
@@ -275,6 +285,9 @@ public class GameActivity extends AppCompatActivity {
         if (newDifficulty > difficulty) {
             difficulty = newDifficulty;
             gainLife();
+            soundManager.playLevelUpSound(GameActivity.this);
+        } else {
+            soundManager.playCorrectAnswerSound(GameActivity.this);
         }
     }
 
@@ -289,9 +302,6 @@ public class GameActivity extends AppCompatActivity {
         // Update score in UI
         TextView textView = findViewById(R.id.text_score);
         textView.setText(String.format(Locale.US,"Score: %d", score));
-        // Play success sound
-        mediaPlayer.seekTo(0);
-        mediaPlayer.start();
     }
 
     @Override

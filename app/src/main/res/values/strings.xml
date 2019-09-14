@@ -8,4 +8,5 @@
     <string name="life_2">Life 2</string>
     <string name="life_3">Life 3</string>
     <string name="back_to_menu">Back to menu</string>
+    <string name="high_score">High score: 0</string>
 </resources>
