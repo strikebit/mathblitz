@@ -9,7 +9,7 @@
     <string name="most_correct_in_a_row">most_correct_in_a_row</string>
     <string name="quit">Quitter</string>
     <string name="start_timer_default">60s</string>
-    <string name="score_default">Le score: 0</string>
+    <string name="score_default">Le score: %d</string>
     <string name="life_1">La vie 1</string>
     <string name="life_2">La vie 2</string>
     <string name="life_3">La vie 3</string>
