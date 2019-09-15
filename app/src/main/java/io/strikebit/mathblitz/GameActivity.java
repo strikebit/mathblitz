@@ -303,8 +303,12 @@ public class GameActivity extends AppCompatActivity {
     protected void loseLife() {
         livesRemaining = livesRemaining > 0 ? livesRemaining - 1 : 0;
 
+        checkCorrectAnswersInaRow();
+        mostCorrectInRowSession = 0;
+
         ImageView iv = lifeCollection.get(livesRemaining);
         iv.setVisibility(View.INVISIBLE);
+
         checkForDeath();
     }
 
@@ -378,8 +382,17 @@ public class GameActivity extends AppCompatActivity {
         }
     }
 
+    protected void checkCorrectAnswersInaRow() {
+        if (mostCorrectInRowSession > mostCorrectInRow) {
+            SharedPreferences.Editor editor = sharedPref.edit();
+            editor.putInt(getString(R.string.most_correct_in_a_row), mostCorrectInRowSession);
+            editor.apply();
+        }
+    }
+
     protected void increaseScore() {
         ++score;
+        ++mostCorrectInRowSession;
         advanceDifficulty();
         checkHighScore();
         // Update score in UI
