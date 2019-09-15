@@ -205,6 +205,13 @@ public class GameActivity extends AppCompatActivity {
         questionTimer = null;
     }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        killTimers();
+        finish();
+    }
+
     protected void clearPreviousAnswers() {
         if (null == ll) {
             return;
@@ -260,7 +267,8 @@ public class GameActivity extends AppCompatActivity {
                 if (isCorrect) {
                     if (currentQuestionTime > 0
                             && currentQuestionTime < newFastestTime
-                            && currentQuestionTime < fastestCorrectAnswer) {
+                            && currentQuestionTime < fastestCorrectAnswer
+                            && GameConfig.GAME_MODE_PRACTICE != gameMode) {
                         SharedPreferences.Editor editor = sharedPref.edit();
                         newFastestTime = currentQuestionTime;
                         editor.putFloat(getString(R.string.fastest_correct_answer), newFastestTime);
@@ -339,6 +347,10 @@ public class GameActivity extends AppCompatActivity {
     }
 
     protected void updateHighScore() {
+        if (GameConfig.GAME_MODE_PRACTICE == gameMode) {
+            return;
+        }
+
         SharedPreferences.Editor editor = sharedPref.edit();
         String highScoreKey;
         if (GameConfig.GAME_MODE_TIME_TRIAL == gameMode) {
@@ -346,6 +358,7 @@ public class GameActivity extends AppCompatActivity {
         } else {
             highScoreKey = getString(R.string.high_score_survival_key);
         }
+
         editor.putInt(highScoreKey, highScore);
         editor.apply();
     }
@@ -383,6 +396,10 @@ public class GameActivity extends AppCompatActivity {
     }
 
     protected void checkCorrectAnswersInaRow() {
+        if (GameConfig.GAME_MODE_PRACTICE == gameMode) {
+            return;
+        }
+
         if (mostCorrectInRowSession > mostCorrectInRow) {
             SharedPreferences.Editor editor = sharedPref.edit();
             editor.putInt(getString(R.string.most_correct_in_a_row), mostCorrectInRowSession);
@@ -401,5 +418,10 @@ public class GameActivity extends AppCompatActivity {
     }
 
     @Override
-    public void onBackPressed() { }
+    public void onBackPressed() {
+        if (GameConfig.GAME_MODE_PRACTICE == gameMode) {
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
+        }
+    }
 }

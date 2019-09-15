@@ -3,8 +3,11 @@ package io.strikebit.mathblitz;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 
 import io.strikebit.mathblitz.config.GameConfig;
 
@@ -14,6 +17,15 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        try {
+            TextView buildInfo = findViewById(R.id.text_build_info);
+            PackageInfo pInfo = getApplicationContext().getPackageManager().getPackageInfo(getPackageName(), 0);
+            String version = pInfo.versionName;
+            buildInfo.setText(version);
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
     public void onStartTimeTrialGameClick(View view) {
@@ -28,10 +40,8 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void onStartPracticeGameVeryEasyClick(View view) {
-        Intent intent = new Intent(this, GameActivity.class);
-        intent.putExtra("gameMode", GameConfig.GAME_MODE_PRACTICE);
-        intent.putExtra("difficulty", GameConfig.DIFFICULTY_VERY_EASY);
+    public void onStartPracticeGameClick(View view) {
+        Intent intent = new Intent(this, PracticeActivity.class);
         startActivity(intent);
     }
 

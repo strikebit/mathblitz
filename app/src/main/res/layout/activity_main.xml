@@ -6,10 +6,12 @@
     android:layout_height="match_parent"
     android:id="@+id/main_layout"
     android:background="@drawable/ic_launcher_background"
+    android:backgroundTint="@color/colorPrimaryDark"
     tools:context=".MainActivity">
 
     <TextView
         android:id="@+id/text_game_modes"
+        android:textColor="@color/colorWhite"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/game_modes"
@@ -40,11 +42,24 @@
         android:layout_marginTop="16dp"
         android:onClick="onStartSurvivalGameClick"
         android:text="@string/survival"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/button_game_time_trial_start" />
+        app:layout_constraintStart_toEndOf="@+id/button_game_time_trial_start"
+        app:layout_constraintTop_toBottomOf="@id/text_game_modes" />
+
+    <Button
+        android:id="@+id/button_practice_very_easy"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:onClick="onStartPracticeGameClick"
+        android:text="@string/practice"
+        app:layout_constraintStart_toEndOf="@+id/button_survival_game_start"
+        app:layout_constraintTop_toBottomOf="@id/text_game_modes" />
 
     <TextView
         android:id="@+id/text_practice_modes"
+        android:textColor="@color/colorWhite"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
@@ -55,19 +70,7 @@
         app:layout_constraintTop_toBottomOf="@+id/button_practice_very_easy" />
 
     <Button
-        android:id="@+id/button_practice_very_easy"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="16dp"
-        android:onClick="onStartPracticeGameVeryEasyClick"
-        android:text="@string/practice"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_survival_game_start" />
-
-    <Button
-        android:id="@+id/button"
+        android:id="@+id/button_leaderboard"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -78,15 +81,26 @@
         app:layout_constraintTop_toBottomOf="@+id/text_practice_modes" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/button_my_stats"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="16dp"
-        android:text="@string/my_stats"
         android:onClick="viewStatsClick"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button" />
+        android:text="@string/my_stats"
+        app:layout_constraintStart_toEndOf="@+id/button_leaderboard"
+        app:layout_constraintTop_toBottomOf="@+id/text_practice_modes" />
+
+    <TextView
+        android:id="@+id/text_build_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginBottom="16dp"
+        android:textColor="@color/colorWhite"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
