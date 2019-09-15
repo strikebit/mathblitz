@@ -23,6 +23,21 @@ public class SoundManager {
         }
     }
 
+    public void playIncorrectAnswerSound(Context context) {
+        try {
+            mediaPlayer = MediaPlayer.create(context, R.raw.wrong);
+            mediaPlayer.start();
+            mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                @Override
+                public void onCompletion(MediaPlayer mp) {
+                    mp.release();
+                }
+            });
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     public void playLevelUpSound(Context context) {
         try {
             mediaPlayer = MediaPlayer.create(context, R.raw.level_up);

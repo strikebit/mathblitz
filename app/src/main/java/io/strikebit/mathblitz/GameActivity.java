@@ -354,6 +354,7 @@ public class GameActivity extends AppCompatActivity {
             increaseScore();
         } else {
             loseLife();
+            soundManager.playIncorrectAnswerSound(GameActivity.this);
         }
         if (livesRemaining > 0 || GameConfig.GAME_MODE_PRACTICE == gameMode) {
             createQuestion();
