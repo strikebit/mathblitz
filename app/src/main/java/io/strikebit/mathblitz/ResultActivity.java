@@ -30,7 +30,7 @@ public class ResultActivity extends AppCompatActivity {
         TextView resultText = findViewById(R.id.text_result);
         TextView highScoreText = findViewById(R.id.text_high_score);
 
-        highScoreText.setText(String.format(Locale.US, "High score: %d", highScore));
+        highScoreText.setText(getString(R.string.high_score, highScore));
 
         if (alive) {
             resultText.setText(String.format(Locale.US, "Time's up! Final score: %d", score));

@@ -387,7 +387,7 @@ public class GameActivity extends AppCompatActivity {
         checkHighScore();
         // Update score in UI
         TextView textView = findViewById(R.id.text_score);
-        textView.setText(String.format(Locale.US,"Score: %d", score));
+        textView.setText(getString(R.string.score_default, score));
     }
 
     @Override

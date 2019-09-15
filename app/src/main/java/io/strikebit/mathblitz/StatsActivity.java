@@ -48,7 +48,7 @@ public class StatsActivity extends AppCompatActivity {
                 if (fastestCorrectAnswer < 60000.0f) {
                     tvFastestCorrectAnswer.setText(String.format(Locale.US, "%.2f seconds", (fastestCorrectAnswer / 1000)));
                 } else {
-                    tvFastestCorrectAnswer.setText("N/A");
+                    tvFastestCorrectAnswer.setText("--");
                 }
 
                 TextView tvPercentCorrect = findViewById(R.id.text_percent_correct);
@@ -61,7 +61,7 @@ public class StatsActivity extends AppCompatActivity {
                             )
                     );
                 } else {
-                    tvPercentCorrect.setText("N/A");
+                    tvPercentCorrect.setText("--");
                 }
             }
         }).start();
