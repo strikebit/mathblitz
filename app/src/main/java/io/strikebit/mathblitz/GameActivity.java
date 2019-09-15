@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
@@ -40,8 +41,16 @@ public class GameActivity extends AppCompatActivity {
     private int score;
     private int highScore;
     private int difficulty;
+    private int totalQuestionsAnswered;
+    private int questionsAnswered = 0;
+    private int totalQuestionsCorrect;
+    private float fastestCorrectAnswer;
+    private float newFastestTime = 60000.0f;
+    private int mostCorrectInRow;
+    private int mostCorrectInRowSession = 0;
     private boolean highScoreBreached = false;
     private boolean gameStarted = false;
+    private float currentQuestionTime;
 
     private SharedPreferences sharedPref;
     private CountDownTimer countDownTimer;
@@ -50,12 +59,14 @@ public class GameActivity extends AppCompatActivity {
     private SoundManager soundManager = new SoundManager();
     // TODO Make # of lives dynamic
     private List<ImageView> lifeCollection = new ArrayList<>();
+    private LinearLayout ll;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
 
+        ll = findViewById(R.id.linear_layout);
         progressBar = findViewById(R.id.progress_bar);
         gameMode = getIntent().getIntExtra("gameMode", GameConfig.GAME_MODE_TIME_TRIAL);
         score = getIntent().getIntExtra("score", 0);
@@ -63,7 +74,7 @@ public class GameActivity extends AppCompatActivity {
 
         new Thread(new Runnable() {
             public void run() {
-                sharedPref = getPreferences(Context.MODE_PRIVATE);
+                sharedPref = getSharedPreferences(getString(R.string.game_shared_preferences), Context.MODE_PRIVATE);
                 String highScoreKey;
                 if (GameConfig.GAME_MODE_TIME_TRIAL == gameMode) {
                     highScoreKey = getString(R.string.high_score_time_trial_key);
@@ -71,11 +82,17 @@ public class GameActivity extends AppCompatActivity {
                     highScoreKey = getString(R.string.high_score_survival_key);
                 }
                 highScore = sharedPref.getInt(highScoreKey, 0);
+                totalQuestionsAnswered = sharedPref.getInt(getString(R.string.total_questions_answered), 0);
+                totalQuestionsCorrect = sharedPref.getInt(getString(R.string.total_questions_correct), 0);
+                mostCorrectInRow = sharedPref.getInt(getString(R.string.most_correct_in_a_row), 0);
+                fastestCorrectAnswer = sharedPref.getFloat(getString(R.string.fastest_correct_answer), 60000.0f);
             }
         }).start();
 
         if (GameConfig.GAME_MODE_PRACTICE != gameMode) {
             createQuestionTimer();
+        } else {
+            setupPracticeMode();
         }
         createQuestion();
 
@@ -117,7 +134,24 @@ public class GameActivity extends AppCompatActivity {
                 }
             }
         }, 3000);
+    }
 
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+
+        if (Configuration.ORIENTATION_LANDSCAPE == newConfig.orientation) {
+            ll.setOrientation(LinearLayout.HORIZONTAL);
+        } else {
+            ll.setOrientation(LinearLayout.VERTICAL);
+        }
+    }
+
+    protected void setupPracticeMode() {
+        findViewById(R.id.progress_bar).setVisibility(View.INVISIBLE);
+        findViewById(R.id.image_life1).setVisibility(View.INVISIBLE);
+        findViewById(R.id.image_life2).setVisibility(View.INVISIBLE);
+        findViewById(R.id.image_life3).setVisibility(View.INVISIBLE);
     }
 
     public void onBackToMenuClick(View view) {
@@ -131,8 +165,9 @@ public class GameActivity extends AppCompatActivity {
         }
         questionTimer = new CountDownTimer(questionTime, 10) {
             public void onTick(long mUntilFinished) {
+                currentQuestionTime = questionTime - (float) mUntilFinished;
                 double i = (double) mUntilFinished;
-                progressBar.setProgress((int) Math.round(((i / questionTime) * 100)));
+                progressBar.setProgress((int) Math.round(((i / (double) questionTime) * 100)));
             }
             public void onFinish() {
                 progressBar.setProgress(0);
@@ -157,8 +192,8 @@ public class GameActivity extends AppCompatActivity {
         intent.putExtra("gameMode", gameMode);
         intent.putExtra("score", score);
         intent.putExtra("difficulty", difficulty);
-        intent.putExtra("alive", livesRemaining > 0);
         intent.putExtra("highScore", highScore);
+        intent.putExtra("alive", livesRemaining > 0);
         startActivity(intent);
     }
 
@@ -171,7 +206,9 @@ public class GameActivity extends AppCompatActivity {
     }
 
     protected void clearPreviousAnswers() {
-        LinearLayout ll = findViewById(R.id.linear_layout);
+        if (null == ll) {
+            return;
+        }
         if (ll.getChildCount() > 0) {
             ll.removeAllViews();
         }
@@ -184,6 +221,13 @@ public class GameActivity extends AppCompatActivity {
         questionText.setText(mathQuestion.getQuestion());
 
         clearPreviousAnswers();
+
+        int orientation = this.getResources().getConfiguration().orientation;
+        if (Configuration.ORIENTATION_LANDSCAPE == orientation) {
+            ll.setOrientation(LinearLayout.HORIZONTAL);
+        } else {
+            ll.setOrientation(LinearLayout.VERTICAL);
+        }
 
         int count = 0;
         for (Number answer : mathQuestion.getAnswers()) {
@@ -205,10 +249,34 @@ public class GameActivity extends AppCompatActivity {
         } else {
             answerButton.setText(String.valueOf(possibleAnswer));
         }
-        answerButton.setAllCaps(false);
+        answerButton.setTextSize(30);
+        answerButton.setTextColor(getResources().getColor(R.color.colorWhite));
+        answerButton.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
         answerButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
+                ++questionsAnswered;
                 boolean isCorrect = possibleAnswer.equals(correctAnswer);
+
+                if (isCorrect) {
+                    if (currentQuestionTime > 0
+                            && currentQuestionTime < newFastestTime
+                            && currentQuestionTime < fastestCorrectAnswer) {
+                        SharedPreferences.Editor editor = sharedPref.edit();
+                        newFastestTime = currentQuestionTime;
+                        editor.putFloat(getString(R.string.fastest_correct_answer), newFastestTime);
+                        editor.apply();
+                        Toast toast = Toast.makeText(
+                                getApplicationContext(),
+                                String.format(
+                                        Locale.US,
+                                        "New fastest answer (%.2f seconds)", newFastestTime / 1000
+                                ),
+                                Toast.LENGTH_SHORT
+                        );
+                        toast.show();
+                    }
+                }
+
                 // TODO Show a neat effect
                 if (null != questionTimer) {
                     questionTimer.cancel();
@@ -216,8 +284,8 @@ public class GameActivity extends AppCompatActivity {
                 provideAnswer(isCorrect);
             }
         });
-        LinearLayout ll = findViewById(R.id.linear_layout);
-        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT, 1);
+        lp.setMargins(3, 3, 3, 3);
         ll.addView(answerButton, lp);
     }
 
@@ -227,15 +295,16 @@ public class GameActivity extends AppCompatActivity {
         }
 
         if (0 == livesRemaining) {
-            System.out.println("I AM DEAD");
+            SharedPreferences.Editor editor = sharedPref.edit();
+            editor.putInt(getString(R.string.total_questions_answered), totalQuestionsAnswered + questionsAnswered);
+            editor.putInt(getString(R.string.total_questions_correct), totalQuestionsCorrect + score);
+            editor.apply();
             showResult();
         }
     }
 
     protected void loseLife() {
         livesRemaining = livesRemaining > 0 ? livesRemaining - 1 : 0;
-
-        System.out.println("lose life " + livesRemaining);
 
         ImageView iv = lifeCollection.get(livesRemaining);
         iv.setVisibility(View.INVISIBLE);
@@ -248,8 +317,6 @@ public class GameActivity extends AppCompatActivity {
         }
         ++livesRemaining;
 
-        System.out.println("gain life " + livesRemaining);
-
         ImageView iv = lifeCollection.get(livesRemaining - 1);
         iv.setVisibility(View.VISIBLE);
     }
@@ -259,7 +326,6 @@ public class GameActivity extends AppCompatActivity {
             return;
         }
 
-        System.out.println("Score: " + score + " High Score: " + highScore);
         if (score > highScore) {
             highScore = score;
             if (!highScoreBreached && highScore > 10) {
@@ -281,7 +347,6 @@ public class GameActivity extends AppCompatActivity {
         }
         editor.putInt(highScoreKey, highScore);
         editor.apply();
-        System.out.println("update high score to " + highScore);
     }
 
     protected void provideAnswer(boolean isCorrect) {
@@ -296,11 +361,9 @@ public class GameActivity extends AppCompatActivity {
     }
 
     protected void advanceDifficulty() {
-        System.out.println("advance difficulty");
         int newDifficulty;
 
         if (GameConfig.GAME_MODE_PRACTICE == gameMode) {
-            System.out.println("practice mode");
             newDifficulty = difficulty;
         } else {
             newDifficulty = LevelManager.getNextLevel(difficulty, score);
@@ -308,16 +371,13 @@ public class GameActivity extends AppCompatActivity {
 
         if (newDifficulty > difficulty) {
             difficulty = newDifficulty;
+            questionTime += 1500;
+            createQuestionTimer();
             gainLife();
             soundManager.playLevelUpSound(GameActivity.this);
         } else {
-            System.out.println("play sound");
             soundManager.playCorrectAnswerSound(GameActivity.this);
         }
-    }
-
-    protected void handleAchievements() {
-        // TODO Implement achievements
     }
 
     protected void increaseScore() {

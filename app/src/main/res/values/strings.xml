@@ -1,7 +1,12 @@
 <resources>
     <string name="app_name">MathBlitz</string>
+    <string name="game_shared_preferences">game_shared_preferences</string>
     <string name="high_score_time_trial_key">high_score_time_trial</string>
     <string name="high_score_survival_key">high_score_survival</string>
+    <string name="total_questions_answered">total_questions_answered</string>
+    <string name="total_questions_correct">total_questions_correct</string>
+    <string name="fastest_correct_answer">fastest_correct_answer</string>
+    <string name="most_correct_in_a_row">most_correct_in_a_row</string>
     <string name="quit">Quit</string>
     <string name="start_timer_default">60s</string>
     <string name="score_default">Score: 0</string>
@@ -10,4 +15,19 @@
     <string name="life_3">Life 3</string>
     <string name="back_to_menu">Back to menu</string>
     <string name="high_score">High score: 0</string>
+    <string name="label_high_score_time_trial">Time trial high score</string>
+    <string name="label_high_score_survival">Survival high score</string>
+    <string name="label_questions_answered">Questions answered</string>
+    <string name="label_questions_correct">Questions correct</string>
+    <string name="label_fastest_answer">Fastest answer</string>
+    <string name="label_most_correct_in_a_row">Most correct in a row</string>
+    <string name="label_percent_correct">Percent correct</string>
+    <string name="stats">Stats</string>
+    <string name="my_stats">My stats</string>
+    <string name="leaderboard">Leaderboard</string>
+    <string name="game_modes">Game modes</string>
+    <string name="time_trial">Time Trial</string>
+    <string name="survival">Survival</string>
+    <string name="practice">Practice</string>
+    <string name="play_again">Play again</string>
 </resources>

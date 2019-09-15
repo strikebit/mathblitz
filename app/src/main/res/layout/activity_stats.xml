@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".StatsActivity">
+
+    <TableLayout
+        android:id="@+id/stats_table"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="60dp"
+        tools:layout_editor_absoluteY="141dp">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:layout_column="1"
+                android:padding="10dp"
+                android:text="@string/label_high_score_time_trial"
+                android:textStyle="bold" />
+            <TextView
+                android:id="@+id/text_time_trial_high_score"
+                android:padding="10dp"
+                android:layout_column="2" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:layout_column="1"
+                android:padding="10dp"
+                android:text="@string/label_high_score_survival"
+                android:textStyle="bold" />
+            <TextView
+                android:id="@+id/text_survival_high_score"
+                android:padding="10dp"
+                android:layout_column="2" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:layout_column="1"
+                android:padding="10dp"
+                android:text="@string/label_fastest_answer"
+                android:textStyle="bold" />
+            <TextView
+                android:id="@+id/text_fastest_answer"
+                android:padding="10dp"
+                android:layout_column="2" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:layout_column="1"
+                android:padding="10dp"
+                android:text="@string/label_most_correct_in_a_row"
+                android:textStyle="bold" />
+            <TextView
+                android:id="@+id/text_most_correct_in_a_row"
+                android:padding="10dp"
+                android:layout_column="2" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:layout_column="1"
+                android:padding="10dp"
+                android:text="@string/label_questions_answered"
+                android:textStyle="bold" />
+            <TextView
+                android:id="@+id/text_questions_answered"
+                android:padding="10dp"
+                android:layout_column="2" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:text="@string/label_questions_correct"
+                android:padding="10dp"
+                android:layout_column="1"
+                android:textStyle="bold" />
+            <TextView
+                android:id="@+id/text_questions_correct"
+                android:padding="10dp"
+                android:layout_column="2" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:text="@string/label_percent_correct"
+                android:padding="10dp"
+                android:layout_column="1"
+                android:textStyle="bold" />
+            <TextView
+                android:id="@+id/text_percent_correct"
+                android:padding="10dp"
+                android:layout_column="2" />
+        </TableRow>
+
+    </TableLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

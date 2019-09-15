@@ -24,7 +24,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="10dp"
-        android:contentDescription="Life 1"
+        android:contentDescription="@string/life_1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/life" />
@@ -36,6 +36,7 @@
         android:layout_marginStart="0dp"
         android:layout_marginLeft="0dp"
         android:layout_marginTop="10dp"
+        android:contentDescription="@string/life_2"
         app:layout_constraintStart_toEndOf="@+id/image_life1"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/life" />
@@ -47,6 +48,7 @@
         android:layout_marginStart="0dp"
         android:layout_marginLeft="0dp"
         android:layout_marginTop="10dp"
+        android:contentDescription="@string/life_3"
         app:layout_constraintStart_toEndOf="@+id/image_life2"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/life" />
@@ -95,10 +97,12 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="180dp"
-        android:orientation="vertical"
+        android:orientation="horizontal"
         app:layout_constraintStart_toStartOf="@+id/progress_bar"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+    </LinearLayout>
 
+    <!--
     <Button
         android:id="@+id/button_back_to_menu"
         android:layout_width="wrap_content"
@@ -114,5 +118,5 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
-
+    -->
 </androidx.constraintlayout.widget.ConstraintLayout>

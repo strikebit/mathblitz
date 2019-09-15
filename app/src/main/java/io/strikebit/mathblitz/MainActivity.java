@@ -35,38 +35,8 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void onStartPracticeGameEasyClick(View view) {
-        Intent intent = new Intent(this, GameActivity.class);
-        intent.putExtra("gameMode", GameConfig.GAME_MODE_PRACTICE);
-        intent.putExtra("difficulty", GameConfig.DIFFICULTY_EASY);
-        startActivity(intent);
-    }
-
-    public void onStartPracticeGameAdeptClick(View view) {
-        Intent intent = new Intent(this, GameActivity.class);
-        intent.putExtra("gameMode", GameConfig.GAME_MODE_PRACTICE);
-        intent.putExtra("difficulty", GameConfig.DIFFICULTY_ADEPT);
-        startActivity(intent);
-    }
-
-    public void onStartPracticeGameHardClick(View view) {
-        Intent intent = new Intent(this, GameActivity.class);
-        intent.putExtra("gameMode", GameConfig.GAME_MODE_PRACTICE);
-        intent.putExtra("difficulty", GameConfig.DIFFICULTY_HARD);
-        startActivity(intent);
-    }
-
-    public void onStartPracticeGameVeryHardClick(View view) {
-        Intent intent = new Intent(this, GameActivity.class);
-        intent.putExtra("gameMode", GameConfig.GAME_MODE_PRACTICE);
-        intent.putExtra("difficulty", GameConfig.DIFFICULTY_VERY_HARD);
-        startActivity(intent);
-    }
-
-    public void onStartPracticeGameLegendaryClick(View view) {
-        Intent intent = new Intent(this, GameActivity.class);
-        intent.putExtra("gameMode", GameConfig.GAME_MODE_PRACTICE);
-        intent.putExtra("difficulty", GameConfig.DIFFICULTY_LEGENDARY);
+    public void viewStatsClick(View view) {
+        Intent intent = new Intent(this, StatsActivity.class);
         startActivity(intent);
     }
 }
