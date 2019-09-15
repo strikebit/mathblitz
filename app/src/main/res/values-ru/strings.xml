@@ -1,0 +1,33 @@
+<resources>
+    <string name="app_name">MathBlitz</string>
+    <string name="game_shared_preferences">game_shared_preferences</string>
+    <string name="high_score_time_trial_key">high_score_time_trial</string>
+    <string name="high_score_survival_key">high_score_survival</string>
+    <string name="total_questions_answered">total_questions_answered</string>
+    <string name="total_questions_correct">total_questions_correct</string>
+    <string name="fastest_correct_answer">fastest_correct_answer</string>
+    <string name="most_correct_in_a_row">most_correct_in_a_row</string>
+    <string name="quit">уволиться</string>
+    <string name="start_timer_default">60s</string>
+    <string name="score_default">Гол: %d</string>
+    <string name="life_1">жизнь 1</string>
+    <string name="life_2">жизнь 2</string>
+    <string name="life_3">жизнь 3</string>
+    <string name="back_to_menu">назад к меню</string>
+    <string name="high_score">рекорд: %d</string>
+    <string name="label_high_score_time_trial">испытание временем</string>
+    <string name="label_high_score_survival">высокий балл выживания</string>
+    <string name="label_questions_answered">ответы на вопросы</string>
+    <string name="label_questions_correct">вопросы правильные</string>
+    <string name="label_fastest_answer">самый быстрый ответ</string>
+    <string name="label_most_correct_in_a_row">самый правильный подряд</string>
+    <string name="label_percent_correct">правильный процент</string>
+    <string name="stats">статистика</string>
+    <string name="my_stats">моя статистика</string>
+    <string name="leaderboard">Лидеры</string>
+    <string name="game_modes">режимы игры</string>
+    <string name="time_trial">пробный период</string>
+    <string name="survival">выживание</string>
+    <string name="practice">практика</string>
+    <string name="play_again">играть снова</string>
+</resources>

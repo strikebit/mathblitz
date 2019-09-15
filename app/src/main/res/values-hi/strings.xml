@@ -1,0 +1,33 @@
+<resources>
+    <string name="app_name">MathBlitz</string>
+    <string name="game_shared_preferences">game_shared_preferences</string>
+    <string name="high_score_time_trial_key">high_score_time_trial</string>
+    <string name="high_score_survival_key">high_score_survival</string>
+    <string name="total_questions_answered">total_questions_answered</string>
+    <string name="total_questions_correct">total_questions_correct</string>
+    <string name="fastest_correct_answer">fastest_correct_answer</string>
+    <string name="most_correct_in_a_row">most_correct_in_a_row</string>
+    <string name="quit">छोड़ना</string>
+    <string name="start_timer_default">60s</string>
+    <string name="score_default">स्कोर: %d</string>
+    <string name="life_1">जिंदगी 1</string>
+    <string name="life_2">जिंदगी 2</string>
+    <string name="life_3">जिंदगी 3</string>
+    <string name="back_to_menu">वापस मेन्यू पर</string>
+    <string name="high_score">उच्च स्कोर: %d</string>
+    <string name="label_high_score_time_trial">समय परीक्षण उच्च स्कोर</string>
+    <string name="label_high_score_survival">उत्तरजीविता उच्च अंक</string>
+    <string name="label_questions_answered">सवालों के जवाब दिए</string>
+    <string name="label_questions_correct">प्रश्न सही हैं</string>
+    <string name="label_fastest_answer">सबसे तेज़ उत्तर</string>
+    <string name="label_most_correct_in_a_row">एक पंक्ति में सबसे सही</string>
+    <string name="label_percent_correct">प्रतिशत सही</string>
+    <string name="stats">आँकड़े</string>
+    <string name="my_stats">मेरे आंकड़े</string>
+    <string name="leaderboard">लीडरबोर्ड</string>
+    <string name="game_modes">खेल के प्रकार</string>
+    <string name="time_trial">समय परीक्षण</string>
+    <string name="survival">उत्तरजीविता</string>
+    <string name="practice">अभ्यास</string>
+    <string name="play_again">फिर से चालू करें</string>
+</resources>

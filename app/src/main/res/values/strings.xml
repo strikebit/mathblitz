@@ -9,12 +9,12 @@
     <string name="most_correct_in_a_row">most_correct_in_a_row</string>
     <string name="quit">Quit</string>
     <string name="start_timer_default">60s</string>
-    <string name="score_default">Score: 0</string>
+    <string name="score_default">Score: %d</string>
     <string name="life_1">Life 1</string>
     <string name="life_2">Life 2</string>
     <string name="life_3">Life 3</string>
     <string name="back_to_menu">Back to menu</string>
-    <string name="high_score">High score: 0</string>
+    <string name="high_score">High score: %d</string>
     <string name="label_high_score_time_trial">Time trial high score</string>
     <string name="label_high_score_survival">Survival high score</string>
     <string name="label_questions_answered">Questions answered</string>

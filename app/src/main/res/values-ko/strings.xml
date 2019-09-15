@@ -1,0 +1,33 @@
+<resources>
+    <string name="app_name">MathBlitz</string>
+    <string name="game_shared_preferences">game_shared_preferences</string>
+    <string name="high_score_time_trial_key">high_score_time_trial</string>
+    <string name="high_score_survival_key">high_score_survival</string>
+    <string name="total_questions_answered">total_questions_answered</string>
+    <string name="total_questions_correct">total_questions_correct</string>
+    <string name="fastest_correct_answer">fastest_correct_answer</string>
+    <string name="most_correct_in_a_row">most_correct_in_a_row</string>
+    <string name="quit">떠나다</string>
+    <string name="start_timer_default">60s</string>
+    <string name="score_default">점수: %d</string>
+    <string name="life_1">생명 1</string>
+    <string name="life_2">생명 2</string>
+    <string name="life_3">생명 3</string>
+    <string name="back_to_menu">메뉴로 돌아 가기</string>
+    <string name="high_score">높은 점수: %d</string>
+    <string name="label_high_score_time_trial">타임 트라이얼 최고 점수</string>
+    <string name="label_high_score_survival">생존 최고 점수</string>
+    <string name="label_questions_answered">질문에 답변</string>
+    <string name="label_questions_correct">올바른 질문</string>
+    <string name="label_fastest_answer">빠른 답변</string>
+    <string name="label_most_correct_in_a_row">행에서 가장 정확한</string>
+    <string name="label_percent_correct">정확한 퍼센트</string>
+    <string name="stats">통계</string>
+    <string name="my_stats">내 통계</string>
+    <string name="leaderboard">리더 보드</string>
+    <string name="game_modes">게임 모드</string>
+    <string name="time_trial">타임 트라이얼</string>
+    <string name="survival">활착</string>
+    <string name="practice">연습</string>
+    <string name="play_again">다시 재생</string>
+</resources>

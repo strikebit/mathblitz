@@ -1,0 +1,33 @@
+<resources>
+    <string name="app_name">MathBlitz</string>
+    <string name="game_shared_preferences">game_shared_preferences</string>
+    <string name="high_score_time_trial_key">high_score_time_trial</string>
+    <string name="high_score_survival_key">high_score_survival</string>
+    <string name="total_questions_answered">total_questions_answered</string>
+    <string name="total_questions_correct">total_questions_correct</string>
+    <string name="fastest_correct_answer">fastest_correct_answer</string>
+    <string name="most_correct_in_a_row">most_correct_in_a_row</string>
+    <string name="quit">Părăsi</string>
+    <string name="start_timer_default">60s</string>
+    <string name="score_default">Scor: %d</string>
+    <string name="life_1">Viaţă 1</string>
+    <string name="life_2">Viaţă 2</string>
+    <string name="life_3">Viaţă 3</string>
+    <string name="back_to_menu">Inapoi la meniu</string>
+    <string name="high_score">Cel mai mare scor: %d</string>
+    <string name="label_high_score_time_trial">Scor de timp mare</string>
+    <string name="label_high_score_survival">Scor de supraviețuire mare</string>
+    <string name="label_questions_answered">La întrebări răspuns</string>
+    <string name="label_questions_correct">Întrebările corecte</string>
+    <string name="label_fastest_answer">Cel mai rapid răspuns</string>
+    <string name="label_most_correct_in_a_row">Cele mai corecte la rând</string>
+    <string name="label_percent_correct">Procent corect</string>
+    <string name="stats">Statistici</string>
+    <string name="my_stats">Statisticile mele</string>
+    <string name="leaderboard">Leaderboard</string>
+    <string name="game_modes">Moduri de joc</string>
+    <string name="time_trial">Procesul de timp</string>
+    <string name="survival">Supravieţuire</string>
+    <string name="practice">Practică</string>
+    <string name="play_again">Joaca din nou</string>
+</resources>

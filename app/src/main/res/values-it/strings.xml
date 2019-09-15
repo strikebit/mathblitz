@@ -1,0 +1,33 @@
+<resources>
+    <string name="app_name">MathBlitz</string>
+    <string name="game_shared_preferences">game_shared_preferences</string>
+    <string name="high_score_time_trial_key">high_score_time_trial</string>
+    <string name="high_score_survival_key">high_score_survival</string>
+    <string name="total_questions_answered">total_questions_answered</string>
+    <string name="total_questions_correct">total_questions_correct</string>
+    <string name="fastest_correct_answer">fastest_correct_answer</string>
+    <string name="most_correct_in_a_row">most_correct_in_a_row</string>
+    <string name="quit">Smettere</string>
+    <string name="start_timer_default">60s</string>
+    <string name="score_default">Punto: %d</string>
+    <string name="life_1">Vita 1</string>
+    <string name="life_2">Vita 2</string>
+    <string name="life_3">Vita 3</string>
+    <string name="back_to_menu">Torna al menu</string>
+    <string name="high_score">Punteggio alto: %d</string>
+    <string name="label_high_score_time_trial">Punteggio elevato nella prova a cronometro</string>
+    <string name="label_high_score_survival">Punteggio elevato di sopravvivenza</string>
+    <string name="label_questions_answered">Risposte alle domande</string>
+    <string name="label_questions_correct">Domande corrette</string>
+    <string name="label_fastest_answer">Risposta più veloce</string>
+    <string name="label_most_correct_in_a_row">Più corretto di fila</string>
+    <string name="label_percent_correct">Percentuale corretta</string>
+    <string name="stats">Statistiche</string>
+    <string name="my_stats">Le mie statistiche</string>
+    <string name="leaderboard">Classifica</string>
+    <string name="game_modes">Modalità di gioco</string>
+    <string name="time_trial">Cronometro</string>
+    <string name="survival">Sopravvivenza</string>
+    <string name="practice">Pratica</string>
+    <string name="play_again">Gioca di nuovo</string>
+</resources>

@@ -1,0 +1,33 @@
+<resources>
+    <string name="app_name">MathBlitz</string>
+    <string name="game_shared_preferences">game_shared_preferences</string>
+    <string name="high_score_time_trial_key">high_score_time_trial</string>
+    <string name="high_score_survival_key">high_score_survival</string>
+    <string name="total_questions_answered">total_questions_answered</string>
+    <string name="total_questions_correct">total_questions_correct</string>
+    <string name="fastest_correct_answer">fastest_correct_answer</string>
+    <string name="most_correct_in_a_row">most_correct_in_a_row</string>
+    <string name="quit">Slutte</string>
+    <string name="start_timer_default">60s</string>
+    <string name="score_default">Score: %d</string>
+    <string name="life_1">Liv 1</string>
+    <string name="life_2">Liv 2</string>
+    <string name="life_3">Liv 3</string>
+    <string name="back_to_menu">Tilbake til menyen</string>
+    <string name="high_score">Høy score: %d</string>
+    <string name="label_high_score_time_trial">Tidsforsøk høy score</string>
+    <string name="label_high_score_survival">Overlevelse høy score</string>
+    <string name="label_questions_answered">Spørsmål besvart</string>
+    <string name="label_questions_correct">Spørsmål riktige</string>
+    <string name="label_fastest_answer">Raskeste svar</string>
+    <string name="label_most_correct_in_a_row">Mest korrekt på rad</string>
+    <string name="label_percent_correct">Prosent korrekt</string>
+    <string name="stats">Statistikken</string>
+    <string name="my_stats">Statistikken min</string>
+    <string name="leaderboard">Leaderboard</string>
+    <string name="game_modes">Spill moduser</string>
+    <string name="time_trial">Tidsforsøk</string>
+    <string name="survival">Overlevelse</string>
+    <string name="practice">Øve på</string>
+    <string name="play_again">Spill igjen</string>
+</resources>

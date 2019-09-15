@@ -1,0 +1,33 @@
+<resources>
+    <string name="app_name">MathBlitz</string>
+    <string name="game_shared_preferences">game_shared_preferences</string>
+    <string name="high_score_time_trial_key">high_score_time_trial</string>
+    <string name="high_score_survival_key">high_score_survival</string>
+    <string name="total_questions_answered">total_questions_answered</string>
+    <string name="total_questions_correct">total_questions_correct</string>
+    <string name="fastest_correct_answer">fastest_correct_answer</string>
+    <string name="most_correct_in_a_row">most_correct_in_a_row</string>
+    <string name="quit">Tumahimik</string>
+    <string name="start_timer_default">60s</string>
+    <string name="score_default">Kalidad: %d</string>
+    <string name="life_1">Buhay 1</string>
+    <string name="life_2">Buhay 2</string>
+    <string name="life_3">Buhay 3</string>
+    <string name="back_to_menu">Bumalik sa menu</string>
+    <string name="high_score">Mataas na iskor: %d</string>
+    <string name="label_high_score_time_trial">Mataas na iskor ang pagsubok sa oras</string>
+    <string name="label_high_score_survival">Kaligtasan ng mataas na marka</string>
+    <string name="label_questions_answered">Nasagot ang mga tanong</string>
+    <string name="label_questions_correct">Tama ang mga tanong</string>
+    <string name="label_fastest_answer">Pinakamabilis na sagot</string>
+    <string name="label_most_correct_in_a_row">Karamihan sa tama sa isang hilera</string>
+    <string name="label_percent_correct">Tama ang porsyento</string>
+    <string name="stats">Stats</string>
+    <string name="my_stats">Mga stats ko</string>
+    <string name="leaderboard">Leaderboard</string>
+    <string name="game_modes">Mga mode ng laro</string>
+    <string name="time_trial">Pagsubok sa oras</string>
+    <string name="survival">Kaligtasan</string>
+    <string name="practice">Pagsasanay</string>
+    <string name="play_again">Maglaro ulit</string>
+</resources>

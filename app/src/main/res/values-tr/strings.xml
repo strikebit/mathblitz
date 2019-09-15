@@ -1,0 +1,33 @@
+<resources>
+    <string name="app_name">MathBlitz</string>
+    <string name="game_shared_preferences">game_shared_preferences</string>
+    <string name="high_score_time_trial_key">high_score_time_trial</string>
+    <string name="high_score_survival_key">high_score_survival</string>
+    <string name="total_questions_answered">total_questions_answered</string>
+    <string name="total_questions_correct">total_questions_correct</string>
+    <string name="fastest_correct_answer">fastest_correct_answer</string>
+    <string name="most_correct_in_a_row">most_correct_in_a_row</string>
+    <string name="quit">Bırakmak, vazgeçmek</string>
+    <string name="start_timer_default">60s</string>
+    <string name="score_default">Puan: %d</string>
+    <string name="life_1">hayat 1</string>
+    <string name="life_2">hayat 2</string>
+    <string name="life_3">hayat 3</string>
+    <string name="back_to_menu">Menüye dön</string>
+    <string name="high_score">Yüksek skor: %d</string>
+    <string name="label_high_score_time_trial">Time trial yüksek skor</string>
+    <string name="label_high_score_survival">Hayatta kalma yüksek puanı</string>
+    <string name="label_questions_answered">Sorular cevaplandı</string>
+    <string name="label_questions_correct">Sorular doğru</string>
+    <string name="label_fastest_answer">En hızlı cevap</string>
+    <string name="label_most_correct_in_a_row">Üst üste en doğru</string>
+    <string name="label_percent_correct">Yüzde doğru</string>
+    <string name="stats">İstatistikleri</string>
+    <string name="my_stats">Durumum</string>
+    <string name="leaderboard">Liderler Sıralaması</string>
+    <string name="game_modes">Oyun modları</string>
+    <string name="time_trial">Deneme süresi</string>
+    <string name="survival">Hayatta kalma</string>
+    <string name="practice">Uygulama</string>
+    <string name="play_again">Tekrar oyna</string>
+</resources>
