@@ -8,7 +8,7 @@
     <string name="fastest_correct_answer">fastest_correct_answer</string>
     <string name="most_correct_in_a_row">most_correct_in_a_row</string>
     <string name="quit">Părăsi</string>
-    <string name="start_timer_default">60s</string>
+    <string name="start_timer_default">60</string>
     <string name="score_default">Scor: %d</string>
     <string name="life_1">Viaţă 1</string>
     <string name="life_2">Viaţă 2</string>
@@ -30,4 +30,9 @@
     <string name="survival">Supravieţuire</string>
     <string name="practice">Practică</string>
     <string name="play_again">Joaca din nou</string>
+    <string name="times_up">Timpul a expirat! Scor final: %d</string>
+    <string name="new_high_score">Un nou scor mare!</string>
+    <string name="new_fastest_answer">Cel mai rapid răspuns (%.2f secunde)</string>
+    <string name="game_over">Joc încheiat. Scor final: %d</string>
+    <string name="fastest_time_in_seconds">%.2f secunde</string>
 </resources>

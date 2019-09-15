@@ -8,7 +8,7 @@
     <string name="fastest_correct_answer">fastest_correct_answer</string>
     <string name="most_correct_in_a_row">most_correct_in_a_row</string>
     <string name="quit">छोड़ना</string>
-    <string name="start_timer_default">60s</string>
+    <string name="start_timer_default">60</string>
     <string name="score_default">स्कोर: %d</string>
     <string name="life_1">जिंदगी 1</string>
     <string name="life_2">जिंदगी 2</string>
@@ -30,4 +30,9 @@
     <string name="survival">उत्तरजीविता</string>
     <string name="practice">अभ्यास</string>
     <string name="play_again">फिर से चालू करें</string>
+    <string name="fastest_time_in_seconds">%.2f सेकंड</string>
+    <string name="game_over">खेल खत्म। अंतिम स्कोर: %d</string>
+    <string name="new_fastest_answer">नया सबसे तेज़ उत्तर (%.2f सेकंड)</string>
+    <string name="new_high_score">नया उच्च स्कोर!</string>
+    <string name="times_up">समय पूर्ण हुआ! अंतिम स्कोर: %d</string>
 </resources>

@@ -8,7 +8,7 @@
     <string name="fastest_correct_answer">fastest_correct_answer</string>
     <string name="most_correct_in_a_row">most_correct_in_a_row</string>
     <string name="quit">Lopettaa</string>
-    <string name="start_timer_default">60s</string>
+    <string name="start_timer_default">60</string>
     <string name="score_default">Pisteet: %d</string>
     <string name="life_1">Elämä 1</string>
     <string name="life_2">Elämä 2</string>
@@ -30,4 +30,9 @@
     <string name="survival">Eloonjääminen</string>
     <string name="practice">Harjoitella</string>
     <string name="play_again">Pelaa uudestaan</string>
+    <string name="fastest_time_in_seconds">%.2f sekuntia</string>
+    <string name="game_over">Peli ohi. Lopullinen tulos: %d</string>
+    <string name="new_fastest_answer">Uusi nopein vastaus (%.2f sekuntia)</string>
+    <string name="new_high_score">Uusi huipputulos!</string>
+    <string name="times_up">Aika on lopussa! Lopullinen tulos: %d</string>
 </resources>

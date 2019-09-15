@@ -110,7 +110,7 @@ public class GameActivity extends AppCompatActivity {
             timerText.setVisibility(View.VISIBLE);
             countDownTimer = new CountDownTimer(gameTime, gameCountdownInterval) {
                 public void onTick(long mUntilFinished) {
-                    timerText.setText(String.format(Locale.US, "%ds", mUntilFinished / 1000));
+                    timerText.setText(String.format(Locale.US, "%d", mUntilFinished / 1000));
                 }
 
                 public void onFinish() {
@@ -267,10 +267,7 @@ public class GameActivity extends AppCompatActivity {
                         editor.apply();
                         Toast toast = Toast.makeText(
                                 getApplicationContext(),
-                                String.format(
-                                        Locale.US,
-                                        "New fastest answer (%.2f seconds)", newFastestTime / 1000
-                                ),
+                                getString(R.string.new_fastest_answer, newFastestTime / 1000),
                                 Toast.LENGTH_SHORT
                         );
                         toast.show();
@@ -329,7 +326,7 @@ public class GameActivity extends AppCompatActivity {
         if (score > highScore) {
             highScore = score;
             if (!highScoreBreached && highScore > 10) {
-                Toast toast = Toast.makeText(getApplicationContext(), "New high score!", Toast.LENGTH_SHORT);
+                Toast toast = Toast.makeText(getApplicationContext(), getString(R.string.new_high_score), Toast.LENGTH_SHORT);
                 toast.show();
             }
             highScoreBreached = true;

@@ -8,7 +8,7 @@
     <string name="fastest_correct_answer">fastest_correct_answer</string>
     <string name="most_correct_in_a_row">most_correct_in_a_row</string>
     <string name="quit">Tumahimik</string>
-    <string name="start_timer_default">60s</string>
+    <string name="start_timer_default">60</string>
     <string name="score_default">Kalidad: %d</string>
     <string name="life_1">Buhay 1</string>
     <string name="life_2">Buhay 2</string>
@@ -30,4 +30,9 @@
     <string name="survival">Kaligtasan</string>
     <string name="practice">Pagsasanay</string>
     <string name="play_again">Maglaro ulit</string>
+    <string name="fastest_time_in_seconds">%.2f segundo</string>
+    <string name="game_over">Tapos na ang laro. Pangwakas na iskor: %d</string>
+    <string name="new_fastest_answer">Bagong pinakamabilis na sagot (%.2f segundo)</string>
+    <string name="new_high_score">Bagong mataas na marka!</string>
+    <string name="times_up">Tapos na ang oras! Pangwakas na iskor: %d</string>
 </resources>

@@ -8,7 +8,7 @@
     <string name="fastest_correct_answer">fastest_correct_answer</string>
     <string name="most_correct_in_a_row">most_correct_in_a_row</string>
     <string name="quit">Hættu</string>
-    <string name="start_timer_default">60s</string>
+    <string name="start_timer_default">60</string>
     <string name="score_default">Mark: %d</string>
     <string name="life_1">Lífið 1</string>
     <string name="life_2">Lífið 2</string>
@@ -30,4 +30,9 @@
     <string name="survival">Lifun</string>
     <string name="practice">Æfðu</string>
     <string name="play_again">Spila aftur</string>
+    <string name="fastest_time_in_seconds">%.2f sekúndur</string>
+    <string name="game_over">Leik lokið. Lokastaða: %d</string>
+    <string name="new_fastest_answer">Nýja fljótlegasta svarið (%.2f sekúndur)</string>
+    <string name="new_high_score">Nýtt stig!</string>
+    <string name="times_up">Tíminn er búinn! Lokastaða: %d</string>
 </resources>

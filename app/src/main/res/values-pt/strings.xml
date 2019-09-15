@@ -8,7 +8,7 @@
     <string name="fastest_correct_answer">fastest_correct_answer</string>
     <string name="most_correct_in_a_row">most_correct_in_a_row</string>
     <string name="quit">Sair</string>
-    <string name="start_timer_default">60s</string>
+    <string name="start_timer_default">60</string>
     <string name="score_default">Ponto: %d</string>
     <string name="life_1">vida 1</string>
     <string name="life_2">vida 2</string>
@@ -30,4 +30,9 @@
     <string name="survival">Sobrevivência</string>
     <string name="practice">Prática</string>
     <string name="play_again">Jogar de novo</string>
+    <string name="times_up">Acabou o tempo! Pontuação final: %d</string>
+    <string name="new_high_score">Novo recorde!</string>
+    <string name="new_fastest_answer">Nova resposta mais rápida (%.2f segundos)</string>
+    <string name="game_over">Fim de jogo. Pontuação final: %d</string>
+    <string name="fastest_time_in_seconds">%.2f segundos</string>
 </resources>

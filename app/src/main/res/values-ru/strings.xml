@@ -8,7 +8,7 @@
     <string name="fastest_correct_answer">fastest_correct_answer</string>
     <string name="most_correct_in_a_row">most_correct_in_a_row</string>
     <string name="quit">уволиться</string>
-    <string name="start_timer_default">60s</string>
+    <string name="start_timer_default">60</string>
     <string name="score_default">Гол: %d</string>
     <string name="life_1">жизнь 1</string>
     <string name="life_2">жизнь 2</string>
@@ -30,4 +30,9 @@
     <string name="survival">выживание</string>
     <string name="practice">практика</string>
     <string name="play_again">играть снова</string>
+    <string name="fastest_time_in_seconds">%.2f секунд</string>
+    <string name="game_over">Игра закончена. Финальный счет: %d</string>
+    <string name="new_fastest_answer">Новый быстрый ответ (%.2f секунды)</string>
+    <string name="new_high_score">Новый рекорд!</string>
+    <string name="times_up">Время вышло! Финальный счет: %d</string>
 </resources>

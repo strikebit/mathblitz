@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="times_up">Masa sudah habis! Markah akhir: %d</string>
+    <string name="new_high_score">Skor tinggi baru!</string>
+    <string name="new_fastest_answer">Jawapan terpantas baru (%.2f saat)</string>
+    <string name="game_over">Permainan tamat. Markah akhir: %d</string>
+    <string name="fastest_time_in_seconds">%.2f detik</string>
+</resources>

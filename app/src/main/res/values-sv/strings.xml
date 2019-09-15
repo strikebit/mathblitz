@@ -8,7 +8,7 @@
     <string name="fastest_correct_answer">fastest_correct_answer</string>
     <string name="most_correct_in_a_row">most_correct_in_a_row</string>
     <string name="quit">Sluta med</string>
-    <string name="start_timer_default">60s</string>
+    <string name="start_timer_default">60</string>
     <string name="score_default">Göra: %d</string>
     <string name="life_1">Liv 1</string>
     <string name="life_2">Liv 2</string>
@@ -30,4 +30,9 @@
     <string name="survival">Överlevnad</string>
     <string name="practice">Öva</string>
     <string name="play_again">Spela igen</string>
+    <string name="times_up">Tiden är ute! Slutresultat: %d</string>
+    <string name="new_high_score">Nytt rekord!</string>
+    <string name="new_fastest_answer">Nytt snabbaste svar (%.2f sekunder)</string>
+    <string name="game_over">Spelet över. Slutresultat: %d</string>
+    <string name="fastest_time_in_seconds">%.2f sekunder</string>
 </resources>

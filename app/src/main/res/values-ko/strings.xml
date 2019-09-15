@@ -8,7 +8,7 @@
     <string name="fastest_correct_answer">fastest_correct_answer</string>
     <string name="most_correct_in_a_row">most_correct_in_a_row</string>
     <string name="quit">떠나다</string>
-    <string name="start_timer_default">60s</string>
+    <string name="start_timer_default">60</string>
     <string name="score_default">점수: %d</string>
     <string name="life_1">생명 1</string>
     <string name="life_2">생명 2</string>
@@ -30,4 +30,9 @@
     <string name="survival">활착</string>
     <string name="practice">연습</string>
     <string name="play_again">다시 재생</string>
+    <string name="fastest_time_in_seconds">%.2f 초</string>
+    <string name="game_over">게임 끝. 최종 점수: %d</string>
+    <string name="new_fastest_answer">새로운 빠른 답변 (%.2f 초)</string>
+    <string name="new_high_score">새로운 최고 점수!</string>
+    <string name="times_up">시간의 최대! 최종 점수: %d</string>
 </resources>

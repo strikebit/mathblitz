@@ -8,7 +8,7 @@
     <string name="fastest_correct_answer">fastest_correct_answer</string>
     <string name="most_correct_in_a_row">most_correct_in_a_row</string>
     <string name="quit">bỏ</string>
-    <string name="start_timer_default">60s</string>
+    <string name="start_timer_default">60</string>
     <string name="score_default">ghi bàn: %d</string>
     <string name="life_1">đời sống 1</string>
     <string name="life_2">đời sống 2</string>
@@ -30,4 +30,9 @@
     <string name="survival">Sự sống còn</string>
     <string name="practice">thực hành</string>
     <string name="play_again">chơi lại</string>
+    <string name="fastest_time_in_seconds">%.2f giây</string>
+    <string name="game_over">Trò chơi kết thúc. Điểm cuối cùng: %d</string>
+    <string name="new_fastest_answer">Câu trả lời mới nhanh nhất (%.2f giây)</string>
+    <string name="new_high_score">Kỷ lục mới!</string>
+    <string name="times_up">Hết giờ rồi! Điểm cuối cùng: %d</string>
 </resources>

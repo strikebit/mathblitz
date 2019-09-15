@@ -33,9 +33,9 @@ public class ResultActivity extends AppCompatActivity {
         highScoreText.setText(getString(R.string.high_score, highScore));
 
         if (alive) {
-            resultText.setText(String.format(Locale.US, "Time's up! Final score: %d", score));
+            resultText.setText(getString(R.string.times_up, score));
         } else {
-            resultText.setText(String.format(Locale.US, "Game over. Final score: %d", score));
+            resultText.setText(getString(R.string.game_over, score));
         }
     }
 

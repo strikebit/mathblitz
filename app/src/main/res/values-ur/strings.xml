@@ -8,7 +8,7 @@
     <string name="fastest_correct_answer">fastest_correct_answer</string>
     <string name="most_correct_in_a_row">most_correct_in_a_row</string>
     <string name="quit">چھوڑ دیں</string>
-    <string name="start_timer_default">60s</string>
+    <string name="start_timer_default">60</string>
     <string name="score_default">اسکور: %d</string>
     <string name="life_1">زندگی 1</string>
     <string name="life_2">زندگی 2</string>
@@ -30,4 +30,9 @@
     <string name="survival">بقا</string>
     <string name="practice">مشق</string>
     <string name="play_again">دوبارہ کھیلو</string>
+    <string name="fastest_time_in_seconds">%.2f</string>
+    <string name="game_over">کھیل ختم. آخری سکور: %d</string>
+    <string name="new_high_score">نیا اعلی اسکور!</string>
+    <string name="times_up">وقت ختم! آخری سکور: %d</string>
+    <string name="new_fastest_answer">%.2f</string>
 </resources>

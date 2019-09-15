@@ -1,14 +1,14 @@
 <resources>
-    <string name="app_name">MathBlitz</string>
-    <string name="game_shared_preferences">game_shared_preferences</string>
-    <string name="high_score_time_trial_key">high_score_time_trial</string>
-    <string name="high_score_survival_key">high_score_survival</string>
-    <string name="total_questions_answered">total_questions_answered</string>
-    <string name="total_questions_correct">total_questions_correct</string>
-    <string name="fastest_correct_answer">fastest_correct_answer</string>
-    <string name="most_correct_in_a_row">most_correct_in_a_row</string>
+    <string name="app_name" translatable="false">MathBlitz</string>
+    <string name="game_shared_preferences" translatable="false">game_shared_preferences</string>
+    <string name="high_score_time_trial_key" translatable="false">high_score_time_trial</string>
+    <string name="high_score_survival_key" translatable="false">high_score_survival</string>
+    <string name="total_questions_answered" translatable="false">total_questions_answered</string>
+    <string name="total_questions_correct" translatable="false">total_questions_correct</string>
+    <string name="fastest_correct_answer" translatable="false">fastest_correct_answer</string>
+    <string name="most_correct_in_a_row" translatable="false">most_correct_in_a_row</string>
     <string name="quit">Quit</string>
-    <string name="start_timer_default">60s</string>
+    <string name="start_timer_default" translatable="false">60</string>
     <string name="score_default">Score: %d</string>
     <string name="life_1">Life 1</string>
     <string name="life_2">Life 2</string>
@@ -30,4 +30,9 @@
     <string name="survival">Survival</string>
     <string name="practice">Practice</string>
     <string name="play_again">Play again</string>
+    <string name="new_high_score">New high score!</string>
+    <string name="new_fastest_answer">New fastest answer (%.2f seconds)</string>
+    <string name="fastest_time_in_seconds">%.2f seconds</string>
+    <string name="times_up">Time\'s up! Final score: %d</string>
+    <string name="game_over">Game over. Final score: %d</string>
 </resources>

@@ -8,7 +8,7 @@
     <string name="fastest_correct_answer">fastest_correct_answer</string>
     <string name="most_correct_in_a_row">most_correct_in_a_row</string>
     <string name="quit">Вийдіть</string>
-    <string name="start_timer_default">60s</string>
+    <string name="start_timer_default">60</string>
     <string name="score_default">Оцінка: %d</string>
     <string name="life_1">Життя 1</string>
     <string name="life_2">Життя 2</string>
@@ -30,4 +30,9 @@
     <string name="survival">Виживання</string>
     <string name="practice">Практика</string>
     <string name="play_again">Грати знову</string>
+    <string name="times_up">Час вийшло! Підсумкова оцінка: %d</string>
+    <string name="new_high_score">Новий високий бал!</string>
+    <string name="new_fastest_answer">Нова найшвидша відповідь (%.2f секунди)</string>
+    <string name="game_over">Кінець гри. Підсумкова оцінка: %d</string>
+    <string name="fastest_time_in_seconds">%.2f секунд</string>
 </resources>

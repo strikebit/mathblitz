@@ -8,7 +8,7 @@
     <string name="fastest_correct_answer">fastest_correct_answer</string>
     <string name="most_correct_in_a_row">most_correct_in_a_row</string>
     <string name="quit">Quitter</string>
-    <string name="start_timer_default">60s</string>
+    <string name="start_timer_default">60</string>
     <string name="score_default">Le score: %d</string>
     <string name="life_1">La vie 1</string>
     <string name="life_2">La vie 2</string>
@@ -30,4 +30,9 @@
     <string name="survival">Survie</string>
     <string name="practice">Entraine toi</string>
     <string name="play_again">Rejouer</string>
+    <string name="fastest_time_in_seconds">%.2f secondes</string>
+    <string name="game_over">Jeu terminé. Score final: %d</string>
+    <string name="new_fastest_answer">Nouvelle réponse la plus rapide (%,2f secondes)</string>
+    <string name="new_high_score">Nouveau record!</string>
+    <string name="times_up">Le temps est écoulé! Score final: %d</string>
 </resources>

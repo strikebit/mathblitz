@@ -46,7 +46,7 @@ public class StatsActivity extends AppCompatActivity {
 
                 TextView tvFastestCorrectAnswer = findViewById(R.id.text_fastest_answer);
                 if (fastestCorrectAnswer < 60000.0f) {
-                    tvFastestCorrectAnswer.setText(String.format(Locale.US, "%.2f seconds", (fastestCorrectAnswer / 1000)));
+                    tvFastestCorrectAnswer.setText(getString(R.string.fastest_time_in_seconds, (fastestCorrectAnswer / 1000)));
                 } else {
                     tvFastestCorrectAnswer.setText("--");
                 }
@@ -56,7 +56,7 @@ public class StatsActivity extends AppCompatActivity {
                     tvPercentCorrect.setText(
                             String.format(
                                     Locale.US,
-                                    "%.2f %%",
+                                    "%.2f%%",
                                     ((double) totalQuestionsCorrect / (double) totalQuestionsAnswered) * 100
                             )
                     );
