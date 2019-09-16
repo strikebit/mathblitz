@@ -1,5 +1,26 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="quit">Berhenti</string>
+    <string name="score_default">Markah: %d</string>
+    <string name="life_1">Hidup 1</string>
+    <string name="life_2">Hidup 2</string>
+    <string name="life_3">Hidup 3</string>
+    <string name="back_to_menu">Kembali ke menu</string>
+    <string name="high_score">Markah tertinggi: %d</string>
+    <string name="label_high_score_time_trial">Skor percubaan masa yang tinggi</string>
+    <string name="label_high_score_survival">Skor tinggi hidup</string>
+    <string name="label_questions_answered">Soalan dijawab</string>
+    <string name="label_questions_correct">Soalan betul</string>
+    <string name="label_fastest_answer">Jawapan terpantas</string>
+    <string name="label_most_correct_in_a_row">Paling betul berturut-turut</string>
+    <string name="label_percent_correct">Peratusan betul</string>
+    <string name="stats">Statistik</string>
+    <string name="my_stats">Statistik saya</string>
+    <string name="leaderboard">Leaderboard</string>
+    <string name="game_modes">Mod permainan</string>
+    <string name="time_trial">Percubaan masa</string>
+    <string name="survival">Hidup</string>
+    <string name="practice">Amalan</string>
+    <string name="play_again">Bermain lagi</string>
     <string name="times_up">Masa sudah habis! Markah akhir: %d</string>
     <string name="new_high_score">Skor tinggi baru!</string>
     <string name="new_fastest_answer">Jawapan terpantas baru (%.2f saat)</string>

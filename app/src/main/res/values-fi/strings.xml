@@ -1,14 +1,5 @@
 <resources>
-    <string name="app_name">MathBlitz</string>
-    <string name="game_shared_preferences">game_shared_preferences</string>
-    <string name="high_score_time_trial_key">high_score_time_trial</string>
-    <string name="high_score_survival_key">high_score_survival</string>
-    <string name="total_questions_answered">total_questions_answered</string>
-    <string name="total_questions_correct">total_questions_correct</string>
-    <string name="fastest_correct_answer">fastest_correct_answer</string>
-    <string name="most_correct_in_a_row">most_correct_in_a_row</string>
     <string name="quit">Lopettaa</string>
-    <string name="start_timer_default">60</string>
     <string name="score_default">Pisteet: %d</string>
     <string name="life_1">Elämä 1</string>
     <string name="life_2">Elämä 2</string>

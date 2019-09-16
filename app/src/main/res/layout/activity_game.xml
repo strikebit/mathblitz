@@ -17,41 +17,50 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/image_life1"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="10dp"
-        android:contentDescription="@string/life_1"
+    <LinearLayout
+        android:id="@+id/life_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:visibility="visible"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/life" />
+        app:layout_constraintTop_toTopOf="parent">
+        <ImageView
+            android:id="@+id/image_life1"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="10dp"
+            android:contentDescription="@string/life_1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/life" />
 
-    <ImageView
-        android:id="@+id/image_life2"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
-        android:layout_marginStart="0dp"
-        android:layout_marginLeft="0dp"
-        android:layout_marginTop="10dp"
-        android:contentDescription="@string/life_2"
-        app:layout_constraintStart_toEndOf="@+id/image_life1"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/life" />
+        <ImageView
+            android:id="@+id/image_life2"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginStart="0dp"
+            android:layout_marginLeft="0dp"
+            android:layout_marginTop="10dp"
+            android:contentDescription="@string/life_2"
+            app:layout_constraintStart_toEndOf="@+id/image_life1"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/life" />
 
-    <ImageView
-        android:id="@+id/image_life3"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
-        android:layout_marginStart="0dp"
-        android:layout_marginLeft="0dp"
-        android:layout_marginTop="10dp"
-        android:contentDescription="@string/life_3"
-        app:layout_constraintStart_toEndOf="@+id/image_life2"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/life" />
+        <ImageView
+            android:id="@+id/image_life3"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginStart="0dp"
+            android:layout_marginLeft="0dp"
+            android:layout_marginTop="10dp"
+            android:contentDescription="@string/life_3"
+            app:layout_constraintStart_toEndOf="@+id/image_life2"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/life" />
+    </LinearLayout>
 
     <TextView
         android:id="@+id/text_score"
@@ -78,6 +87,7 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textSize="30sp"
         android:typeface="normal"
+        android:visibility="invisible"
         app:fontFamily="sans-serif-black"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -88,6 +98,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:rotationY="180"
+        android:visibility="invisible"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/math_question" />
 
@@ -97,9 +108,9 @@
         android:layout_height="match_parent"
         android:layout_marginTop="180dp"
         android:orientation="horizontal"
+        android:visibility="invisible"
         app:layout_constraintStart_toStartOf="@+id/progress_bar"
-        app:layout_constraintTop_toTopOf="parent">
-    </LinearLayout>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ProgressBar
         android:id="@+id/start_loader"

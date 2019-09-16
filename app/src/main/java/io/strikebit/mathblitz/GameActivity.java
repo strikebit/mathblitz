@@ -53,12 +53,13 @@ public class GameActivity extends AppCompatActivity {
     private int questionsAnswered = 0;
     private int totalQuestionsCorrect;
     private float fastestCorrectAnswer;
-    private float newFastestTime = 60000.0f;
+    private float newFastestTime = 60000f;
     private int mostCorrectInRow;
     private int mostCorrectInRowSession = 0;
     private boolean highScoreBreached = false;
     private boolean gameStarted = false;
     private float currentQuestionTime;
+    private boolean okToShowAd = false;
 
     private SharedPreferences sharedPref;
     private CountDownTimer countDownTimer;
@@ -78,14 +79,8 @@ public class GameActivity extends AppCompatActivity {
 
         mathQuestionStrategy = new MathQuestionStrategy();
 
-        final ProgressBar startLoader = findViewById(R.id.start_loader);
         ll = findViewById(R.id.linear_layout);
-        ll.setVisibility(View.INVISIBLE);
         progressBar = findViewById(R.id.progress_bar);
-        progressBar.setVisibility(View.INVISIBLE);
-        final TextView questionText = findViewById(R.id.math_question);
-        questionText.setVisibility(View.INVISIBLE);
-
 
         gameMode = getIntent().getIntExtra("gameMode", GameConfig.GAME_MODE_TIME_TRIAL);
         score = getIntent().getIntExtra("score", 0);
@@ -145,9 +140,11 @@ public class GameActivity extends AppCompatActivity {
             @Override
             public void run() {
                 gameStarted = true;
+                ProgressBar startLoader = findViewById(R.id.start_loader);
                 startLoader.setVisibility(View.INVISIBLE);
                 ll.setVisibility(View.VISIBLE);
                 progressBar.setVisibility(View.VISIBLE);
+                TextView questionText = findViewById(R.id.math_question);
                 questionText.setVisibility(View.VISIBLE);
                 final Handler timerHandler = new Handler();
                 timerHandler.postDelayed(new Runnable() {
@@ -163,6 +160,15 @@ public class GameActivity extends AppCompatActivity {
                 }, 1000);
             }
         }, 3000);
+
+        // Ensure the player has played at least 30s before showing the interstitial ad when the game ends.
+        final Handler adTimeoutHandler = new Handler();
+        adTimeoutHandler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                okToShowAd = true;
+            }
+        }, 30000);
     }
 
     @Override
@@ -215,6 +221,10 @@ public class GameActivity extends AppCompatActivity {
     }
 
     protected void runAd() {
+        if (!okToShowAd) {
+            return;
+        }
+
         MobileAds.initialize(this, getString(R.string.add_id_key));
 
         // TODO life ad unit key ca-app-pub-7297349899740519/6550225624
@@ -242,7 +252,6 @@ public class GameActivity extends AppCompatActivity {
     protected void showResult() {
         clearPreviousAnswers();
         killTimers();
-        // TODO only run ad if the user has played >= 30 seconds
         runAd();
     }
 
@@ -377,7 +386,7 @@ public class GameActivity extends AppCompatActivity {
                 leaderBoardId = getString(R.string.leaderboard_survival_id);
             }
             Games.getLeaderboardsClient(this, GoogleSignIn.getLastSignedInAccount(this))
-                    .submitScore(leaderBoardId, score);
+                    .submitScore(leaderBoardId, score > highScore ? score : highScore);
         }
     }
 

@@ -142,8 +142,8 @@ public class MathQuestionStrategy implements MathQuestionStrategyInterface {
 
     private MathQuestion generateVeryHardQuestion() {
         String operator = operators.get(random.nextInt(operators.size()));
-        int operand1 = random.nextInt(30);
-        int operand2 = random.nextInt(30);
+        int operand1 = random.nextInt(35);
+        int operand2 = random.nextInt(35);
         if (0 == operand2 && OPERATOR_DIVIDE.equals(operator)) {
             ++operand2;
         }
