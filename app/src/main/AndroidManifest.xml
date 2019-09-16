@@ -10,7 +10,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".PracticeActivity"></activity>
+        <activity android:name=".LeaderboardActivity"></activity>
+        <activity android:name=".PracticeActivity" />
         <activity android:name=".StatsActivity" />
         <activity android:name=".ResultActivity" />
         <activity
@@ -23,9 +24,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="ca-app-pub-7297349899740519~4115633979"/>
+            android:value="ca-app-pub-7297349899740519~4115633979" />
     </application>
 
 </manifest>

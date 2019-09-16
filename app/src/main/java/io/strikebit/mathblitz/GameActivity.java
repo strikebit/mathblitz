@@ -17,16 +17,24 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.InterstitialAd;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.games.Games;
+
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-import io.strikebit.mathblitz.factory.QuestionFactory;
 import io.strikebit.mathblitz.config.GameConfig;
 import io.strikebit.mathblitz.level.LevelManager;
 import io.strikebit.mathblitz.model.MathQuestion;
 import io.strikebit.mathblitz.sound.SoundManager;
+import io.strikebit.mathblitz.strategy.MathQuestionStrategy;
+import io.strikebit.mathblitz.strategy.MathQuestionStrategyInterface;
 import io.strikebit.mathblitz.util.NumberUtil;
 
 public class GameActivity extends AppCompatActivity {
@@ -60,14 +68,25 @@ public class GameActivity extends AppCompatActivity {
     // TODO Make # of lives dynamic
     private List<ImageView> lifeCollection = new ArrayList<>();
     private LinearLayout ll;
+    private InterstitialAd mInterstitialAd;
+    private MathQuestionStrategyInterface mathQuestionStrategy;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
 
+        mathQuestionStrategy = new MathQuestionStrategy();
+
+        final ProgressBar startLoader = findViewById(R.id.start_loader);
         ll = findViewById(R.id.linear_layout);
+        ll.setVisibility(View.INVISIBLE);
         progressBar = findViewById(R.id.progress_bar);
+        progressBar.setVisibility(View.INVISIBLE);
+        final TextView questionText = findViewById(R.id.math_question);
+        questionText.setVisibility(View.INVISIBLE);
+
+
         gameMode = getIntent().getIntExtra("gameMode", GameConfig.GAME_MODE_TIME_TRIAL);
         score = getIntent().getIntExtra("score", 0);
         difficulty = getIntent().getIntExtra("difficulty", GameConfig.DIFFICULTY_EASY);
@@ -126,12 +145,22 @@ public class GameActivity extends AppCompatActivity {
             @Override
             public void run() {
                 gameStarted = true;
-                if (null != countDownTimer) {
-                    countDownTimer.start();
-                }
-                if (null != questionTimer) {
-                    questionTimer.start();
-                }
+                startLoader.setVisibility(View.INVISIBLE);
+                ll.setVisibility(View.VISIBLE);
+                progressBar.setVisibility(View.VISIBLE);
+                questionText.setVisibility(View.VISIBLE);
+                final Handler timerHandler = new Handler();
+                timerHandler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (null != countDownTimer) {
+                            countDownTimer.start();
+                        }
+                        if (null != questionTimer) {
+                            questionTimer.start();
+                        }
+                    }
+                }, 1000);
             }
         }, 3000);
     }
@@ -185,9 +214,39 @@ public class GameActivity extends AppCompatActivity {
         }
     }
 
+    protected void runAd() {
+        MobileAds.initialize(this, getString(R.string.add_id_key));
+
+        // TODO life ad unit key ca-app-pub-7297349899740519/6550225624
+        mInterstitialAd = new InterstitialAd(this);
+        mInterstitialAd.setAdUnitId("ca-app-pub-3940256099942544/1033173712");
+        mInterstitialAd.loadAd(new AdRequest.Builder().build());
+        mInterstitialAd.setAdListener(new AdListener() {
+            @Override
+            public void onAdLoaded() {
+                mInterstitialAd.show();
+            }
+
+            @Override
+            public void onAdFailedToLoad(int errorCode) {
+                showResultView();
+            }
+
+            @Override
+            public void onAdClosed() {
+                showResultView();
+            }
+        });
+    }
+
     protected void showResult() {
         clearPreviousAnswers();
         killTimers();
+        // TODO only run ad if the user has played >= 30 seconds
+        runAd();
+    }
+
+    protected void showResultView() {
         Intent intent = new Intent(this, ResultActivity.class);
         intent.putExtra("gameMode", gameMode);
         intent.putExtra("score", score);
@@ -222,7 +281,7 @@ public class GameActivity extends AppCompatActivity {
     }
 
     protected void createQuestion() {
-        MathQuestion mathQuestion = QuestionFactory.generate(difficulty);
+        MathQuestion mathQuestion = mathQuestionStrategy.generate(difficulty);
 
         TextView questionText = findViewById(R.id.math_question);
         questionText.setText(mathQuestion.getQuestion());
@@ -304,7 +363,21 @@ public class GameActivity extends AppCompatActivity {
             editor.putInt(getString(R.string.total_questions_answered), totalQuestionsAnswered + questionsAnswered);
             editor.putInt(getString(R.string.total_questions_correct), totalQuestionsCorrect + score);
             editor.apply();
+            updateLeaderboard();
             showResult();
+        }
+    }
+
+    protected void updateLeaderboard() {
+        if (null != GoogleSignIn.getLastSignedInAccount(this)) {
+            String leaderBoardId;
+            if (GameConfig.GAME_MODE_TIME_TRIAL == gameMode) {
+                leaderBoardId = getString(R.string.leaderboard_time_trial_id);
+            } else {
+                leaderBoardId = getString(R.string.leaderboard_survival_id);
+            }
+            Games.getLeaderboardsClient(this, GoogleSignIn.getLastSignedInAccount(this))
+                    .submitScore(leaderBoardId, score);
         }
     }
 

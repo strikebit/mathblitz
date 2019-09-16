@@ -52,4 +52,19 @@ public class SoundManager {
             e.printStackTrace();
         }
     }
+
+    public void playGameEndSound(Context context) {
+        try {
+            mediaPlayer = MediaPlayer.create(context, R.raw.end_game);
+            mediaPlayer.start();
+            mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                @Override
+                public void onCompletion(MediaPlayer mp) {
+                    mp.release();
+                }
+            });
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }
