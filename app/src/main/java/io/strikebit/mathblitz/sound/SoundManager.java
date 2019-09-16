@@ -15,6 +15,7 @@ public class SoundManager {
             mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                 @Override
                 public void onCompletion(MediaPlayer mp) {
+                    mp.reset();
                     mp.release();
                 }
             });
@@ -30,6 +31,7 @@ public class SoundManager {
             mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                 @Override
                 public void onCompletion(MediaPlayer mp) {
+                    mp.reset();
                     mp.release();
                 }
             });
@@ -45,6 +47,7 @@ public class SoundManager {
             mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                 @Override
                 public void onCompletion(MediaPlayer mp) {
+                    mp.reset();
                     mp.release();
                 }
             });
@@ -60,6 +63,7 @@ public class SoundManager {
             mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                 @Override
                 public void onCompletion(MediaPlayer mp) {
+                    mp.reset();
                     mp.release();
                 }
             });

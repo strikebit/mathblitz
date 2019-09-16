@@ -1,6 +1,7 @@
 package io.strikebit.mathblitz;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import android.content.Context;
 import android.content.Intent;
@@ -25,8 +26,6 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.games.Games;
 
 import java.text.DecimalFormat;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Locale;
 
 import io.strikebit.mathblitz.config.GameConfig;
@@ -45,7 +44,7 @@ public class GameActivity extends AppCompatActivity {
 
     private int gameMode;
     private int questionTime = 5000; // 5 seconds
-    private int livesRemaining = startingLives;
+    private int livesRemaining = 0;
     private int score;
     private int highScore;
     private int difficulty;
@@ -66,8 +65,6 @@ public class GameActivity extends AppCompatActivity {
     private CountDownTimer questionTimer;
     private ProgressBar progressBar;
     private SoundManager soundManager = new SoundManager();
-    // TODO Make # of lives dynamic
-    private List<ImageView> lifeCollection = new ArrayList<>();
     private LinearLayout ll;
     private InterstitialAd mInterstitialAd;
     private MathQuestionStrategyInterface mathQuestionStrategy;
@@ -113,13 +110,6 @@ public class GameActivity extends AppCompatActivity {
         final TextView timerText = findViewById(R.id.text_time_remaining);
         timerText.setVisibility(View.INVISIBLE);
 
-        ImageView life1 = findViewById(R.id.image_life1);
-        ImageView life2 = findViewById(R.id.image_life2);
-        ImageView life3 = findViewById(R.id.image_life3);
-        lifeCollection.add(life1);
-        lifeCollection.add(life2);
-        lifeCollection.add(life3);
-
         if (GameConfig.GAME_MODE_TIME_TRIAL == gameMode) {
             timerText.setVisibility(View.VISIBLE);
             countDownTimer = new CountDownTimer(gameTime, gameCountdownInterval) {
@@ -139,7 +129,9 @@ public class GameActivity extends AppCompatActivity {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
+                System.out.println("HANDLER DELAY, SETUP");
                 gameStarted = true;
+                gainLife(startingLives);
                 ProgressBar startLoader = findViewById(R.id.start_loader);
                 startLoader.setVisibility(View.INVISIBLE);
                 ll.setVisibility(View.VISIBLE);
@@ -184,9 +176,7 @@ public class GameActivity extends AppCompatActivity {
 
     protected void setupPracticeMode() {
         findViewById(R.id.progress_bar).setVisibility(View.INVISIBLE);
-        findViewById(R.id.image_life1).setVisibility(View.INVISIBLE);
-        findViewById(R.id.image_life2).setVisibility(View.INVISIBLE);
-        findViewById(R.id.image_life3).setVisibility(View.INVISIBLE);
+        findViewById(R.id.life_layout).setVisibility(View.INVISIBLE);
     }
 
     public void onBackToMenuClick(View view) {
@@ -198,6 +188,12 @@ public class GameActivity extends AppCompatActivity {
         if (GameConfig.GAME_MODE_PRACTICE == gameMode) {
             return;
         }
+
+        if (null != questionTimer) {
+            questionTimer.cancel();
+            questionTimer = null;
+        }
+
         questionTimer = new CountDownTimer(questionTime, 10) {
             public void onTick(long mUntilFinished) {
                 currentQuestionTime = questionTime - (float) mUntilFinished;
@@ -222,6 +218,7 @@ public class GameActivity extends AppCompatActivity {
 
     protected void runAd() {
         if (!okToShowAd) {
+            showResultView();
             return;
         }
 
@@ -239,6 +236,7 @@ public class GameActivity extends AppCompatActivity {
 
             @Override
             public void onAdFailedToLoad(int errorCode) {
+                System.out.println("Ad failed to load: " + errorCode);
                 showResultView();
             }
 
@@ -325,8 +323,8 @@ public class GameActivity extends AppCompatActivity {
             answerButton.setText(String.valueOf(possibleAnswer));
         }
         answerButton.setTextSize(30);
-        answerButton.setTextColor(getResources().getColor(R.color.colorWhite));
-        answerButton.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+        answerButton.setTextColor(ContextCompat.getColor(this, R.color.colorWhite));
+        answerButton.setBackgroundColor(ContextCompat.getColor(this, R.color.colorPrimary));
         answerButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 ++questionsAnswered;
@@ -391,25 +389,35 @@ public class GameActivity extends AppCompatActivity {
     }
 
     protected void loseLife() {
+        System.out.println("LOSE LIFE! livesRemaining: " + livesRemaining);
+
         livesRemaining = livesRemaining > 0 ? livesRemaining - 1 : 0;
+
+        System.out.println("lives now remaining: " + livesRemaining);
 
         checkCorrectAnswersInaRow();
         mostCorrectInRowSession = 0;
 
-        ImageView iv = lifeCollection.get(livesRemaining);
-        iv.setVisibility(View.INVISIBLE);
+        LinearLayout ll = findViewById(R.id.life_layout);
+        System.out.println("Remove image at index: " + livesRemaining);
+        ll.removeViewAt(livesRemaining);
 
         checkForDeath();
     }
 
-    protected void gainLife() {
-        if (livesRemaining >= startingLives) {
-            return;
-        }
-        ++livesRemaining;
+    protected void gainLife(int howMany) {
+        System.out.println("Gain lives: " + howMany);
+        livesRemaining = livesRemaining + howMany;
 
-        ImageView iv = lifeCollection.get(livesRemaining - 1);
-        iv.setVisibility(View.VISIBLE);
+        LinearLayout ll = findViewById(R.id.life_layout);
+        for (int i = 0; i < howMany; ++i) {
+            System.out.println("Adding image at index: " + i);
+            ImageView iv = new ImageView(this);
+            iv.setImageResource(R.drawable.life);
+            iv.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
+                    LinearLayout.LayoutParams.WRAP_CONTENT));
+            ll.addView(iv);
+        }
     }
 
     protected void checkHighScore() {
@@ -420,7 +428,7 @@ public class GameActivity extends AppCompatActivity {
         if (score > highScore) {
             highScore = score;
             if (!highScoreBreached && highScore > 10) {
-                Toast toast = Toast.makeText(getApplicationContext(), getString(R.string.new_high_score), Toast.LENGTH_SHORT);
+                Toast toast = Toast.makeText(this, getString(R.string.new_high_score), Toast.LENGTH_SHORT);
                 toast.show();
             }
             highScoreBreached = true;
@@ -470,7 +478,7 @@ public class GameActivity extends AppCompatActivity {
             difficulty = newDifficulty;
             questionTime += 1500;
             createQuestionTimer();
-            gainLife();
+            gainLife(1);
             soundManager.playLevelUpSound(GameActivity.this);
         } else {
             soundManager.playCorrectAnswerSound(GameActivity.this);
