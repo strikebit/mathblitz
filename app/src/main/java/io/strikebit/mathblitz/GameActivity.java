@@ -216,11 +216,20 @@ public class GameActivity extends AppCompatActivity {
         }
     }
 
+    protected void cleanScene() {
+        findViewById(R.id.life_layout).setVisibility(View.INVISIBLE);
+        progressBar.setVisibility(View.INVISIBLE);
+        findViewById(R.id.text_score).setVisibility(View.INVISIBLE);
+        findViewById(R.id.text_time_remaining).setVisibility(View.INVISIBLE);
+    }
+
     protected void runAd() {
         if (!okToShowAd) {
             showResultView();
             return;
         }
+
+        cleanScene();
 
         MobileAds.initialize(this, getString(R.string.add_id_key));
 
@@ -366,6 +375,7 @@ public class GameActivity extends AppCompatActivity {
         }
 
         if (0 == livesRemaining) {
+            // TODO find out why this wasn't adding their score
             SharedPreferences.Editor editor = sharedPref.edit();
             editor.putInt(getString(R.string.total_questions_answered), totalQuestionsAnswered + questionsAnswered);
             editor.putInt(getString(R.string.total_questions_correct), totalQuestionsCorrect + score);
