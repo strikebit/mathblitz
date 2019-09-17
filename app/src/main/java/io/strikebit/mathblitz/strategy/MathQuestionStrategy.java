@@ -20,7 +20,7 @@ public class MathQuestionStrategy implements MathQuestionStrategyInterface {
     private final static String OPERATOR_DIVIDE = "/";
     private final static String OPERATOR_EXPONENT = "^";
     private final static List<String> operators = Collections.unmodifiableList(Arrays.asList(
-            OPERATOR_PLUS, OPERATOR_MINUS, OPERATOR_MULTIPLY, OPERATOR_DIVIDE));
+            OPERATOR_PLUS, OPERATOR_MINUS, OPERATOR_MULTIPLY, OPERATOR_DIVIDE, OPERATOR_EXPONENT));
 
     private Expression expression = new Expression();
     private Random random = new Random();
@@ -72,14 +72,18 @@ public class MathQuestionStrategy implements MathQuestionStrategyInterface {
     private MathQuestion generateEasyQuestion() {
         String operator = operators.get(random.nextInt(operators.size()));
         int operand1 = random.nextInt(13);
-        int operand2 = random.nextInt(13);
+        int operand2;
+
+        if (OPERATOR_EXPONENT.equals(operator)) {
+            // TODO needs a small number based on operand1
+            operand2 = random.nextInt(5);
+        } else {
+            operand2 = random.nextInt(13);
+        }
         // Make division easy initially
         if (OPERATOR_DIVIDE.equals(operator)) {
             operand1 = 0 == operand1 ? ++operand1 : operand1;
             List<Integer> divisors = NumberUtil.getDivisors(operand1);
-            System.out.println(divisors);
-            System.out.println(divisors.size());
-            System.out.println(random.nextInt(divisors.size()));
             operand2 = divisors.get(random.nextInt(divisors.size()));
         }
 
@@ -100,7 +104,8 @@ public class MathQuestionStrategy implements MathQuestionStrategyInterface {
             ++operand2;
         }
         if (OPERATOR_EXPONENT.equals(operator)) {
-            // TODO 
+            // TODO Same
+            operand2 = random.nextInt(5);
         }
 
         String question = String.format(Locale.US, "%d %s %d", operand1, operator, operand2);
@@ -113,8 +118,8 @@ public class MathQuestionStrategy implements MathQuestionStrategyInterface {
     }
 
     private MathQuestion generateHardQuestion() {
-        String operator1 = operators.get(random.nextInt(operators.size()));
-        String operator2 = operators.get(random.nextInt(operators.size()));
+        String operator1 = operators.get(random.nextInt(operators.size() - 1));
+        String operator2 = operators.get(random.nextInt(operators.size() - 1));
         int operand1 = random.nextInt(11);
         int operand2 = random.nextInt(11);
         int operand3 = random.nextInt(11);
@@ -145,7 +150,7 @@ public class MathQuestionStrategy implements MathQuestionStrategyInterface {
     }
 
     private MathQuestion generateVeryHardQuestion() {
-        String operator = operators.get(random.nextInt(operators.size()));
+        String operator = operators.get(random.nextInt(operators.size() - 1));
         int operand1 = random.nextInt(35);
         int operand2 = random.nextInt(35);
         if (0 == operand2 && OPERATOR_DIVIDE.equals(operator)) {
@@ -173,6 +178,14 @@ public class MathQuestionStrategy implements MathQuestionStrategyInterface {
         }
         if (0 == operand3 && OPERATOR_DIVIDE.equals(operator2)) {
             ++operand3;
+        }
+        if (OPERATOR_EXPONENT.equals(operator1)) {
+            // TODO
+            operand2 = random.nextInt(6);
+        }
+        if (OPERATOR_EXPONENT.equals(operator2)) {
+            // TODO
+            operand3 = random.nextInt(6);
         }
 
         boolean useParenthesis = random.nextBoolean();
@@ -208,7 +221,7 @@ public class MathQuestionStrategy implements MathQuestionStrategyInterface {
         answers.add(mathQuestion.getCorrectAnswer());
         while (answers.size() < howMany) {
             Double ia = calculateIncorrectAnswer(mathQuestion.getQuestion());
-            if (!answers.contains(ia)) {
+            if (!this.containsDouble(answers, ia)) {
                 answers.add(ia);
             }
         }
@@ -237,5 +250,17 @@ public class MathQuestionStrategy implements MathQuestionStrategyInterface {
         return random.nextBoolean()
                 ? random.nextDouble() + correctAnswer
                 : random.nextDouble() - correctAnswer;
+    }
+
+    private boolean containsDouble(List<Double> list, Double input) {
+        double fixedInput = NumberUtil.round(input, 2);
+        for (Double d : list) {
+            double fixedD = NumberUtil.round(d, 2);
+            if (fixedInput == fixedD) {
+                return true;
+            }
+        }
+
+        return false;
     }
 }

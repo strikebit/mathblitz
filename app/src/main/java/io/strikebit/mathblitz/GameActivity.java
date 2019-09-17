@@ -108,10 +108,8 @@ public class GameActivity extends AppCompatActivity {
         createQuestion();
 
         final TextView timerText = findViewById(R.id.text_time_remaining);
-        timerText.setVisibility(View.INVISIBLE);
 
         if (GameConfig.GAME_MODE_TIME_TRIAL == gameMode) {
-            timerText.setVisibility(View.VISIBLE);
             countDownTimer = new CountDownTimer(gameTime, gameCountdownInterval) {
                 public void onTick(long mUntilFinished) {
                     timerText.setText(String.format(Locale.US, "%d", mUntilFinished / 1000));
@@ -129,16 +127,19 @@ public class GameActivity extends AppCompatActivity {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                System.out.println("HANDLER DELAY, SETUP");
                 gameStarted = true;
                 gainLife(startingLives);
                 ProgressBar startLoader = findViewById(R.id.start_loader);
                 startLoader.setVisibility(View.INVISIBLE);
                 ll.setVisibility(View.VISIBLE);
-                progressBar.setVisibility(View.VISIBLE);
+                if (GameConfig.GAME_MODE_PRACTICE != gameMode) {
+                    progressBar.setVisibility(View.VISIBLE);
+                }
+                if (GameConfig.GAME_MODE_TIME_TRIAL == gameMode) {
+                    timerText.setVisibility(View.VISIBLE);
+                }
                 TextView questionText = findViewById(R.id.math_question);
                 questionText.setVisibility(View.VISIBLE);
-                timerText.setVisibility(View.VISIBLE);
                 final Handler timerHandler = new Handler();
                 timerHandler.postDelayed(new Runnable() {
                     @Override
@@ -247,7 +248,6 @@ public class GameActivity extends AppCompatActivity {
 
             @Override
             public void onAdFailedToLoad(int errorCode) {
-                System.out.println("Ad failed to load: " + errorCode);
                 showResultView();
             }
 
@@ -350,12 +350,6 @@ public class GameActivity extends AppCompatActivity {
                         newFastestTime = currentQuestionTime;
                         editor.putFloat(getString(R.string.fastest_correct_answer), newFastestTime);
                         editor.apply();
-                        Toast toast = Toast.makeText(
-                                getApplicationContext(),
-                                getString(R.string.new_fastest_answer, newFastestTime / 1000),
-                                Toast.LENGTH_SHORT
-                        );
-                        toast.show();
                     }
                 }
 
@@ -401,29 +395,30 @@ public class GameActivity extends AppCompatActivity {
     }
 
     protected void loseLife() {
-        System.out.println("LOSE LIFE! livesRemaining: " + livesRemaining);
-
+        if (GameConfig.GAME_MODE_PRACTICE == gameMode) {
+            return;
+        }
         livesRemaining = livesRemaining > 0 ? livesRemaining - 1 : 0;
-
-        System.out.println("lives now remaining: " + livesRemaining);
 
         checkCorrectAnswersInaRow();
         mostCorrectInRowSession = 0;
 
         LinearLayout ll = findViewById(R.id.life_layout);
-        System.out.println("Remove image at index: " + livesRemaining);
-        ll.removeViewAt(livesRemaining);
+        try {
+            ll.removeViewAt(livesRemaining);
+        } catch (Exception e) {}
 
         checkForDeath();
     }
 
     protected void gainLife(int howMany) {
-        System.out.println("Gain lives: " + howMany);
+        if (GameConfig.GAME_MODE_PRACTICE == gameMode) {
+            return;
+        }
         livesRemaining = livesRemaining + howMany;
 
         LinearLayout ll = findViewById(R.id.life_layout);
         for (int i = 0; i < howMany; ++i) {
-            System.out.println("Adding image at index: " + i);
             ImageView iv = new ImageView(this);
             iv.setImageResource(R.drawable.life);
             iv.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,

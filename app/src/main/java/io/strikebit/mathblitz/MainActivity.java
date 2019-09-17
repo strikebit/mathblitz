@@ -137,7 +137,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void leaderboardClick(View view) {
-        startSignInIntent();
+        GoogleSignInOptions signInOptions = GoogleSignInOptions.DEFAULT_GAMES_SIGN_IN;
+        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
+        if (!GoogleSignIn.hasPermissions(account, signInOptions.getScopeArray())) {
+            startSignInIntent();
+        } else {
+            Intent intent = new Intent(this, LeaderboardActivity.class);
+            startActivity(intent);
+        }
     }
 
     private void signInSilently() {
