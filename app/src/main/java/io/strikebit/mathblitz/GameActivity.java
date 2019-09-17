@@ -29,6 +29,7 @@ import java.text.DecimalFormat;
 import java.util.Locale;
 
 import io.strikebit.mathblitz.config.GameConfig;
+import io.strikebit.mathblitz.formatter.QuestionFormatter;
 import io.strikebit.mathblitz.level.LevelManager;
 import io.strikebit.mathblitz.model.MathQuestion;
 import io.strikebit.mathblitz.sound.SoundManager;
@@ -302,7 +303,7 @@ public class GameActivity extends AppCompatActivity {
         MathQuestion mathQuestion = mathQuestionStrategy.generate(difficulty);
 
         TextView questionText = findViewById(R.id.math_question);
-        questionText.setText(mathQuestion.getQuestion());
+        questionText.setText(QuestionFormatter.humanizeQuestion(mathQuestion.getQuestion()));
 
         clearPreviousAnswers();
 

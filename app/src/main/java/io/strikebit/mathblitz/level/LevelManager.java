@@ -4,7 +4,7 @@ import io.strikebit.mathblitz.config.GameConfig;
 
 public class LevelManager {
     public static int getNextLevel(int currentLevel, int score) {
-        if (0 == score % 10) {
+        if (0 == score % 7) {
             if (GameConfig.DIFFICULTY_EASY == currentLevel) {
                 return GameConfig.DIFFICULTY_ADEPT;
             } else if (GameConfig.DIFFICULTY_ADEPT == currentLevel) {

@@ -18,9 +18,9 @@ public class MathQuestionStrategy implements MathQuestionStrategyInterface {
     private final static String OPERATOR_MINUS = "-";
     private final static String OPERATOR_MULTIPLY = "*";
     private final static String OPERATOR_DIVIDE = "/";
-    private final static String OPERATOR_EXPONENT = "^";
+    // private final static String OPERATOR_EXPONENT = "^";
     private final static List<String> operators = Collections.unmodifiableList(Arrays.asList(
-            OPERATOR_PLUS, OPERATOR_MINUS, OPERATOR_MULTIPLY, OPERATOR_DIVIDE, OPERATOR_EXPONENT));
+            OPERATOR_PLUS, OPERATOR_MINUS, OPERATOR_MULTIPLY, OPERATOR_DIVIDE));
 
     private Expression expression = new Expression();
     private Random random = new Random();
@@ -72,14 +72,13 @@ public class MathQuestionStrategy implements MathQuestionStrategyInterface {
     private MathQuestion generateEasyQuestion() {
         String operator = operators.get(random.nextInt(operators.size()));
         int operand1 = random.nextInt(13);
-        int operand2;
+        int operand2 = random.nextInt(13);
 
+        /*
         if (OPERATOR_EXPONENT.equals(operator)) {
-            // TODO needs a small number based on operand1
-            operand2 = random.nextInt(5);
-        } else {
-            operand2 = random.nextInt(13);
+            operand2 = random.nextInt(3);
         }
+         */
         // Make division easy initially
         if (OPERATOR_DIVIDE.equals(operator)) {
             operand1 = 0 == operand1 ? ++operand1 : operand1;
@@ -103,10 +102,11 @@ public class MathQuestionStrategy implements MathQuestionStrategyInterface {
         if (0 == operand2 && OPERATOR_DIVIDE.equals(operator)) {
             ++operand2;
         }
+        /*
         if (OPERATOR_EXPONENT.equals(operator)) {
-            // TODO Same
-            operand2 = random.nextInt(5);
+            operand2 = random.nextInt(3);
         }
+         */
 
         String question = String.format(Locale.US, "%d %s %d", operand1, operator, operand2);
 
@@ -179,14 +179,14 @@ public class MathQuestionStrategy implements MathQuestionStrategyInterface {
         if (0 == operand3 && OPERATOR_DIVIDE.equals(operator2)) {
             ++operand3;
         }
+        /*
         if (OPERATOR_EXPONENT.equals(operator1)) {
-            // TODO
-            operand2 = random.nextInt(6);
+            operand2 = random.nextInt(3);
         }
         if (OPERATOR_EXPONENT.equals(operator2)) {
-            // TODO
-            operand3 = random.nextInt(6);
+            operand3 = random.nextInt(3);
         }
+         */
 
         boolean useParenthesis = random.nextBoolean();
         String question;
