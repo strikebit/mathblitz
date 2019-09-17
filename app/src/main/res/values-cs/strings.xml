@@ -1,0 +1,36 @@
+<resources>
+    <string name="quit">Přestat</string>
+    <string name="very_hard">Velmi obtížné</string>
+    <string name="back_to_menu">Zpět do menu</string>
+    <string name="difficulty">Obtížnost</string>
+    <string name="easy">Snadný, jednoduchý</string>
+    <string name="fastest_time_in_seconds">%.2f sekundy</string>
+    <string name="game_modes">Herní módy</string>
+    <string name="game_over">Konec hry. Konečné skóre: %d</string>
+    <string name="genius">Génius</string>
+    <string name="hard">Obtížný</string>
+    <string name="high_score">Vysoké skóre: %d</string>
+    <string name="label_fastest_answer">Nejrychlejší odpověď</string>
+    <string name="label_high_score_survival">Vysoké skóre přežití</string>
+    <string name="label_high_score_time_trial">Časové hodnocení vysoké skóre</string>
+    <string name="label_most_correct_in_a_row">Nejpřesnější v řadě</string>
+    <string name="label_percent_correct">Procento správné</string>
+    <string name="label_questions_answered">Otázky zodpovězeny</string>
+    <string name="label_questions_correct">Otázky jsou správné</string>
+    <string name="leaderboard">Leaderboard</string>
+    <string name="life_1">Život 1</string>
+    <string name="life_2">Život 2</string>
+    <string name="life_3">Život 3</string>
+    <string name="medium">Středně pokročilí</string>
+    <string name="my_stats">Moje statistiky</string>
+    <string name="new_fastest_answer">Nová nejrychlejší odpověď (%.2f sekundy)</string>
+    <string name="new_high_score">Nové nejvyšší skóre!</string>
+    <string name="play_again">Hrát znovu</string>
+    <string name="practice">Praxe</string>
+    <string name="score_default">Skóre: %d</string>
+    <string name="stats">Statistiky</string>
+    <string name="survival">Přežití</string>
+    <string name="time_trial">Časová zkouška</string>
+    <string name="times_up">Čas vypršel! Konečné skóre: %d</string>
+    <string name="very_easy">Velmi snadné</string>
+</resources>

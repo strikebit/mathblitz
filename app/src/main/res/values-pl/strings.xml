@@ -1,0 +1,36 @@
+<resources>
+    <string name="quit">Porzucić</string>
+    <string name="very_easy">Bardzo łatwe</string>
+    <string name="back_to_menu">Powrót do menu</string>
+    <string name="difficulty">Trudność</string>
+    <string name="easy">Łatwo</string>
+    <string name="fastest_time_in_seconds">%.2f sekundy</string>
+    <string name="game_modes">Tryby gry</string>
+    <string name="game_over">Koniec gry. Ostateczny wynik: %d</string>
+    <string name="genius">Geniusz</string>
+    <string name="hard">Trudny</string>
+    <string name="high_score">Wysoki wynik: %d</string>
+    <string name="label_fastest_answer">Najszybsza odpowiedź</string>
+    <string name="label_high_score_survival">Wysoki wynik przeżycia</string>
+    <string name="label_high_score_time_trial">Najlepszy wynik na czas</string>
+    <string name="label_most_correct_in_a_row">Najbardziej poprawne z rzędu</string>
+    <string name="label_percent_correct">Prawidłowy procent</string>
+    <string name="label_questions_answered">Odpowiedzi na pytania</string>
+    <string name="label_questions_correct">Pytania poprawne</string>
+    <string name="leaderboard">Tabela liderów</string>
+    <string name="life_1">Życie 1</string>
+    <string name="life_2">Życie 2</string>
+    <string name="life_3">Życie 3</string>
+    <string name="medium">Pośredni</string>
+    <string name="my_stats">Moje statystyki</string>
+    <string name="new_fastest_answer">Nowa najszybsza odpowiedź (%.2f sekundy)</string>
+    <string name="new_high_score">Nowy rekord!</string>
+    <string name="play_again">Zagraj ponownie</string>
+    <string name="practice">Ćwiczyć</string>
+    <string name="score_default">Wynik: %d</string>
+    <string name="stats">Statystyki</string>
+    <string name="survival">Przetrwanie</string>
+    <string name="time_trial">Okres próbny</string>
+    <string name="times_up">Koniec czasu! Ostateczny wynik: %d</string>
+    <string name="very_hard">Bardzo trudne</string>
+</resources>
