@@ -26,4 +26,11 @@
     <string name="new_fastest_answer">Nytt raskeste svar (%.2f sekunder)</string>
     <string name="new_high_score">Ny high score!</string>
     <string name="times_up">Tiden er inne! Sluttsum: %d</string>
+    <string name="very_hard">Veldig vanskelig</string>
+    <string name="very_easy">Meget lett</string>
+    <string name="hard">Hard</string>
+    <string name="genius">Geni</string>
+    <string name="easy">Lett</string>
+    <string name="difficulty">Vanskelighet</string>
+    <string name="medium">Medium</string>
 </resources>

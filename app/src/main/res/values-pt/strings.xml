@@ -26,4 +26,11 @@
     <string name="new_fastest_answer">Nova resposta mais rápida (%.2f segundos)</string>
     <string name="game_over">Fim de jogo. Pontuação final: %d</string>
     <string name="fastest_time_in_seconds">%.2f segundos</string>
+    <string name="medium">Intermediária</string>
+    <string name="difficulty">Dificuldade</string>
+    <string name="easy">Fácil</string>
+    <string name="genius">Gênia</string>
+    <string name="hard">Difícil</string>
+    <string name="very_easy">Muito fácil</string>
+    <string name="very_hard">Muito difícil</string>
 </resources>

@@ -26,4 +26,11 @@
     <string name="new_fastest_answer">Jawapan terpantas baru (%.2f saat)</string>
     <string name="game_over">Permainan tamat. Markah akhir: %d</string>
     <string name="fastest_time_in_seconds">%.2f detik</string>
+    <string name="medium">Perantaraan</string>
+    <string name="difficulty">Kesukaran</string>
+    <string name="easy">Mudah</string>
+    <string name="genius">Genius</string>
+    <string name="hard">Sukar</string>
+    <string name="very_easy">Sangat mudah</string>
+    <string name="very_hard">Sangat susah</string>
 </resources>

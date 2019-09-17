@@ -13,7 +13,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="16dp"
-        android:text="Difficulty"
+        android:text="@string/difficulty"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -37,7 +37,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:onClick="onStartPracticeGameVeryEasyClick"
-            android:text="Very Easy" />
+            android:text="@string/very_easy" />
 
         <Button
             android:id="@+id/button_practice_easy"
@@ -45,7 +45,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:onClick="onStartPracticeGameEasyClick"
-            android:text="Easy" />
+            android:text="@string/easy" />
 
         <Button
             android:id="@+id/button_practice_adept"
@@ -53,7 +53,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:onClick="onStartPracticeGameAdeptClick"
-            android:text="Medium" />
+            android:text="@string/medium" />
     </LinearLayout>
 
     <LinearLayout
@@ -76,7 +76,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:onClick="onStartPracticeGameHardClick"
-            android:text="Hard" />
+            android:text="@string/hard" />
 
         <Button
             android:id="@+id/button_practice_very_hard"
@@ -84,7 +84,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:onClick="onStartPracticeGameVeryHardClick"
-            android:text="Very Hard"
+            android:text="@string/very_hard"
             />
 
         <Button
@@ -93,7 +93,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:onClick="onStartPracticeGameGeniusClick"
-            android:text="Genius" />
+            android:text="@string/genius" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

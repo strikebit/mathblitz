@@ -26,4 +26,11 @@
     <string name="new_fastest_answer">Câu trả lời mới nhanh nhất (%.2f giây)</string>
     <string name="new_high_score">Kỷ lục mới!</string>
     <string name="times_up">Hết giờ rồi! Điểm cuối cùng: %d</string>
+    <string name="very_hard">Rất khó</string>
+    <string name="difficulty">Khó khăn</string>
+    <string name="easy">Dễ dàng</string>
+    <string name="genius">Thiên tài</string>
+    <string name="hard">Khó</string>
+    <string name="medium">Trung gian</string>
+    <string name="very_easy">Rất dễ</string>
 </resources>

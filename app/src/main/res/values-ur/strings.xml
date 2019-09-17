@@ -26,4 +26,11 @@
     <string name="new_high_score">نیا اعلی اسکور!</string>
     <string name="times_up">وقت ختم! آخری سکور: %d</string>
     <string name="new_fastest_answer">%.2f</string>
+    <string name="medium">انٹرمیڈیٹ</string>
+    <string name="difficulty">مشکل</string>
+    <string name="easy">آسان</string>
+    <string name="genius">عقلمند</string>
+    <string name="hard">مشکل</string>
+    <string name="very_easy">بہت آسان</string>
+    <string name="very_hard">بہت مشکل</string>
 </resources>

@@ -26,4 +26,11 @@
     <string name="new_fastest_answer">ใหม่เร็วที่สุดคำตอบ (%.2f วินาที)</string>
     <string name="game_over">จบเกม. ผลคะแนนสุดท้าย: %d</string>
     <string name="fastest_time_in_seconds">%.2f วินาที</string>
+    <string name="very_hard">ยากมาก</string>
+    <string name="difficulty">ความยาก</string>
+    <string name="easy">ง่าย</string>
+    <string name="genius">อัจฉริยภาพ</string>
+    <string name="hard">ยาก</string>
+    <string name="medium">สื่อกลาง</string>
+    <string name="very_easy">ง่ายมาก</string>
 </resources>

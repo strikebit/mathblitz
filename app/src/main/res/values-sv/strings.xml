@@ -26,4 +26,11 @@
     <string name="new_fastest_answer">Nytt snabbaste svar (%.2f sekunder)</string>
     <string name="game_over">Spelet över. Slutresultat: %d</string>
     <string name="fastest_time_in_seconds">%.2f sekunder</string>
+    <string name="medium">Mellanliggande</string>
+    <string name="difficulty">Svårighet</string>
+    <string name="easy">Lätt</string>
+    <string name="genius">Geni</string>
+    <string name="hard">Svår</string>
+    <string name="very_hard">Mycket svårt</string>
+    <string name="very_easy">Väldigt lätt</string>
 </resources>

@@ -26,4 +26,11 @@
     <string name="new_fastest_answer">नया सबसे तेज़ उत्तर (%.2f सेकंड)</string>
     <string name="new_high_score">नया उच्च स्कोर!</string>
     <string name="times_up">समय पूर्ण हुआ! अंतिम स्कोर: %d</string>
+    <string name="genius">प्रतिभा</string>
+    <string name="difficulty">कठिनाई</string>
+    <string name="easy">आसान</string>
+    <string name="very_easy">बहुत आसान</string>
+    <string name="very_hard">बहुत कठिन</string>
+    <string name="hard">कठिन</string>
+    <string name="medium">मध्यम</string>
 </resources>

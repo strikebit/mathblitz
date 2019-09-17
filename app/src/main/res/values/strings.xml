@@ -41,4 +41,11 @@
     <string name="fastest_time_in_seconds">%.2f seconds</string>
     <string name="times_up">Time\'s up! Final score: %d</string>
     <string name="game_over">Game over. Final score: %d</string>
+    <string name="difficulty">Difficulty</string>
+    <string name="very_easy">Very easy</string>
+    <string name="easy">Easy</string>
+    <string name="medium">Intermediat</string>
+    <string name="hard">Hard</string>
+    <string name="very_hard">Very Hard</string>
+    <string name="genius">Genius</string>
 </resources>

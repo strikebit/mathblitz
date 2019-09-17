@@ -26,4 +26,11 @@
     <string name="new_fastest_answer">New fastest answer (%.2f seconds)</string>
     <string name="new_high_score">שיא חדש!</string>
     <string name="times_up">הזמן עבר! תוצאה סופית: %d</string>
+    <string name="medium">ביניים</string>
+    <string name="difficulty">קושי</string>
+    <string name="easy">קל</string>
+    <string name="very_easy">קל מאוד</string>
+    <string name="very_hard">מאוד מסובך</string>
+    <string name="hard">קשה</string>
+    <string name="genius">גאונות</string>
 </resources>

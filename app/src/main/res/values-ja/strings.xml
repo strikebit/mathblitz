@@ -26,4 +26,11 @@
     <string name="new_fastest_answer">新しい最速の回答（%.2f 秒）</string>
     <string name="game_over">ゲームオーバー。 最終スコア：%d</string>
     <string name="fastest_time_in_seconds">%.2f 秒</string>
+    <string name="difficulty">困難</string>
+    <string name="easy">かんたん</string>
+    <string name="genius">天才</string>
+    <string name="hard">難しい</string>
+    <string name="medium">中級</string>
+    <string name="very_easy">非常に簡単</string>
+    <string name="very_hard">非常に難しい</string>
 </resources>

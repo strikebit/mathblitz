@@ -26,4 +26,11 @@
     <string name="new_fastest_answer">Yeni en hızlı cevap (%.2f saniye)</string>
     <string name="new_high_score">Yeni yüksek puan!</string>
     <string name="times_up">Süre doldu! Son skor: %d</string>
+    <string name="very_easy">Çok kolay</string>
+    <string name="difficulty">Zorluk</string>
+    <string name="easy">Kolay</string>
+    <string name="genius">Deha</string>
+    <string name="hard">Zor</string>
+    <string name="medium">Orta düzey</string>
+    <string name="very_hard">Çok zor</string>
 </resources>

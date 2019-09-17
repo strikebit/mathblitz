@@ -26,4 +26,11 @@
     <string name="new_fastest_answer">Bagong pinakamabilis na sagot (%.2f segundo)</string>
     <string name="new_high_score">Bagong mataas na marka!</string>
     <string name="times_up">Tapos na ang oras! Pangwakas na iskor: %d</string>
+    <string name="very_easy">Napakadaling</string>
+    <string name="difficulty">Kahirapan</string>
+    <string name="easy">Madali</string>
+    <string name="genius">Genius</string>
+    <string name="hard">Mahirap</string>
+    <string name="medium">Nasa pagitan</string>
+    <string name="very_hard">Napakahirap</string>
 </resources>

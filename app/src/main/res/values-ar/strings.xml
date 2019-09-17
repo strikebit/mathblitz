@@ -26,4 +26,11 @@
     <string name="fastest_time_in_seconds">%.2f seconds</string>
     <string name="new_high_score">درجة عالية جديدة</string>
     <string name="new_fastest_answer">%.2f</string>
+    <string name="difficulty">صعوبة</string>
+    <string name="easy">سهل</string>
+    <string name="genius">العبقري</string>
+    <string name="hard">صعب</string>
+    <string name="very_easy">سهل جدا</string>
+    <string name="very_hard">صعب جدا</string>
+    <string name="medium">متوسط</string>
 </resources>

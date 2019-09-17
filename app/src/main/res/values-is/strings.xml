@@ -26,4 +26,11 @@
     <string name="new_fastest_answer">Nýja fljótlegasta svarið (%.2f sekúndur)</string>
     <string name="new_high_score">Nýtt stig!</string>
     <string name="times_up">Tíminn er búinn! Lokastaða: %d</string>
+    <string name="medium">Millistig</string>
+    <string name="difficulty">Erfiðleikar</string>
+    <string name="very_easy">Mjög auðvelt</string>
+    <string name="easy">Auðvelt</string>
+    <string name="genius">Snilld</string>
+    <string name="hard">Erfitt</string>
+    <string name="very_hard">Mjög erfitt</string>
 </resources>

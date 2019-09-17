@@ -26,4 +26,11 @@
     <string name="new_fastest_answer">Nuova risposta più veloce (%.2f secondi)</string>
     <string name="new_high_score">Nuovo record!</string>
     <string name="times_up">Tempo scaduto! Punteggio finale: %d</string>
+    <string name="very_hard">Molto difficile</string>
+    <string name="very_easy">Molto facile</string>
+    <string name="easy">Facile</string>
+    <string name="hard">Difficile</string>
+    <string name="medium">Intermedia</string>
+    <string name="genius">Genio</string>
+    <string name="difficulty">Difficoltà</string>
 </resources>

@@ -26,4 +26,11 @@
     <string name="times_up">时间到！ 最终得分：%d</string>
     <string name="fastest_time_in_seconds">%.2f 秒</string>
     <string name="game_over">游戏结束。 最终得分：%d</string>
+    <string name="medium">中间</string>
+    <string name="difficulty">困难</string>
+    <string name="easy">简单</string>
+    <string name="genius">天才</string>
+    <string name="hard">难</string>
+    <string name="very_easy">很容易</string>
+    <string name="very_hard">非常困难</string>
 </resources>

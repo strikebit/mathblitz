@@ -26,4 +26,11 @@
     <string name="new_fastest_answer">새로운 빠른 답변 (%.2f 초)</string>
     <string name="new_high_score">새로운 최고 점수!</string>
     <string name="times_up">시간의 최대! 최종 점수: %d</string>
+    <string name="very_hard">매우 어렵다</string>
+    <string name="difficulty">어려움</string>
+    <string name="easy">쉬운</string>
+    <string name="genius">천재</string>
+    <string name="hard">어려운</string>
+    <string name="very_easy">아주 쉽게</string>
+    <string name="medium">중급</string>
 </resources>

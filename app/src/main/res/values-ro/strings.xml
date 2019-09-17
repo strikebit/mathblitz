@@ -26,4 +26,11 @@
     <string name="new_fastest_answer">Cel mai rapid răspuns (%.2f secunde)</string>
     <string name="game_over">Joc încheiat. Scor final: %d</string>
     <string name="fastest_time_in_seconds">%.2f secunde</string>
+    <string name="very_easy">Foarte usor</string>
+    <string name="difficulty">Dificultate</string>
+    <string name="easy">Uşor</string>
+    <string name="genius">Geniu</string>
+    <string name="hard">Dificil</string>
+    <string name="very_hard">Foarte dificil</string>
+    <string name="medium">Intermediar</string>
 </resources>

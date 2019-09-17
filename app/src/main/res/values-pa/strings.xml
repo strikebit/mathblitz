@@ -26,4 +26,11 @@
     <string name="new_fastest_answer">ਨਵਾਂ ਤੇਜ਼ ਉੱਤਰ (%.2f ਸਕਿੰਟ)</string>
     <string name="new_high_score">ਨਵਾਂ ਉੱਚ ਸਕੋਰ!</string>
     <string name="times_up">ਸਮਾਂ ਪੂਰਾ! ਅੰਤਮ ਸਕੋਰ: %d</string>
+    <string name="very_hard">ਬਹੁਤ ਔਖਾ</string>
+    <string name="hard">ਮੁਸ਼ਕਲ</string>
+    <string name="difficulty">ਮੁਸ਼ਕਲ</string>
+    <string name="easy">ਆਸਾਨ</string>
+    <string name="genius">ਜੀਨੀਅਸ</string>
+    <string name="medium">ਵਿਚਕਾਰਲਾ</string>
+    <string name="very_easy">ਬਹੁਤ ਹੀ ਆਸਾਨ</string>
 </resources>

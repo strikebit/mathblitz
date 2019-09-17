@@ -26,4 +26,11 @@
     <string name="new_fastest_answer">Новый быстрый ответ (%.2f секунды)</string>
     <string name="new_high_score">Новый рекорд!</string>
     <string name="times_up">Время вышло! Финальный счет: %d</string>
+    <string name="medium">промежуточный</string>
+    <string name="difficulty">трудность</string>
+    <string name="easy">Легко</string>
+    <string name="genius">гениальность</string>
+    <string name="hard">трудно</string>
+    <string name="very_hard">очень сложно</string>
+    <string name="very_easy">очень просто</string>
 </resources>

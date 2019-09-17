@@ -26,4 +26,11 @@
     <string name="new_fastest_answer">Нова найшвидша відповідь (%.2f секунди)</string>
     <string name="game_over">Кінець гри. Підсумкова оцінка: %d</string>
     <string name="fastest_time_in_seconds">%.2f секунд</string>
+    <string name="very_hard">Дуже важко</string>
+    <string name="very_easy">Дуже легко</string>
+    <string name="difficulty">труднощі</string>
+    <string name="easy">легко</string>
+    <string name="genius">геній</string>
+    <string name="hard">важко</string>
+    <string name="medium">проміжний</string>
 </resources>

@@ -26,4 +26,11 @@
     <string name="new_fastest_answer">Nieuw snelste antwoord (%.2f seconden)</string>
     <string name="game_over">Spel is over. Eindscore: %d</string>
     <string name="fastest_time_in_seconds">%.2f seconden</string>
+    <string name="difficulty">Moeilijkheid</string>
+    <string name="easy">Gemakkelijk</string>
+    <string name="very_easy">Erg makkelijk</string>
+    <string name="very_hard">Erg moeilijk</string>
+    <string name="medium">Gemiddeld</string>
+    <string name="hard">Moeilijk</string>
+    <string name="genius">Genie</string>
 </resources>
