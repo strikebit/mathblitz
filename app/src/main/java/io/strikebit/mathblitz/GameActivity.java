@@ -138,6 +138,7 @@ public class GameActivity extends AppCompatActivity {
                 progressBar.setVisibility(View.VISIBLE);
                 TextView questionText = findViewById(R.id.math_question);
                 questionText.setVisibility(View.VISIBLE);
+                timerText.setVisibility(View.VISIBLE);
                 final Handler timerHandler = new Handler();
                 timerHandler.postDelayed(new Runnable() {
                     @Override
@@ -194,7 +195,7 @@ public class GameActivity extends AppCompatActivity {
             questionTimer = null;
         }
 
-        questionTimer = new CountDownTimer(questionTime, 10) {
+        questionTimer = new CountDownTimer(questionTime, 100) {
             public void onTick(long mUntilFinished) {
                 currentQuestionTime = questionTime - (float) mUntilFinished;
                 double i = (double) mUntilFinished;

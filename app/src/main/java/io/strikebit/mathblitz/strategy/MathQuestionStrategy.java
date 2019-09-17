@@ -18,6 +18,7 @@ public class MathQuestionStrategy implements MathQuestionStrategyInterface {
     private final static String OPERATOR_MINUS = "-";
     private final static String OPERATOR_MULTIPLY = "*";
     private final static String OPERATOR_DIVIDE = "/";
+    private final static String OPERATOR_EXPONENT = "^";
     private final static List<String> operators = Collections.unmodifiableList(Arrays.asList(
             OPERATOR_PLUS, OPERATOR_MINUS, OPERATOR_MULTIPLY, OPERATOR_DIVIDE));
 
@@ -97,6 +98,9 @@ public class MathQuestionStrategy implements MathQuestionStrategyInterface {
         int operand2 = random.nextInt(16);
         if (0 == operand2 && OPERATOR_DIVIDE.equals(operator)) {
             ++operand2;
+        }
+        if (OPERATOR_EXPONENT.equals(operator)) {
+            // TODO 
         }
 
         String question = String.format(Locale.US, "%d %s %d", operand1, operator, operand2);

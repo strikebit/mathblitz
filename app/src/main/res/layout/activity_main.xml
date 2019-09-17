@@ -95,8 +95,8 @@
         android:layout_marginEnd="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="16dp"
-        app:layout_constraintStart_toStartOf="@id/text_stats"
-        app:layout_constraintTop_toTopOf="@id/text_stats"
+        app:layout_constraintStart_toEndOf="@id/text_stats"
+        app:layout_constraintTop_toBottomOf="@id/text_stats"
         >
         <Button
             android:id="@+id/button_leaderboard"
@@ -105,7 +105,7 @@
             android:layout_weight="1"
             android:onClick="leaderboardClick"
             android:textColor="@color/colorWhite"
-            android:background="@drawable/rounded_button_red"
+            android:background="@drawable/rounded_button_maroon"
             android:layout_marginRight="2dp"
             android:layout_marginEnd="2dp"
             android:text="@string/leaderboard" />
@@ -117,7 +117,7 @@
             android:layout_weight="1"
             android:onClick="viewStatsClick"
             android:textColor="@color/colorWhite"
-            android:background="@drawable/rounded_button_red"
+            android:background="@drawable/rounded_button_maroon"
             android:layout_marginLeft="2dp"
             android:layout_marginStart="2dp"
             android:text="@string/my_stats" />
