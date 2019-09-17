@@ -221,6 +221,7 @@ public class GameActivity extends AppCompatActivity {
         progressBar.setVisibility(View.INVISIBLE);
         findViewById(R.id.text_score).setVisibility(View.INVISIBLE);
         findViewById(R.id.text_time_remaining).setVisibility(View.INVISIBLE);
+        findViewById(R.id.math_question).setVisibility(View.INVISIBLE);
     }
 
     protected void runAd() {
@@ -312,7 +313,7 @@ public class GameActivity extends AppCompatActivity {
         }
 
         int count = 0;
-        for (Number answer : mathQuestion.getAnswers()) {
+        for (Double answer : mathQuestion.getAnswers()) {
             addAnswerButton(count, answer, mathQuestion.getCorrectAnswer());
             ++count;
         }
@@ -322,14 +323,14 @@ public class GameActivity extends AppCompatActivity {
         }
     }
 
-    protected void addAnswerButton(int index, final Number possibleAnswer, final Number correctAnswer) {
+    protected void addAnswerButton(int index, final Double possibleAnswer, final Double correctAnswer) {
         final Button answerButton = new Button(this);
         answerButton.setId(index);
-        boolean isFloat = NumberUtil.numberHasDecimal(possibleAnswer);
-        if (isFloat) {
-            answerButton.setText(df2.format(possibleAnswer));
+        boolean isWhole = NumberUtil.isWholeNumber(possibleAnswer);
+        if (isWhole) {
+            answerButton.setText(String.valueOf(possibleAnswer.intValue()));
         } else {
-            answerButton.setText(String.valueOf(possibleAnswer));
+            answerButton.setText(df2.format(possibleAnswer));
         }
         answerButton.setTextSize(30);
         answerButton.setTextColor(ContextCompat.getColor(this, R.color.colorWhite));

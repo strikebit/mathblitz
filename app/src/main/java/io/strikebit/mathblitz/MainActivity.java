@@ -7,8 +7,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.google.android.gms.ads.AdListener;
@@ -97,6 +99,19 @@ public class MainActivity extends AppCompatActivity {
         });
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+
+        LinearLayout ll = findViewById(R.id.game_mode_layout);
+
+        if (Configuration.ORIENTATION_LANDSCAPE == newConfig.orientation) {
+            ll.setOrientation(LinearLayout.HORIZONTAL);
+        } else {
+            ll.setOrientation(LinearLayout.VERTICAL);
+        }
     }
 
     public void onStartTimeTrialGameClick(View view) {

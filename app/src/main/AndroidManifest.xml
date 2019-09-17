@@ -20,7 +20,9 @@
         <activity
             android:name=".GameActivity"
             android:configChanges="orientation|screenSize" />
-        <activity android:name=".MainActivity">
+        <activity
+            android:name=".MainActivity"
+            android:configChanges="orientation|screenSize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

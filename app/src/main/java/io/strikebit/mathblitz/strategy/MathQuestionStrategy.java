@@ -62,7 +62,7 @@ public class MathQuestionStrategy implements MathQuestionStrategyInterface {
         String question = String.format(Locale.US, "%d %s %d", operand1, operator, operand2);
 
         MathQuestion mathQuestion = buildMathQuestion(question);
-        List<Number> answers = generateAnswers(mathQuestion, 3);
+        List<Double> answers = generateAnswers(mathQuestion, 3);
         mathQuestion.setAnswers(answers);
 
         return mathQuestion;
@@ -85,7 +85,7 @@ public class MathQuestionStrategy implements MathQuestionStrategyInterface {
         String question = String.format(Locale.US, "%d %s %d", operand1, operator, operand2);
 
         MathQuestion mathQuestion = buildMathQuestion(question);
-        List<Number> answers = generateAnswers(mathQuestion, 3);
+        List<Double> answers = generateAnswers(mathQuestion, 3);
         mathQuestion.setAnswers(answers);
 
         return mathQuestion;
@@ -102,7 +102,7 @@ public class MathQuestionStrategy implements MathQuestionStrategyInterface {
         String question = String.format(Locale.US, "%d %s %d", operand1, operator, operand2);
 
         MathQuestion mathQuestion = buildMathQuestion(question);
-        List<Number> answers = generateAnswers(mathQuestion, 4);
+        List<Double> answers = generateAnswers(mathQuestion, 4);
         mathQuestion.setAnswers(answers);
 
         return mathQuestion;
@@ -134,7 +134,7 @@ public class MathQuestionStrategy implements MathQuestionStrategyInterface {
 
 
         MathQuestion mathQuestion = buildMathQuestion(question);
-        List<Number> answers = generateAnswers(mathQuestion, 3);
+        List<Double> answers = generateAnswers(mathQuestion, 3);
         mathQuestion.setAnswers(answers);
 
         return mathQuestion;
@@ -151,7 +151,7 @@ public class MathQuestionStrategy implements MathQuestionStrategyInterface {
         String question = String.format(Locale.US, "%d %s %d", operand1, operator, operand2);
 
         MathQuestion mathQuestion = buildMathQuestion(question);
-        List<Number> answers = generateAnswers(mathQuestion, 4);
+        List<Double> answers = generateAnswers(mathQuestion, 4);
         mathQuestion.setAnswers(answers);
 
         return mathQuestion;
@@ -184,7 +184,7 @@ public class MathQuestionStrategy implements MathQuestionStrategyInterface {
         }
 
         MathQuestion mathQuestion = buildMathQuestion(question);
-        List<Number> answers = generateAnswers(mathQuestion, 4);
+        List<Double> answers = generateAnswers(mathQuestion, 4);
         mathQuestion.setAnswers(answers);
 
         return mathQuestion;
@@ -193,17 +193,17 @@ public class MathQuestionStrategy implements MathQuestionStrategyInterface {
     private MathQuestion buildMathQuestion(String question) {
         MathQuestion mathQuestion = new MathQuestion();
         mathQuestion.setQuestion(question);
-        Number correctAnswer = calculateCorrectAnswer(question);
+        Double correctAnswer = calculateCorrectAnswer(question);
         mathQuestion.setCorrectAnswer(correctAnswer);
 
         return mathQuestion;
     }
 
-    private List<Number> generateAnswers(MathQuestion mathQuestion, int howMany) {
-        List<Number> answers = new ArrayList<>();
+    private List<Double> generateAnswers(MathQuestion mathQuestion, int howMany) {
+        List<Double> answers = new ArrayList<>();
         answers.add(mathQuestion.getCorrectAnswer());
         while (answers.size() < howMany) {
-            Number ia = calculateIncorrectAnswer(mathQuestion.getQuestion());
+            Double ia = calculateIncorrectAnswer(mathQuestion.getQuestion());
             if (!answers.contains(ia)) {
                 answers.add(ia);
             }
@@ -213,30 +213,25 @@ public class MathQuestionStrategy implements MathQuestionStrategyInterface {
         return answers;
     }
 
-    private Number calculateCorrectAnswer(String expressionStr) {
+    private Double calculateCorrectAnswer(String expressionStr) {
         expression.setExpressionString(expressionStr);
 
-        double answer = expression.calculate();
-        int intVal = (int) answer;
-        double diff = intVal - answer;
-
-        if (diff < 0) {
-            return answer;
-        }
-
-        return intVal;
+        return expression.calculate();
     }
 
-    private Number calculateIncorrectAnswer(String expressionStr) {
-        Number correctAnswer = calculateCorrectAnswer(expressionStr);
-        boolean hasDecimal = NumberUtil.numberHasDecimal(correctAnswer);
-        if (hasDecimal) {
-            return random.nextBoolean()
-                    ? random.nextDouble() + correctAnswer.doubleValue()
-                    : random.nextDouble() - correctAnswer.doubleValue();
+    private Double calculateIncorrectAnswer(String expressionStr) {
+        Double correctAnswer = calculateCorrectAnswer(expressionStr);
+
+        if (NumberUtil.isWholeNumber(correctAnswer)) {
+            int intVal = random.nextBoolean()
+                    ? random.nextInt(5) + correctAnswer.intValue()
+                    : random.nextInt(5) - correctAnswer.intValue();
+
+            return (double) intVal;
         }
+
         return random.nextBoolean()
-                ? random.nextInt(5) + correctAnswer.intValue()
-                : random.nextInt(5) - correctAnswer.intValue();
+                ? random.nextDouble() + correctAnswer
+                : random.nextDouble() - correctAnswer;
     }
 }

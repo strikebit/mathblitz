@@ -36,29 +36,40 @@
             android:id="@+id/button_game_time_trial_start"
             android:layout_height="wrap_content"
             android:layout_marginBottom="5dp"
+            android:layout_marginRight="2dp"
+            android:layout_marginEnd="2dp"
             android:layout_width="match_parent"
             android:textColor="@color/colorWhite"
             android:background="@drawable/rounded_button_orange"
             android:onClick="onStartTimeTrialGameClick"
+            android:layout_weight="1"
             android:text="@string/time_trial" />
 
         <Button
             android:id="@+id/button_survival_game_start"
             android:layout_height="wrap_content"
             android:layout_marginBottom="5dp"
+            android:layout_marginRight="2dp"
+            android:layout_marginEnd="2dp"
+            android:layout_marginLeft="2dp"
+            android:layout_marginStart="2dp"
             android:layout_width="match_parent"
             android:textColor="@color/colorWhite"
             android:background="@drawable/rounded_button_red"
             android:onClick="onStartSurvivalGameClick"
+            android:layout_weight="1"
             android:text="@string/survival" />
 
         <Button
             android:id="@+id/button_practice"
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
+            android:layout_marginLeft="2dp"
+            android:layout_marginStart="2dp"
             android:textColor="@color/colorWhite"
             android:background="@drawable/rounded_button_purple"
             android:onClick="onStartPracticeGameClick"
+            android:layout_weight="1"
             android:text="@string/practice" />
     </LinearLayout>
 
@@ -93,6 +104,10 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:onClick="leaderboardClick"
+            android:textColor="@color/colorWhite"
+            android:background="@drawable/rounded_button_red"
+            android:layout_marginRight="2dp"
+            android:layout_marginEnd="2dp"
             android:text="@string/leaderboard" />
 
         <Button
@@ -101,6 +116,10 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:onClick="viewStatsClick"
+            android:textColor="@color/colorWhite"
+            android:background="@drawable/rounded_button_red"
+            android:layout_marginLeft="2dp"
+            android:layout_marginStart="2dp"
             android:text="@string/my_stats" />
     </LinearLayout>
 
@@ -108,12 +127,11 @@
         android:id="@+id/text_build_info"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
         android:layout_marginTop="16dp"
-        android:layout_marginBottom="16dp"
-        app:layout_constraintBottom_toTopOf="@+id/ad_main_banner"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <!-- TODO Live ad key ca-app-pub-7297349899740519/3658955513 -->
     <com.google.android.gms.ads.AdView

@@ -4,12 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class NumberUtil {
-    public static boolean numberHasDecimal(Number number) {
-        double d = number.doubleValue();
-        int i = number.intValue();
-        double diff = i - d;
-
-        return diff < 0 || diff > 0;
+    public static boolean isWholeNumber(Double d) {
+        return 0 == d % 1;
     }
 
     public static boolean isPrime(int number) {

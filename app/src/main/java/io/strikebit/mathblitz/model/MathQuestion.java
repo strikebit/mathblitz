@@ -4,8 +4,8 @@ import java.util.List;
 
 public class MathQuestion {
     private String question;
-    private List<Number> answers;
-    private Number correctAnswer;
+    private List<Double> answers;
+    private Double correctAnswer;
 
     public String getQuestion() {
         return question;
@@ -15,19 +15,19 @@ public class MathQuestion {
         this.question = question;
     }
 
-    public List<Number> getAnswers() {
+    public List<Double> getAnswers() {
         return answers;
     }
 
-    public void setAnswers(List<Number> answers) {
+    public void setAnswers(List<Double> answers) {
         this.answers = answers;
     }
 
-    public Number getCorrectAnswer() {
+    public Double getCorrectAnswer() {
         return correctAnswer;
     }
 
-    public void setCorrectAnswer(Number correctAnswer) {
+    public void setCorrectAnswer(Double correctAnswer) {
         this.correctAnswer = correctAnswer;
     }
 }
