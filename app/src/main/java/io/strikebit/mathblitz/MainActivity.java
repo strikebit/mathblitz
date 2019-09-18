@@ -4,7 +4,9 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
@@ -13,7 +15,6 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
@@ -25,6 +26,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.auth.api.signin.GoogleSignInResult;
+import com.google.android.gms.games.Games;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.perf.FirebasePerformance;
@@ -35,6 +37,9 @@ import io.strikebit.mathblitz.config.GameConfig;
 public class MainActivity extends AppCompatActivity {
 
     private static final int RC_CODE = 9010;
+    private SharedPreferences sharedPref;
+    private int timeTrialHighScore = 0;
+    private int survivalHighScore = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,47 +65,18 @@ public class MainActivity extends AppCompatActivity {
         });
 
         AdView mAdView = findViewById(R.id.ad_main_banner);
-        mAdView.setAdListener(new AdListener() {
-            @Override
-            public void onAdLoaded() {
-                // Code to be executed when an ad finishes loading.
-                System.out.println("Ad loaded");
-            }
-
-            @Override
-            public void onAdFailedToLoad(int errorCode) {
-                // Code to be executed when an ad request fails.
-                System.out.println("Ad failed to load: " + errorCode);
-            }
-
-            @Override
-            public void onAdOpened() {
-                // Code to be executed when an ad opens an overlay that
-                // covers the screen.
-                System.out.println("Ad opened");
-            }
-
-            @Override
-            public void onAdClicked() {
-                // Code to be executed when the user clicks on an ad.
-                System.out.println("Ad clicked");
-            }
-
-            @Override
-            public void onAdLeftApplication() {
-                // Code to be executed when the user has left the app.
-                System.out.println("User left");
-            }
-
-            @Override
-            public void onAdClosed() {
-                // Code to be executed when the user is about to return
-                // to the app after tapping on an ad.
-                System.out.println("Ad closed");
-            }
-        });
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
+
+        new Thread(new Runnable() {
+            public void run() {
+                sharedPref = getSharedPreferences(getString(R.string.game_shared_preferences), Context.MODE_PRIVATE);
+                String timeTrialKey = getString(R.string.high_score_time_trial_key);
+                String survivalKey = getString(R.string.high_score_survival_key);
+                timeTrialHighScore = sharedPref.getInt(timeTrialKey, 0);
+                survivalHighScore = sharedPref.getInt(survivalKey, 0);
+            }
+        }).start();
     }
 
     @Override
@@ -151,11 +127,12 @@ public class MainActivity extends AppCompatActivity {
 
     private void signInSilently() {
         GoogleSignInOptions signInOptions = GoogleSignInOptions.DEFAULT_GAMES_SIGN_IN;
-        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
+        final GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
         if (GoogleSignIn.hasPermissions(account, signInOptions.getScopeArray())) {
             // Already signed in.
             // The signed in account is stored in the 'account' variable.
-            GoogleSignInAccount signedInAccount = account;
+            // upload leaderboard stats if not null
+            updateLeaderboards(account);
         } else {
             // Haven't been signed-in before. Try the silent sign-in first.
             GoogleSignInClient signInClient = GoogleSignIn.getClient(this, signInOptions);
@@ -169,6 +146,7 @@ public class MainActivity extends AppCompatActivity {
                                     if (task.isSuccessful()) {
                                         // The signed in account is stored in the task's result.
                                         GoogleSignInAccount signedInAccount = task.getResult();
+                                        updateLeaderboards(account);
                                     } else {
                                         // Player will need to sign-in explicitly using via UI.
                                         // See [sign-in best practices](http://developers.google.com/games/services/checklist) for guidance on how and when to implement Interactive Sign-in,
@@ -178,6 +156,15 @@ public class MainActivity extends AppCompatActivity {
                                     }
                                 }
                             });
+        }
+    }
+
+    private void updateLeaderboards(GoogleSignInAccount account) {
+        if (timeTrialHighScore > 0) {
+            Games.getLeaderboardsClient(this, account).submitScore(getString(R.string.leaderboard_time_trial_id), timeTrialHighScore);
+        }
+        if (survivalHighScore > 0) {
+            Games.getLeaderboardsClient(this, account).submitScore(getString(R.string.leaderboard_survival_id), survivalHighScore);
         }
     }
 
@@ -199,6 +186,9 @@ public class MainActivity extends AppCompatActivity {
                 myTrace.putAttribute("sign_in", "success");
                 // The signed in account is stored in the result.
                 GoogleSignInAccount signedInAccount = result.getSignInAccount();
+                updateLeaderboards(signedInAccount);
+                Intent intent = new Intent(this, LeaderboardActivity.class);
+                startActivity(intent);
             } else {
                 String message = result.getStatus().getStatusMessage();
                 if (message == null || message.isEmpty()) {

@@ -6,4 +6,71 @@
     android:layout_height="match_parent"
     tools:context=".LeaderboardActivity">
 
+    <TextView
+        android:id="@+id/leaderboard_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/leaderboard"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+    <LinearLayout
+        android:id="@+id/play_again_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:gravity="center"
+        app:layout_constraintTop_toBottomOf="@id/leaderboard_title"
+        >
+        <Button
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginRight="2dp"
+            android:layout_marginEnd="2dp"
+            android:layout_width="match_parent"
+            android:textColor="@color/colorWhite"
+            android:background="@drawable/rounded_button_orange"
+            android:onClick="onTimeTrialClick"
+            android:layout_weight="1"
+            android:text="@string/time_trial" />
+        <Button
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginRight="2dp"
+            android:layout_marginEnd="2dp"
+            android:layout_width="match_parent"
+            android:textColor="@color/colorWhite"
+            android:background="@drawable/rounded_button_red"
+            android:onClick="onSurvivalClick"
+            android:layout_weight="1"
+            android:text="@string/survival" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/button_leaderboard_back_to_menu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rounded_button_maroon"
+        android:onClick="onBackToMenuClick"
+        android:paddingStart="20dp"
+        android:paddingLeft="20dp"
+        android:paddingEnd="20dp"
+        android:paddingRight="20dp"
+        android:layout_marginBottom="16dp"
+        android:text="@string/back_to_menu"
+        android:textColor="@color/colorWhite"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
