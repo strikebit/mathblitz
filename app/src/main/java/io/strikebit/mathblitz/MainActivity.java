@@ -192,9 +192,8 @@ public class MainActivity extends AppCompatActivity {
             } else {
                 String message = result.getStatus().getStatusMessage();
                 if (message == null || message.isEmpty()) {
-                    // message = getString(R.string.signin_other_error);
                     myTrace.putAttribute("sign_in", "error: " + resultCode);
-                    message = "Error: " + resultCode;
+                    message = getString(R.string.signin_other_error);
                 }
                 new AlertDialog.Builder(this).setMessage(message)
                         .setNeutralButton(android.R.string.ok, null).show();
