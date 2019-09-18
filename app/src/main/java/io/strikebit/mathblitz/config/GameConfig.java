@@ -13,4 +13,12 @@ public class GameConfig {
     public final static int DIFFICULTY_HARD = 3;
     public final static int DIFFICULTY_VERY_HARD = 4;
     public final static int DIFFICULTY_LEGENDARY = 5;
+
+    public final static int ACHIEVEMENT_10_ROW = 10;
+    public final static int ACHIEVEMENT_20_ROW = 20;
+    public final static int ACHIEVEMENT_30_ROW = 20;
+    public final static int ACHIEVEMENT_TIME_TRIAL_20_TOTAL = 20;
+    public final static int ACHIEVEMENT_SURVIVOR = 25;
+    public final static int ACHIEVMENT_HUNDRED_QUESTIONS_RIGHT = 100;
+    public final static int ACHIEVEMENT_FAST_THINKER = 100; // 100 ms
 }

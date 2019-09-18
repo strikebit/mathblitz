@@ -12,4 +12,11 @@
     <string name="total_questions_correct" translatable="false">total_questions_correct</string>
     <string name="fastest_correct_answer" translatable="false">fastest_correct_answer</string>
     <string name="most_correct_in_a_row" translatable="false">most_correct_in_a_row</string>
+    <string name="achievement_10_in_a_row" translatable="false">CgkIxJXp3qcfEAIQBg</string>
+    <string name="achievement_20_in_a_row" translatable="false">CgkIxJXp3qcfEAIQBw</string>
+    <string name="achievement_30_in_a_row" translatable="false">CgkIxJXp3qcfEAIQCQ</string>
+    <string name="achievement_time_trial_20_total" translatable="false">CgkIxJXp3qcfEAIQCA</string>
+    <string name="achievement_100_club" translatable="false">CgkIxJXp3qcfEAIQCg</string>
+    <string name="achievement_fast_thinker" translatable="false">CgkIxJXp3qcfEAIQCw</string>
+    <string name="achievement_survivor" translatable="false">CgkIxJXp3qcfEAIQDA</string>
 </resources>

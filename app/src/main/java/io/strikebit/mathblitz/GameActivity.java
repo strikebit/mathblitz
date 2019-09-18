@@ -364,6 +364,9 @@ public class GameActivity extends AppCompatActivity {
                         editor.putFloat(getString(R.string.fastest_correct_answer), newFastestTime);
                         editor.apply();
                     }
+                    if (currentQuestionTime < 100) {
+                        handleAchievement(getString(R.string.achievement_fast_thinker));
+                    }
                 } else {
                     answerButton.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.colorRed));
                 }
@@ -391,6 +394,15 @@ public class GameActivity extends AppCompatActivity {
             editor.putInt(getString(R.string.total_questions_correct), totalQuestionsCorrect + score);
             editor.apply();
             updateLeaderboard();
+            if (totalQuestionsCorrect + score > GameConfig.ACHIEVMENT_HUNDRED_QUESTIONS_RIGHT) {
+                handleAchievement(getString(R.string.achievement_100_club));
+            }
+            if (GameConfig.GAME_MODE_TIME_TRIAL == gameMode && score >= GameConfig.ACHIEVEMENT_TIME_TRIAL_20_TOTAL) {
+                handleAchievement(getString(R.string.achievement_time_trial_20_total));
+            }
+            if (GameConfig.GAME_MODE_SURVIVAL == gameMode && score >= GameConfig.ACHIEVEMENT_SURVIVOR) {
+                handleAchievement(getString(R.string.achievement_survivor));
+            }
             showResult();
         }
     }
@@ -413,8 +425,6 @@ public class GameActivity extends AppCompatActivity {
             return;
         }
         livesRemaining = livesRemaining > 0 ? livesRemaining - 1 : 0;
-
-        checkCorrectAnswersInaRow();
         mostCorrectInRowSession = 0;
 
         LinearLayout ll = findViewById(R.id.life_layout);
@@ -512,9 +522,37 @@ public class GameActivity extends AppCompatActivity {
         }
     }
 
+    protected void handleAchievement(String achievementKey) {
+        if (GameConfig.GAME_MODE_PRACTICE == gameMode) {
+            return;
+        }
+
+        if (null != GoogleSignIn.getLastSignedInAccount(this)) {
+            Games.getAchievementsClient(this, GoogleSignIn.getLastSignedInAccount(this)).unlock(achievementKey);
+        }
+    }
+
     protected void checkCorrectAnswersInaRow() {
         if (GameConfig.GAME_MODE_PRACTICE == gameMode) {
             return;
+        }
+
+        if (mostCorrectInRowSession == GameConfig.ACHIEVEMENT_10_ROW) {
+            if (null != GoogleSignIn.getLastSignedInAccount(this)) {
+                handleAchievement(getString(R.string.achievement_10_in_a_row));
+            }
+        }
+
+        if (mostCorrectInRowSession == GameConfig.ACHIEVEMENT_20_ROW) {
+            if (null != GoogleSignIn.getLastSignedInAccount(this)) {
+                handleAchievement(getString(R.string.achievement_20_in_a_row));
+            }
+        }
+
+        if (mostCorrectInRowSession == GameConfig.ACHIEVEMENT_30_ROW) {
+            if (null != GoogleSignIn.getLastSignedInAccount(this)) {
+                handleAchievement(getString(R.string.achievement_20_in_a_row));
+            }
         }
 
         if (mostCorrectInRowSession > mostCorrectInRow) {
@@ -527,6 +565,7 @@ public class GameActivity extends AppCompatActivity {
     protected void increaseScore() {
         ++score;
         ++mostCorrectInRowSession;
+        checkCorrectAnswersInaRow();
         advanceDifficulty();
         checkHighScore();
         // Update score in UI

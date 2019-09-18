@@ -37,6 +37,8 @@ import io.strikebit.mathblitz.config.GameConfig;
 public class MainActivity extends AppCompatActivity {
 
     private static final int RC_CODE = 9010;
+    private static final int RC_CODE2 = 9011;
+
     private SharedPreferences sharedPref;
     private int timeTrialHighScore = 0;
     private int survivalHighScore = 0;
@@ -110,15 +112,21 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void viewStatsClick(View view) {
-        Intent intent = new Intent(this, StatsActivity.class);
-        startActivity(intent);
+        GoogleSignInOptions signInOptions = GoogleSignInOptions.DEFAULT_GAMES_SIGN_IN;
+        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
+        if (!GoogleSignIn.hasPermissions(account, signInOptions.getScopeArray())) {
+            startSignInIntent(RC_CODE2);
+        } else {
+            Intent intent = new Intent(this, StatsActivity.class);
+            startActivity(intent);
+        }
     }
 
     public void leaderboardClick(View view) {
         GoogleSignInOptions signInOptions = GoogleSignInOptions.DEFAULT_GAMES_SIGN_IN;
         GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
         if (!GoogleSignIn.hasPermissions(account, signInOptions.getScopeArray())) {
-            startSignInIntent();
+            startSignInIntent(RC_CODE);
         } else {
             Intent intent = new Intent(this, LeaderboardActivity.class);
             startActivity(intent);
@@ -168,11 +176,11 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void startSignInIntent() {
+    private void startSignInIntent(int rcCode) {
         GoogleSignInClient signInClient = GoogleSignIn.getClient(this,
                 GoogleSignInOptions.DEFAULT_GAMES_SIGN_IN);
         Intent intent = signInClient.getSignInIntent();
-        startActivityForResult(intent, RC_CODE);
+        startActivityForResult(intent, rcCode);
     }
 
     @Override
@@ -180,15 +188,20 @@ public class MainActivity extends AppCompatActivity {
         Trace myTrace = FirebasePerformance.getInstance().newTrace("sign_in_intent");
         myTrace.start();
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == RC_CODE) {
+        if (requestCode == RC_CODE || requestCode == RC_CODE2) {
             GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
             if (result.isSuccess()) {
                 myTrace.putAttribute("sign_in", "success");
                 // The signed in account is stored in the result.
                 GoogleSignInAccount signedInAccount = result.getSignInAccount();
                 updateLeaderboards(signedInAccount);
-                Intent intent = new Intent(this, LeaderboardActivity.class);
-                startActivity(intent);
+                if (requestCode == RC_CODE) {
+                    Intent intent = new Intent(this, LeaderboardActivity.class);
+                    startActivity(intent);
+                } else {
+                    Intent intent = new Intent(this, StatsActivity.class);
+                    startActivity(intent);
+                }
             } else {
                 String message = result.getStatus().getStatusMessage();
                 if (message == null || message.isEmpty()) {

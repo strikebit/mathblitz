@@ -3,15 +3,22 @@ package io.strikebit.mathblitz;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.TextView;
+
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.games.Games;
+import com.google.android.gms.tasks.OnSuccessListener;
 
 import java.util.Locale;
 
 public class StatsActivity extends AppCompatActivity {
 
     private SharedPreferences sharedPref;
+
+    private static final int RC_ACHIEVEMENT_UI = 9003;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,5 +72,20 @@ public class StatsActivity extends AppCompatActivity {
                 }
             }
         }).start();
+
+        showAchievements();
+    }
+
+    private void showAchievements() {
+        if (null != GoogleSignIn.getLastSignedInAccount(this)) {
+            Games.getAchievementsClient(this, GoogleSignIn.getLastSignedInAccount(this))
+                    .getAchievementsIntent()
+                    .addOnSuccessListener(new OnSuccessListener<Intent>() {
+                        @Override
+                        public void onSuccess(Intent intent) {
+                            startActivityForResult(intent, RC_ACHIEVEMENT_UI);
+                        }
+                    });
+        }
     }
 }
