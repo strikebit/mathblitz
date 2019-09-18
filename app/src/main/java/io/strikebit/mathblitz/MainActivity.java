@@ -27,6 +27,8 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.auth.api.signin.GoogleSignInResult;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.perf.FirebasePerformance;
+import com.google.firebase.perf.metrics.Trace;
 
 import io.strikebit.mathblitz.config.GameConfig;
 
@@ -188,21 +190,27 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        Trace myTrace = FirebasePerformance.getInstance().newTrace("sign_in_intent");
+        myTrace.start();
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == RC_CODE) {
             GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
             if (result.isSuccess()) {
+                myTrace.putAttribute("sign_in", "success");
                 // The signed in account is stored in the result.
                 GoogleSignInAccount signedInAccount = result.getSignInAccount();
             } else {
                 String message = result.getStatus().getStatusMessage();
                 if (message == null || message.isEmpty()) {
-                    message = getString(R.string.signin_other_error);
+                    // message = getString(R.string.signin_other_error);
+                    myTrace.putAttribute("sign_in", "error: " + resultCode);
+                    message = "Error: " + resultCode;
                 }
                 new AlertDialog.Builder(this).setMessage(message)
                         .setNeutralButton(android.R.string.ok, null).show();
             }
         }
+        myTrace.stop();
     }
 
     @Override

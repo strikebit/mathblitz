@@ -14,7 +14,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".LeaderboardActivity"></activity>
-        <activity android:name=".PracticeActivity" />
+        <activity
+            android:name=".PracticeActivity"
+            android:configChanges="orientation|screenSize"/>
         <activity android:name=".StatsActivity" />
         <activity android:name=".ResultActivity" />
         <activity
@@ -30,6 +32,12 @@
             </intent-filter>
         </activity>
 
+        <meta-data
+            android:name="com.google.android.gms.games.APP_ID"
+            android:value="@string/app_id" />
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version"/>
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
             android:value="ca-app-pub-7297349899740519~4115633979" />

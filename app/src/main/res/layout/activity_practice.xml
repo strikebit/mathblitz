@@ -21,19 +21,18 @@
         android:id="@+id/practice_layout_1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginTop="16dp"
-        android:layout_marginBottom="16dp"
         app:layout_constraintStart_toEndOf="@id/text_difficulty"
         app:layout_constraintTop_toBottomOf="@id/text_difficulty"
         >
         <Button
             android:id="@+id/button_practice_very_easy"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:onClick="onStartPracticeGameVeryEasyClick"
@@ -41,7 +40,7 @@
 
         <Button
             android:id="@+id/button_practice_easy"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:onClick="onStartPracticeGameEasyClick"
@@ -49,7 +48,7 @@
 
         <Button
             android:id="@+id/button_practice_adept"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:onClick="onStartPracticeGameAdeptClick"
@@ -60,19 +59,19 @@
         android:id="@+id/practice_layout_2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="0dp"
         android:layout_marginBottom="16dp"
         app:layout_constraintStart_toEndOf="@id/practice_layout_1"
         app:layout_constraintTop_toBottomOf="@id/practice_layout_1"
         >
         <Button
             android:id="@+id/button_practice_hard"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:onClick="onStartPracticeGameHardClick"
@@ -80,7 +79,7 @@
 
         <Button
             android:id="@+id/button_practice_very_hard"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:onClick="onStartPracticeGameVeryHardClick"
@@ -89,7 +88,7 @@
 
         <Button
             android:id="@+id/button_practice_genius"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:onClick="onStartPracticeGameGeniusClick"

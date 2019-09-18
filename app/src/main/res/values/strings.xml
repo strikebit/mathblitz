@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name" translatable="false">MathBlitz</string>
-    <string name="app_id" translatable="false">1075819727556</string>
     <string name="package_name" translatable="false">io.strikebit.mathblitz</string>
     <string name="add_id_key" translatable="false">ca-app-pub-7297349899740519~4115633979</string>
     <string name="leaderboard_time_trial_id" translatable="false">CgkIxJXp3qcfEAIQAA</string>

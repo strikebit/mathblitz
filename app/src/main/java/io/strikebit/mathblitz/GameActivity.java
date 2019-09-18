@@ -119,6 +119,13 @@ public class GameActivity extends AppCompatActivity {
                 public void onFinish() {
                     TextView questionText = findViewById(R.id.math_question);
                     questionText.setVisibility(View.INVISIBLE);
+
+                    SharedPreferences.Editor editor = sharedPref.edit();
+                    editor.putInt(getString(R.string.total_questions_answered), totalQuestionsAnswered + questionsAnswered);
+                    editor.putInt(getString(R.string.total_questions_correct), totalQuestionsCorrect + score);
+                    editor.apply();
+                    updateLeaderboard();
+
                     showResult();
                 }
             };
@@ -234,6 +241,7 @@ public class GameActivity extends AppCompatActivity {
         }
 
         cleanScene();
+        findViewById(R.id.start_loader).setVisibility(View.VISIBLE);
 
         MobileAds.initialize(this, getString(R.string.add_id_key));
 
@@ -342,7 +350,10 @@ public class GameActivity extends AppCompatActivity {
                 ++questionsAnswered;
                 boolean isCorrect = possibleAnswer.equals(correctAnswer);
 
+                answerButton.setEnabled(false);
+
                 if (isCorrect) {
+                    answerButton.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.colorGreen));
                     if (currentQuestionTime > 0
                             && currentQuestionTime < newFastestTime
                             && currentQuestionTime < fastestCorrectAnswer
@@ -352,9 +363,10 @@ public class GameActivity extends AppCompatActivity {
                         editor.putFloat(getString(R.string.fastest_correct_answer), newFastestTime);
                         editor.apply();
                     }
+                } else {
+                    answerButton.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.colorRed));
                 }
 
-                // TODO Show a neat effect
                 if (null != questionTimer) {
                     questionTimer.cancel();
                 }
@@ -372,7 +384,7 @@ public class GameActivity extends AppCompatActivity {
         }
 
         if (0 == livesRemaining) {
-            // TODO find out why this wasn't adding their score
+            // TODO Refactor me
             SharedPreferences.Editor editor = sharedPref.edit();
             editor.putInt(getString(R.string.total_questions_answered), totalQuestionsAnswered + questionsAnswered);
             editor.putInt(getString(R.string.total_questions_correct), totalQuestionsCorrect + score);
@@ -469,7 +481,13 @@ public class GameActivity extends AppCompatActivity {
             soundManager.playIncorrectAnswerSound(GameActivity.this);
         }
         if (livesRemaining > 0 || GameConfig.GAME_MODE_PRACTICE == gameMode) {
-            createQuestion();
+            final Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    createQuestion();
+                }
+            }, 100);
         }
     }
 
@@ -486,7 +504,7 @@ public class GameActivity extends AppCompatActivity {
             difficulty = newDifficulty;
             questionTime += 1500;
             createQuestionTimer();
-            gainLife(1);
+            // gainLife(1); May add this back later
             soundManager.playLevelUpSound(GameActivity.this);
         } else {
             soundManager.playCorrectAnswerSound(GameActivity.this);
