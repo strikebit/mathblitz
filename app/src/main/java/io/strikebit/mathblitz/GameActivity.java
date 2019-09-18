@@ -187,6 +187,7 @@ public class GameActivity extends AppCompatActivity {
     protected void setupPracticeMode() {
         findViewById(R.id.progress_bar).setVisibility(View.INVISIBLE);
         findViewById(R.id.life_layout).setVisibility(View.INVISIBLE);
+        findViewById(R.id.button_quit_practice).setVisibility(View.VISIBLE);
     }
 
     public void onBackToMenuClick(View view) {
@@ -433,7 +434,7 @@ public class GameActivity extends AppCompatActivity {
         LinearLayout ll = findViewById(R.id.life_layout);
         for (int i = 0; i < howMany; ++i) {
             ImageView iv = new ImageView(this);
-            iv.setImageResource(R.drawable.life);
+            iv.setImageResource(R.drawable.ic_heart);
             iv.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
                     LinearLayout.LayoutParams.WRAP_CONTENT));
             ll.addView(iv);
@@ -536,8 +537,16 @@ public class GameActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         if (GameConfig.GAME_MODE_PRACTICE == gameMode) {
-            Intent intent = new Intent(this, MainActivity.class);
-            startActivity(intent);
+            backToPracticeMenu();
         }
+    }
+
+    public void onQuitPracticeClick(View view) {
+        backToPracticeMenu();
+    }
+
+    private void backToPracticeMenu() {
+        Intent intent = new Intent(this, PracticeActivity.class);
+        startActivity(intent);
     }
 }

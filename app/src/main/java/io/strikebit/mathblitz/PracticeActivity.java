@@ -75,4 +75,13 @@ public class PracticeActivity extends AppCompatActivity {
         intent.putExtra("difficulty", GameConfig.DIFFICULTY_LEGENDARY);
         startActivity(intent);
     }
+
+    public void onQuitPracticeClick(View view) {
+        backToPracticeMenu();
+    }
+
+    private void backToPracticeMenu() {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
 }
