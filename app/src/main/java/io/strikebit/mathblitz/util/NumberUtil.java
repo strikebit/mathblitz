@@ -38,9 +38,17 @@ public class NumberUtil {
             throw new IllegalArgumentException();
         }
 
-        BigDecimal bd = BigDecimal.valueOf(value);
-        bd = bd.setScale(places, RoundingMode.HALF_UP);
+        if (Double.isInfinite(value) || Double.isNaN(value)) {
+            return 0;
+        }
 
-        return bd.doubleValue();
+        try {
+            BigDecimal bd = BigDecimal.valueOf(value); // Fatal error here
+            bd = bd.setScale(places, RoundingMode.HALF_UP);
+
+            return bd.doubleValue();
+        } catch (Exception e) {
+            return value;
+        }
     }
 }
