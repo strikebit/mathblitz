@@ -33,4 +33,5 @@
     <string name="hard">ยาก</string>
     <string name="medium">สื่อกลาง</string>
     <string name="very_easy">ง่ายมาก</string>
+    <string name="your_score">คะแนนของคุณ</string>
 </resources>

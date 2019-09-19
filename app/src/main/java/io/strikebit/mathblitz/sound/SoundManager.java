@@ -3,6 +3,8 @@ package io.strikebit.mathblitz.sound;
 import android.content.Context;
 import android.media.MediaPlayer;
 
+import com.crashlytics.android.Crashlytics;
+
 import io.strikebit.mathblitz.R;
 
 public class SoundManager {
@@ -20,6 +22,7 @@ public class SoundManager {
                 }
             });
         } catch (Exception e) {
+            Crashlytics.logException(e);
             e.printStackTrace();
         }
     }
@@ -36,6 +39,7 @@ public class SoundManager {
                 }
             });
         } catch (Exception e) {
+            Crashlytics.logException(e);
             e.printStackTrace();
         }
     }
@@ -52,6 +56,7 @@ public class SoundManager {
                 }
             });
         } catch (Exception e) {
+            Crashlytics.logException(e);
             e.printStackTrace();
         }
     }
@@ -68,6 +73,7 @@ public class SoundManager {
                 }
             });
         } catch (Exception e) {
+            Crashlytics.logException(e);
             e.printStackTrace();
         }
     }

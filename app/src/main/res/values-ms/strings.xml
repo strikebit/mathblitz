@@ -33,4 +33,5 @@
     <string name="hard">Sukar</string>
     <string name="very_easy">Sangat mudah</string>
     <string name="very_hard">Sangat susah</string>
+    <string name="your_score">Markah anda</string>
 </resources>

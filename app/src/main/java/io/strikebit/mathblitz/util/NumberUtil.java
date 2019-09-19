@@ -1,5 +1,7 @@
 package io.strikebit.mathblitz.util;
 
+import com.crashlytics.android.Crashlytics;
+
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.ArrayList;
@@ -48,6 +50,7 @@ public class NumberUtil {
 
             return bd.doubleValue();
         } catch (Exception e) {
+            Crashlytics.logException(e);
             return value;
         }
     }

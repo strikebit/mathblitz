@@ -18,6 +18,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.crashlytics.android.Crashlytics;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.InterstitialAd;
@@ -32,6 +33,7 @@ import io.strikebit.mathblitz.config.GameConfig;
 import io.strikebit.mathblitz.formatter.QuestionFormatter;
 import io.strikebit.mathblitz.level.LevelManager;
 import io.strikebit.mathblitz.model.MathQuestion;
+import io.strikebit.mathblitz.network.NetworkTool;
 import io.strikebit.mathblitz.sound.SoundManager;
 import io.strikebit.mathblitz.strategy.MathQuestionStrategy;
 import io.strikebit.mathblitz.strategy.MathQuestionStrategyInterface;
@@ -248,7 +250,8 @@ public class GameActivity extends AppCompatActivity {
 
         // TODO life ad unit key ca-app-pub-7297349899740519/6550225624
         mInterstitialAd = new InterstitialAd(this);
-        mInterstitialAd.setAdUnitId("ca-app-pub-3940256099942544/1033173712");
+        mInterstitialAd.setAdUnitId("ca-app-pub-3940256099942544/1033173712"); // Test ad
+        // mInterstitialAd.setAdUnitId(getString(R.string.ad_interstitial)); // Production Ad
         mInterstitialAd.loadAd(new AdRequest.Builder().build());
         mInterstitialAd.setAdListener(new AdListener() {
             @Override
@@ -364,7 +367,7 @@ public class GameActivity extends AppCompatActivity {
                         editor.putFloat(getString(R.string.fastest_correct_answer), newFastestTime);
                         editor.apply();
                     }
-                    if (currentQuestionTime < 100) {
+                    if (currentQuestionTime < GameConfig.ACHIEVEMENT_FAST_THINKER) {
                         handleAchievement(getString(R.string.achievement_fast_thinker));
                     }
                 } else {
@@ -408,7 +411,9 @@ public class GameActivity extends AppCompatActivity {
     }
 
     protected void updateLeaderboard() {
-        if (null != GoogleSignIn.getLastSignedInAccount(this)) {
+        if (score > 0
+                && null != GoogleSignIn.getLastSignedInAccount(this)
+                && NetworkTool.isNetworkAvailable(this)) {
             String leaderBoardId;
             if (GameConfig.GAME_MODE_TIME_TRIAL == gameMode) {
                 leaderBoardId = getString(R.string.leaderboard_time_trial_id);
@@ -430,7 +435,9 @@ public class GameActivity extends AppCompatActivity {
         LinearLayout ll = findViewById(R.id.life_layout);
         try {
             ll.removeViewAt(livesRemaining);
-        } catch (Exception e) {}
+        } catch (Exception e) {
+            Crashlytics.logException(e);
+        }
 
         checkForDeath();
     }
@@ -523,7 +530,7 @@ public class GameActivity extends AppCompatActivity {
     }
 
     protected void handleAchievement(String achievementKey) {
-        if (GameConfig.GAME_MODE_PRACTICE == gameMode) {
+        if (GameConfig.GAME_MODE_PRACTICE == gameMode || !NetworkTool.isNetworkAvailable(this)) {
             return;
         }
 

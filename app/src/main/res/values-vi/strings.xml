@@ -33,4 +33,5 @@
     <string name="hard">Khó</string>
     <string name="medium">Trung gian</string>
     <string name="very_easy">Rất dễ</string>
+    <string name="your_score">Số điểm của bạn</string>
 </resources>

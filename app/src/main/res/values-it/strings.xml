@@ -33,4 +33,5 @@
     <string name="medium">Intermedia</string>
     <string name="genius">Genio</string>
     <string name="difficulty">Difficoltà</string>
+    <string name="your_score">Il tuo punteggio</string>
 </resources>

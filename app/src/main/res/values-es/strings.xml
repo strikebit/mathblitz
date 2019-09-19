@@ -33,4 +33,5 @@
     <string name="hard">Difícil</string>
     <string name="very_hard">Muy difícil</string>
     <string name="medium">Intermedia</string>
+    <string name="your_score">Tu puntuación</string>
 </resources>

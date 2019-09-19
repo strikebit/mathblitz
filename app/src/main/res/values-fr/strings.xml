@@ -33,4 +33,5 @@
     <string name="very_hard">Très difficile</string>
     <string name="hard">Difficile</string>
     <string name="genius">Génie</string>
+    <string name="your_score">Ton score</string>
 </resources>

@@ -7,6 +7,7 @@
     <string name="life_2">Life 2</string>
     <string name="life_3">Life 3</string>
     <string name="back_to_menu">Back to menu</string>
+    <string name="your_score">Your score</string>
     <string name="high_score">High score: %d</string>
     <string name="label_high_score_time_trial">Time trial high score</string>
     <string name="label_high_score_survival">Survival high score</string>

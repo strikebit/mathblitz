@@ -33,4 +33,5 @@
     <string name="easy">Lett</string>
     <string name="difficulty">Vanskelighet</string>
     <string name="medium">Medium</string>
+    <string name="your_score">Din poengsum</string>
 </resources>

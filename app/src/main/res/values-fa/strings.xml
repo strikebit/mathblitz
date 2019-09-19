@@ -33,4 +33,5 @@
     <string name="very_hard">خیلی سخت</string>
     <string name="very_easy">بسیار آسان</string>
     <string name="medium">حد واسط</string>
+    <string name="your_score">امتیاز شما</string>
 </resources>

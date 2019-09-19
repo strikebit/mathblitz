@@ -2,7 +2,6 @@
     <string name="app_id" translatable="false">1075819727556</string>
     <string name="app_name" translatable="false">MathBlitz</string>
     <string name="package_name" translatable="false">io.strikebit.mathblitz</string>
-    <string name="add_id_key" translatable="false">ca-app-pub-7297349899740519~4115633979</string>
     <string name="leaderboard_time_trial_id" translatable="false">CgkIxJXp3qcfEAIQAA</string>
     <string name="leaderboard_survival_id" translatable="false">CgkIxJXp3qcfEAIQAQ</string>
     <string name="game_shared_preferences" translatable="false">game_shared_preferences</string>
@@ -19,4 +18,7 @@
     <string name="achievement_100_club" translatable="false">CgkIxJXp3qcfEAIQCg</string>
     <string name="achievement_fast_thinker" translatable="false">CgkIxJXp3qcfEAIQCw</string>
     <string name="achievement_survivor" translatable="false">CgkIxJXp3qcfEAIQDA</string>
+    <string name="add_id_key" translatable="false">ca-app-pub-7297349899740519~4115633979</string>
+    <string name="ad_banner" translatable="false">ca-app-pub-7297349899740519/6550225624</string>
+    <string name="ad_interstitial" translatable="false">ca-app-pub-7297349899740519/6550225624</string>
 </resources>

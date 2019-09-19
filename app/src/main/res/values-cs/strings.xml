@@ -33,4 +33,5 @@
     <string name="time_trial">Časová zkouška</string>
     <string name="times_up">Čas vypršel! Konečné skóre: %d</string>
     <string name="very_easy">Velmi snadné</string>
+    <string name="your_score">Tvoje skóre</string>
 </resources>

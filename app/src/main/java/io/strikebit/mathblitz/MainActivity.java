@@ -15,11 +15,10 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.crashlytics.android.Crashlytics;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
-import com.google.android.gms.ads.initialization.InitializationStatus;
-import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -33,6 +32,7 @@ import com.google.firebase.perf.FirebasePerformance;
 import com.google.firebase.perf.metrics.Trace;
 
 import io.strikebit.mathblitz.config.GameConfig;
+import io.strikebit.mathblitz.network.NetworkTool;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -54,18 +54,13 @@ public class MainActivity extends AppCompatActivity {
             String version = pInfo.versionName;
             buildInfo.setText(version);
         } catch (PackageManager.NameNotFoundException e) {
+            Crashlytics.logException(e);
             e.printStackTrace();
         }
 
         signInSilently();
 
-        MobileAds.initialize(this, new OnInitializationCompleteListener() {
-            @Override
-            public void onInitializationComplete(InitializationStatus initializationStatus) {
-                System.out.println("ad loaded");
-            }
-        });
-
+        MobileAds.initialize(this);
         AdView mAdView = findViewById(R.id.ad_main_banner);
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
@@ -114,7 +109,8 @@ public class MainActivity extends AppCompatActivity {
     public void viewStatsClick(View view) {
         GoogleSignInOptions signInOptions = GoogleSignInOptions.DEFAULT_GAMES_SIGN_IN;
         GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
-        if (!GoogleSignIn.hasPermissions(account, signInOptions.getScopeArray())) {
+        if (NetworkTool.isNetworkAvailable(this)
+                && !GoogleSignIn.hasPermissions(account, signInOptions.getScopeArray())) {
             startSignInIntent(RC_CODE2);
         } else {
             Intent intent = new Intent(this, StatsActivity.class);
@@ -125,7 +121,8 @@ public class MainActivity extends AppCompatActivity {
     public void leaderboardClick(View view) {
         GoogleSignInOptions signInOptions = GoogleSignInOptions.DEFAULT_GAMES_SIGN_IN;
         GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
-        if (!GoogleSignIn.hasPermissions(account, signInOptions.getScopeArray())) {
+        if (NetworkTool.isNetworkAvailable(this)
+                && !GoogleSignIn.hasPermissions(account, signInOptions.getScopeArray())) {
             startSignInIntent(RC_CODE);
         } else {
             Intent intent = new Intent(this, LeaderboardActivity.class);

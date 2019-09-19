@@ -33,4 +33,5 @@
     <string name="hard">трудно</string>
     <string name="very_hard">очень сложно</string>
     <string name="very_easy">очень просто</string>
+    <string name="your_score">Твой счет</string>
 </resources>

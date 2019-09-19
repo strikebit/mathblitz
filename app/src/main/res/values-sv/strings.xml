@@ -33,4 +33,5 @@
     <string name="hard">Svår</string>
     <string name="very_hard">Mycket svårt</string>
     <string name="very_easy">Väldigt lätt</string>
+    <string name="your_score">Din poäng</string>
 </resources>

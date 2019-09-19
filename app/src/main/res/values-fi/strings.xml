@@ -33,4 +33,5 @@
     <string name="very_hard">Hyvin vaikea</string>
     <string name="hard">Vaikea</string>
     <string name="medium">Väli-</string>
+    <string name="your_score">Pisteesi</string>
 </resources>

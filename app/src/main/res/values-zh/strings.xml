@@ -33,4 +33,5 @@
     <string name="hard">难</string>
     <string name="very_easy">很容易</string>
     <string name="very_hard">非常困难</string>
+    <string name="your_score">你的分数</string>
 </resources>
