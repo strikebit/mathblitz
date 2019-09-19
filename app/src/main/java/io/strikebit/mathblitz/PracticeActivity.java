@@ -147,8 +147,6 @@ public class PracticeActivity extends AppCompatActivity {
             operators.add(MathQuestionStrategy.OPERATOR_DIVIDE);
         }
 
-        System.out.println(operators);
-
         return operators;
     }
 }

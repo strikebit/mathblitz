@@ -275,8 +275,8 @@ public class GameActivity extends AppCompatActivity {
 
         // TODO life ad unit key ca-app-pub-7297349899740519/6550225624
         mInterstitialAd = new InterstitialAd(this);
-        mInterstitialAd.setAdUnitId("ca-app-pub-3940256099942544/1033173712"); // Test ad
-        // mInterstitialAd.setAdUnitId(getString(R.string.ad_interstitial)); // Production Ad
+        // mInterstitialAd.setAdUnitId("ca-app-pub-3940256099942544/1033173712"); // Test ad
+        mInterstitialAd.setAdUnitId(getString(R.string.ad_interstitial)); // Production Ad
         mInterstitialAd.loadAd(new AdRequest.Builder().build());
         mInterstitialAd.setAdListener(new AdListener() {
             @Override

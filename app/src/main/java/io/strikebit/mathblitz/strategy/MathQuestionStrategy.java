@@ -85,9 +85,6 @@ public class MathQuestionStrategy implements MathQuestionStrategyInterface {
 
     private MathQuestion generateVeryEasyQuestion() {
         String operator = operators.get(random.nextInt(operators.size()));
-        System.out.println("=========================================");
-        System.out.println(operators.size());
-        System.out.println("=========================================");
         int operand1 = random.nextInt(8);
         if (0 == operand1) {
             ++operand1;
