@@ -34,4 +34,6 @@
     <string name="hard">важко</string>
     <string name="medium">проміжний</string>
     <string name="your_score">Ваш рахунок</string>
+    <string name="choose_operations">Виберіть операції</string>
+    <string name="signin_other_error">Помилка входу</string>
 </resources>

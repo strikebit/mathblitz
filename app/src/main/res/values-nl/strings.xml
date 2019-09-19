@@ -34,4 +34,6 @@
     <string name="hard">Moeilijk</string>
     <string name="genius">Genie</string>
     <string name="your_score">Jouw score</string>
+    <string name="choose_operations">Kies bewerkingen</string>
+    <string name="signin_other_error">Aanmeldfout</string>
 </resources>

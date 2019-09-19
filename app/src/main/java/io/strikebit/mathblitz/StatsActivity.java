@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -24,6 +25,11 @@ public class StatsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_stats);
+
+        if (null != this.getSupportActionBar()) {
+            this.getSupportActionBar().setTitle(getString(R.string.stats));
+            this.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
 
         new Thread(new Runnable() {
             public void run() {
@@ -74,6 +80,18 @@ public class StatsActivity extends AppCompatActivity {
         }).start();
 
         showAchievements();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                Intent intent = new Intent(this, MainActivity.class);
+                startActivity(intent);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     private void showAchievements() {

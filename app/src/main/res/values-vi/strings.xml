@@ -34,4 +34,6 @@
     <string name="medium">Trung gian</string>
     <string name="very_easy">Rất dễ</string>
     <string name="your_score">Số điểm của bạn</string>
+    <string name="choose_operations">Chọn hoạt động</string>
+    <string name="signin_other_error">Đăng nhập lỗi</string>
 </resources>

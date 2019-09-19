@@ -34,4 +34,6 @@
     <string name="very_easy">Muito fácil</string>
     <string name="very_hard">Muito difícil</string>
     <string name="your_score">Sua pontuação</string>
+    <string name="choose_operations">Escolha operações</string>
+    <string name="signin_other_error">Erro de login</string>
 </resources>

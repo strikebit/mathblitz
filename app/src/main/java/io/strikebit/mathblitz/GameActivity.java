@@ -10,6 +10,7 @@ import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -27,6 +28,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.games.Games;
 
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.Locale;
 
 import io.strikebit.mathblitz.config.GameConfig;
@@ -71,6 +73,7 @@ public class GameActivity extends AppCompatActivity {
     private LinearLayout ll;
     private InterstitialAd mInterstitialAd;
     private MathQuestionStrategyInterface mathQuestionStrategy;
+    private ArrayList<String> operators;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,6 +88,22 @@ public class GameActivity extends AppCompatActivity {
         gameMode = getIntent().getIntExtra("gameMode", GameConfig.GAME_MODE_TIME_TRIAL);
         score = getIntent().getIntExtra("score", 0);
         difficulty = getIntent().getIntExtra("difficulty", GameConfig.DIFFICULTY_EASY);
+        operators = getIntent().getStringArrayListExtra("operators");
+
+        if (null != this.getSupportActionBar()) {
+            switch (gameMode) {
+                case GameConfig.GAME_MODE_TIME_TRIAL:
+                    this.getSupportActionBar().setTitle(getString(R.string.time_trial));
+                    break;
+                case GameConfig.GAME_MODE_SURVIVAL:
+                    this.getSupportActionBar().setTitle(getString(R.string.survival));
+                    break;
+                default:
+                    this.getSupportActionBar().setTitle(getString(R.string.practice));
+                    this.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+                    break;
+            }
+        }
 
         new Thread(new Runnable() {
             public void run() {
@@ -176,6 +195,18 @@ public class GameActivity extends AppCompatActivity {
     }
 
     @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                Intent intent = new Intent(this, PracticeActivity.class);
+                startActivity(intent);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
 
@@ -189,12 +220,6 @@ public class GameActivity extends AppCompatActivity {
     protected void setupPracticeMode() {
         findViewById(R.id.progress_bar).setVisibility(View.INVISIBLE);
         findViewById(R.id.life_layout).setVisibility(View.INVISIBLE);
-        findViewById(R.id.button_quit_practice).setVisibility(View.VISIBLE);
-    }
-
-    public void onBackToMenuClick(View view) {
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
     }
 
     protected void createQuestionTimer() {
@@ -312,7 +337,12 @@ public class GameActivity extends AppCompatActivity {
     }
 
     protected void createQuestion() {
-        MathQuestion mathQuestion = mathQuestionStrategy.generate(difficulty);
+        MathQuestion mathQuestion;
+        if (null != operators && !operators.isEmpty()) {
+            mathQuestion = mathQuestionStrategy.generate(difficulty, operators);
+        } else {
+            mathQuestion = mathQuestionStrategy.generate(difficulty);
+        }
 
         TextView questionText = findViewById(R.id.math_question);
         questionText.setText(QuestionFormatter.humanizeQuestion(mathQuestion.getQuestion()));
@@ -397,8 +427,15 @@ public class GameActivity extends AppCompatActivity {
             editor.putInt(getString(R.string.total_questions_correct), totalQuestionsCorrect + score);
             editor.apply();
             updateLeaderboard();
-            if (totalQuestionsCorrect + score > GameConfig.ACHIEVMENT_HUNDRED_QUESTIONS_RIGHT) {
+            int combinedScore = totalQuestionsCorrect + score;
+            if (combinedScore >= GameConfig.ACHIEVMENT_HUNDRED_QUESTIONS_RIGHT && combinedScore < GameConfig.ACHIEVMENT_TWO_HUNDRED_QUESTIONS_RIGHT) {
                 handleAchievement(getString(R.string.achievement_100_club));
+            }
+            if (combinedScore >= GameConfig.ACHIEVMENT_TWO_HUNDRED_QUESTIONS_RIGHT && combinedScore < GameConfig.ACHIEVMENT_FIVE_HUNDRED_QUESTIONS_RIGHT) {
+                handleAchievement(getString(R.string.achievement_200_club));
+            }
+            if (combinedScore >= GameConfig.ACHIEVMENT_FIVE_HUNDRED_QUESTIONS_RIGHT) {
+                handleAchievement(getString(R.string.achievement_500_club));
             }
             if (GameConfig.GAME_MODE_TIME_TRIAL == gameMode && score >= GameConfig.ACHIEVEMENT_TIME_TRIAL_20_TOTAL) {
                 handleAchievement(getString(R.string.achievement_time_trial_20_total));
@@ -420,8 +457,9 @@ public class GameActivity extends AppCompatActivity {
             } else {
                 leaderBoardId = getString(R.string.leaderboard_survival_id);
             }
+
             Games.getLeaderboardsClient(this, GoogleSignIn.getLastSignedInAccount(this))
-                    .submitScore(leaderBoardId, score > highScore ? score : highScore);
+                    .submitScore(leaderBoardId, score);
         }
     }
 
@@ -585,10 +623,6 @@ public class GameActivity extends AppCompatActivity {
         if (GameConfig.GAME_MODE_PRACTICE == gameMode) {
             backToPracticeMenu();
         }
-    }
-
-    public void onQuitPracticeClick(View view) {
-        backToPracticeMenu();
     }
 
     private void backToPracticeMenu() {

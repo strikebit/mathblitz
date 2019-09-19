@@ -20,5 +20,7 @@ public class GameConfig {
     public final static int ACHIEVEMENT_TIME_TRIAL_20_TOTAL = 20;
     public final static int ACHIEVEMENT_SURVIVOR = 25;
     public final static int ACHIEVMENT_HUNDRED_QUESTIONS_RIGHT = 100;
+    public final static int ACHIEVMENT_TWO_HUNDRED_QUESTIONS_RIGHT = 200;
+    public final static int ACHIEVMENT_FIVE_HUNDRED_QUESTIONS_RIGHT = 500;
     public final static int ACHIEVEMENT_FAST_THINKER = 100; // 100 ms
 }

@@ -34,4 +34,6 @@
     <string name="times_up">Koniec czasu! Ostateczny wynik: %d</string>
     <string name="very_hard">Bardzo trudne</string>
     <string name="your_score">Twój wynik</string>
+    <string name="choose_operations">Wybierz operacje</string>
+    <string name="signin_other_error">Błąd logowania</string>
 </resources>

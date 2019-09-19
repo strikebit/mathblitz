@@ -34,4 +34,6 @@
     <string name="difficulty">Vanskelighet</string>
     <string name="medium">Medium</string>
     <string name="your_score">Din poengsum</string>
+    <string name="choose_operations">Velg operasjoner</string>
+    <string name="signin_other_error">Innloggingsfeil</string>
 </resources>

@@ -34,4 +34,6 @@
     <string name="hard">Schwierig</string>
     <string name="medium">Mittlere</string>
     <string name="your_score">Ihr Ergebnis</string>
+    <string name="choose_operations">Wählen Sie Operationen</string>
+    <string name="signin_other_error">Anmeldefehler</string>
 </resources>

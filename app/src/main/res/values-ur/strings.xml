@@ -34,4 +34,6 @@
     <string name="very_easy">بہت آسان</string>
     <string name="very_hard">بہت مشکل</string>
     <string name="your_score">آپ کا سکور</string>
+    <string name="choose_operations">آپریشن منتخب کریں۔</string>
+    <string name="signin_other_error">سائن ان کی غلطی۔</string>
 </resources>

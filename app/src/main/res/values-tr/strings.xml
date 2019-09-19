@@ -34,4 +34,6 @@
     <string name="medium">Orta düzey</string>
     <string name="very_hard">Çok zor</string>
     <string name="your_score">Puanın</string>
+    <string name="choose_operations">İşlemleri seç</string>
+    <string name="signin_other_error">Giriş hatası</string>
 </resources>

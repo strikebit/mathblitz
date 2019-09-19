@@ -34,4 +34,6 @@
     <string name="medium">ਵਿਚਕਾਰਲਾ</string>
     <string name="very_easy">ਬਹੁਤ ਹੀ ਆਸਾਨ</string>
     <string name="your_score">ਤੁਹਾਡਾ ਸਕੋਰ</string>
+    <string name="choose_operations">ਓਪਰੇਸ਼ਨਾਂ ਦੀ ਚੋਣ ਕਰੋ</string>
+    <string name="signin_other_error">ਸਾਈਨ ਇਨ ਗਲਤੀ</string>
 </resources>

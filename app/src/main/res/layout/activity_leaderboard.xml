@@ -56,21 +56,4 @@
             android:text="@string/survival" />
     </LinearLayout>
 
-    <Button
-        android:id="@+id/button_leaderboard_back_to_menu"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/rounded_button_maroon"
-        android:onClick="onBackToMenuClick"
-        android:paddingStart="20dp"
-        android:paddingLeft="20dp"
-        android:paddingEnd="20dp"
-        android:paddingRight="20dp"
-        android:layout_marginBottom="16dp"
-        android:text="@string/back_to_menu"
-        android:textColor="@color/colorWhite"
-        android:visibility="visible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

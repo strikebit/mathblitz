@@ -34,4 +34,6 @@
     <string name="hard">קשה</string>
     <string name="genius">גאונות</string>
     <string name="your_score">התוצאה שלך</string>
+    <string name="choose_operations">בחר פעולות</string>
+    <string name="signin_other_error">שגיאת כניסה</string>
 </resources>

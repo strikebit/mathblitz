@@ -34,4 +34,6 @@
     <string name="hard">Vaikea</string>
     <string name="medium">Väli-</string>
     <string name="your_score">Pisteesi</string>
+    <string name="choose_operations">Valitse toiminnot</string>
+    <string name="signin_other_error">Sisäänkirjautumisvirhe</string>
 </resources>

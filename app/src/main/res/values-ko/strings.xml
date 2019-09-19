@@ -34,4 +34,6 @@
     <string name="very_easy">아주 쉽게</string>
     <string name="medium">중급</string>
     <string name="your_score">너의 점수</string>
+    <string name="choose_operations">작업 선택</string>
+    <string name="signin_other_error">로그인 오류</string>
 </resources>

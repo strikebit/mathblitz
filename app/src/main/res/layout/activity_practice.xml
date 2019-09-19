@@ -7,6 +7,76 @@
     tools:context=".PracticeActivity">
 
     <TextView
+        android:id="@+id/text_operations"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/choose_operations"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/practice_layout_0"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toEndOf="@id/text_operations"
+        app:layout_constraintTop_toBottomOf="@id/text_operations"
+        >
+        <ToggleButton
+            android:id="@+id/button_practice_add"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="onAddClick"
+            android:textSize="21sp"
+            android:checked="true"
+            android:text="+"
+            android:textOn="+"
+            android:textOff="+" />
+        <ToggleButton
+            android:id="@+id/button_practice_subtract"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="onSubstractClick"
+            android:textSize="21sp"
+            android:checked="true"
+            android:text="-"
+            android:textOn="-"
+            android:textOff="-" />
+        <ToggleButton
+            android:id="@+id/button_practice_multiply"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="onMultiplyClick"
+            android:textSize="21sp"
+            android:checked="true"
+            android:text="×"
+            android:textOn="×"
+            android:textOff="×" />
+        <ToggleButton
+            android:id="@+id/button_practice_divide"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="onDivideClick"
+            android:textSize="21sp"
+            android:checked="true"
+            android:text="÷"
+            android:textOn="÷"
+            android:textOff="÷" />
+    </LinearLayout>
+
+    <TextView
         android:id="@+id/text_difficulty"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -15,21 +85,7 @@
         android:layout_marginTop="16dp"
         android:text="@string/difficulty"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageButton
-        android:id="@+id/button_quit_practice"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:src="@drawable/ic_close"
-        android:contentDescription="@string/quit"
-        android:layout_marginTop="6dp"
-        android:layout_marginEnd="6dp"
-        android:layout_marginRight="6dp"
-        android:onClick="onQuitPracticeClick"
-        android:visibility="visible"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/practice_layout_0" />
 
     <LinearLayout
         android:id="@+id/practice_layout_1"

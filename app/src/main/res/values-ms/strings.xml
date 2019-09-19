@@ -34,4 +34,6 @@
     <string name="very_easy">Sangat mudah</string>
     <string name="very_hard">Sangat susah</string>
     <string name="your_score">Markah anda</string>
+    <string name="choose_operations">Pilih operasi</string>
+    <string name="signin_other_error">Ralat masuk</string>
 </resources>

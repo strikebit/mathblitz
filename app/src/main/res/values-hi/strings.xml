@@ -34,4 +34,6 @@
     <string name="hard">कठिन</string>
     <string name="medium">मध्यम</string>
     <string name="your_score">अपने स्कोर</string>
+    <string name="choose_operations">संचालन चुनें</string>
+    <string name="signin_other_error">गलती से साइन इन करें</string>
 </resources>

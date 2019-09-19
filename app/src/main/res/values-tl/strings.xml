@@ -34,4 +34,6 @@
     <string name="medium">Nasa pagitan</string>
     <string name="very_hard">Napakahirap</string>
     <string name="your_score">Ang iyong iskor</string>
+    <string name="choose_operations">Valitse toiminnot</string>
+    <string name="signin_other_error">Mag-sign in error</string>
 </resources>

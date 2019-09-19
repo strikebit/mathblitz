@@ -34,4 +34,6 @@
     <string name="genius">Geni</string>
     <string name="difficulty">Vanskelighed</string>
     <string name="your_score">Din score</string>
+    <string name="choose_operations">Vælg handlinger</string>
+    <string name="signin_other_error">Fejl ved login</string>
 </resources>

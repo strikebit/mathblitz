@@ -34,4 +34,6 @@
     <string name="very_hard">очень сложно</string>
     <string name="very_easy">очень просто</string>
     <string name="your_score">Твой счет</string>
+    <string name="choose_operations">Выберите операции</string>
+    <string name="signin_other_error">Ошибка входа</string>
 </resources>

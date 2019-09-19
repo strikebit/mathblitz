@@ -34,4 +34,6 @@
     <string name="hard">Difficile</string>
     <string name="genius">Génie</string>
     <string name="your_score">Ton score</string>
+    <string name="choose_operations">Choisissez les opérations</string>
+    <string name="signin_other_error">Erreur de connexion</string>
 </resources>

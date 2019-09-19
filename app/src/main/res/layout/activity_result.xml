@@ -71,21 +71,6 @@
             android:paddingEnd="20dp"
             android:text="@string/play_again"  />
 
-        <Button
-            android:id="@+id/button_back_to_menu"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
-            android:layout_marginLeft="5dp"
-            android:onClick="onBackToMenuClick"
-            android:text="@string/back_to_menu"
-            android:textColor="@color/colorWhite"
-            android:background="@drawable/rounded_button_maroon"
-            android:paddingLeft="20dp"
-            android:paddingStart="20dp"
-            android:paddingRight="20dp"
-            android:paddingEnd="20dp"
-            android:visibility="visible"  />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

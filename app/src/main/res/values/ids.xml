@@ -16,6 +16,8 @@
     <string name="achievement_30_in_a_row" translatable="false">CgkIxJXp3qcfEAIQCQ</string>
     <string name="achievement_time_trial_20_total" translatable="false">CgkIxJXp3qcfEAIQCA</string>
     <string name="achievement_100_club" translatable="false">CgkIxJXp3qcfEAIQCg</string>
+    <string name="achievement_200_club" translatable="false">CgkIxJXp3qcfEAIQDQ</string>
+    <string name="achievement_500_club" translatable="false">CgkIxJXp3qcfEAIQDg</string>
     <string name="achievement_fast_thinker" translatable="false">CgkIxJXp3qcfEAIQCw</string>
     <string name="achievement_survivor" translatable="false">CgkIxJXp3qcfEAIQDA</string>
     <string name="add_id_key" translatable="false">ca-app-pub-7297349899740519~4115633979</string>

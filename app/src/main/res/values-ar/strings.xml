@@ -34,4 +34,6 @@
     <string name="very_hard">صعب جدا</string>
     <string name="medium">متوسط</string>
     <string name="your_score">درجاتك</string>
+    <string name="choose_operations">اختيار العمليات</string>
+    <string name="signin_other_error">خطأ في تسجيل الدخول</string>
 </resources>

@@ -34,4 +34,6 @@
     <string name="very_hard">Foarte dificil</string>
     <string name="medium">Intermediar</string>
     <string name="your_score">Scorul dumneavoastră</string>
+    <string name="choose_operations">Alegeți operațiunile</string>
+    <string name="signin_other_error">Eroare de conectare</string>
 </resources>

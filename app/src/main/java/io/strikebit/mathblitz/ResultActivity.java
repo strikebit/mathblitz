@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
@@ -29,10 +30,24 @@ public class ResultActivity extends AppCompatActivity {
 
         gameMode = getIntent().getIntExtra("gameMode", GameConfig.GAME_MODE_TIME_TRIAL);
 
+        if (null != this.getSupportActionBar()) {
+            this.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+            switch (gameMode) {
+                case GameConfig.GAME_MODE_TIME_TRIAL:
+                    this.getSupportActionBar().setTitle(getString(R.string.time_trial));
+                    break;
+                case GameConfig.GAME_MODE_SURVIVAL:
+                    this.getSupportActionBar().setTitle(getString(R.string.survival));
+                    break;
+                default:
+                    this.getSupportActionBar().setTitle(getString(R.string.practice));
+                    break;
+            }
+        }
+
         int score = getIntent().getIntExtra("score", 0);
         int highScore = getIntent().getIntExtra("highScore", 0);
-        // boolean alive = getIntent().getBooleanExtra("alive", true);
-        System.out.println("Score: " + score);
 
         TextView resultText = findViewById(R.id.text_result);
         TextView highScoreText = findViewById(R.id.text_high_score);
@@ -62,14 +77,20 @@ public class ResultActivity extends AppCompatActivity {
                         }
                     });
         }
-
-        System.out.println("shiz: " + score);
     }
 
-    public void onBackToMenuClick(View view) {
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                Intent intent = new Intent(this, MainActivity.class);
+                startActivity(intent);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
+
 
     @Override
     public void onBackPressed() {

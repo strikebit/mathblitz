@@ -34,4 +34,6 @@
     <string name="very_easy">بسیار آسان</string>
     <string name="medium">حد واسط</string>
     <string name="your_score">امتیاز شما</string>
+    <string name="choose_operations">عملیات را انتخاب کنید</string>
+    <string name="signin_other_error">خطا وارد شوید</string>
 </resources>

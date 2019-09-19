@@ -34,4 +34,6 @@
     <string name="hard">Erfitt</string>
     <string name="very_hard">Mjög erfitt</string>
     <string name="your_score">Stigin þín</string>
+    <string name="choose_operations">Veldu aðgerðir</string>
+    <string name="signin_other_error">Villa við innskráningu</string>
 </resources>

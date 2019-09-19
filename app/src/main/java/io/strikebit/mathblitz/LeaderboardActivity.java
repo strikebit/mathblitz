@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -19,7 +20,24 @@ public class LeaderboardActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_leaderboard);
 
+        if (null != this.getSupportActionBar()) {
+            this.getSupportActionBar().setTitle(getString(R.string.leaderboard));
+            this.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
+
         this.showTimeTrialLeaderboard();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                Intent intent = new Intent(this, MainActivity.class);
+                startActivity(intent);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     public void onTimeTrialClick(View view) {
@@ -28,11 +46,6 @@ public class LeaderboardActivity extends AppCompatActivity {
 
     public void onSurvivalClick(View view) {
         showSurvivalLeaderboard();
-    }
-
-    public void onBackToMenuClick(View view) {
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
     }
 
     private void showTimeTrialLeaderboard() {
