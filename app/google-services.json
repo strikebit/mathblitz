@@ -15,7 +15,31 @@
       },
       "oauth_client": [
         {
+          "client_id": "1075819727556-63nuocf043gvsveo8lvh7v2m9n3iv2tu.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "io.strikebit.mathblitz",
+            "certificate_hash": "c74107df3533d141355e1da744a1b8e6c57cd885"
+          }
+        },
+        {
           "client_id": "1075819727556-4ofm0a5i0of8hdjte686ads8t82nnjue.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "io.strikebit.mathblitz",
+            "certificate_hash": "8914521a4d21558d70e129e94af76f88a55013ac"
+          }
+        },
+        {
+          "client_id": "1075819727556-hlq61nu08195n34ml3s2h5sk7v6ilbkb.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "io.strikebit.mathblitz",
+            "certificate_hash": "157e7411432dddb755540d470401cdd71add8dd6"
+          }
+        },
+        {
+          "client_id": "1075819727556-2de7cnvnp6vi1nr84uk1ee7msh7lv1ff.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
@@ -28,7 +52,7 @@
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "1075819727556-4ofm0a5i0of8hdjte686ads8t82nnjue.apps.googleusercontent.com",
+              "client_id": "1075819727556-7o9cj3b8fh3o4kqk5rror9meam1ld92i.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

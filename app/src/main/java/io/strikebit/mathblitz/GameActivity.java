@@ -381,10 +381,16 @@ public class GameActivity extends AppCompatActivity {
         answerButton.setBackgroundColor(ContextCompat.getColor(this, R.color.colorPrimary));
         answerButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
+                answerButton.setEnabled(false);
+
+                int count = ll.getChildCount();
+                for (int i = 0; i < count; ++i) {
+                    ll.getChildAt(i).setEnabled(false);
+                }
+
                 ++questionsAnswered;
                 boolean isCorrect = possibleAnswer.equals(correctAnswer);
 
-                answerButton.setEnabled(false);
 
                 if (isCorrect) {
                     answerButton.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.colorGreen));
